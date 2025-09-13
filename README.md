@@ -22,6 +22,8 @@
 </p>
 
 ## 📝 Table of Contents
+- [Video Downlode]-
+- [PPT Downlode]-
 - [Problem Statement](#problem_statement)
 - [Idea](#idea)
 - [Future Scope](#future_scope)
