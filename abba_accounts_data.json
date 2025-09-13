@@ -1,0 +1,2200 @@
+{
+  "organizations": {
+    "ngos": [
+      {
+        "id": "akshaya_patra",
+        "name": "Akshaya Patra Foundation",
+        "type": "Education & Nutrition",
+        "financial": {
+          "income": {
+            "total_income": 379806594,
+            "donations": 227883956,
+            "government_grants": 94951648,
+            "program_revenue": 37980659,
+            "investment_income": 18990329
+          },
+          "expenses": {
+            "total_expenses": 322835604,
+            "program_expenses": 265864615,
+            "administrative_expenses": 37980659,
+            "fundraising_expenses": 18990329
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 48582864,
+              "expenses": 21113388
+            },
+            {
+              "month": "Feb",
+              "income": 44283829,
+              "expenses": 31682734
+            },
+            {
+              "month": "Mar",
+              "income": 41526473,
+              "expenses": 18299223
+            },
+            {
+              "month": "Apr",
+              "income": 23354105,
+              "expenses": 26210253
+            },
+            {
+              "month": "May",
+              "income": 48300769,
+              "expenses": 45885509
+            },
+            {
+              "month": "Jun",
+              "income": 25524754,
+              "expenses": 17146542
+            },
+            {
+              "month": "Jul",
+              "income": 55511469,
+              "expenses": 34338545
+            },
+            {
+              "month": "Aug",
+              "income": 40704711,
+              "expenses": 21560794
+            },
+            {
+              "month": "Sep",
+              "income": 23370101,
+              "expenses": 19674518
+            },
+            {
+              "month": "Oct",
+              "income": 41606350,
+              "expenses": 45128435
+            },
+            {
+              "month": "Nov",
+              "income": 22785801,
+              "expenses": 26162374
+            },
+            {
+              "month": "Dec",
+              "income": 45331395,
+              "expenses": 29664760
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Executive Director",
+            "count": 1,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Program Manager",
+            "count": 5,
+            "avg_salary": 800000
+          },
+          {
+            "role": "Field Coordinator",
+            "count": 15,
+            "avg_salary": 500000
+          },
+          {
+            "role": "Administrative Staff",
+            "count": 8,
+            "avg_salary": 350000
+          },
+          {
+            "role": "Support Staff",
+            "count": 20,
+            "avg_salary": 250000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "meals_served": 15750000,
+          "schools_covered": 19500,
+          "states_operational": 12,
+          "cost_per_meal": 18.5,
+          "kitchen_infrastructure": {
+            "centralized_kitchens": 64,
+            "school_kitchens": 150,
+            "total_capacity": "5 million meals/day"
+          }
+        }
+      },
+      {
+        "id": "smile_foundation",
+        "name": "Smile Foundation",
+        "type": "Education & Healthcare",
+        "financial": {
+          "income": {
+            "total_income": 52381609,
+            "donations": 31428965,
+            "government_grants": 13095402,
+            "program_revenue": 5238160,
+            "investment_income": 2619080
+          },
+          "expenses": {
+            "total_expenses": 44524367,
+            "program_expenses": 36667126,
+            "administrative_expenses": 5238160,
+            "fundraising_expenses": 2619080
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 3408435,
+              "expenses": 5817631
+            },
+            {
+              "month": "Feb",
+              "income": 5046587,
+              "expenses": 4337127
+            },
+            {
+              "month": "Mar",
+              "income": 3553617,
+              "expenses": 5672529
+            },
+            {
+              "month": "Apr",
+              "income": 6065749,
+              "expenses": 6447701
+            },
+            {
+              "month": "May",
+              "income": 5672838,
+              "expenses": 6385771
+            },
+            {
+              "month": "Jun",
+              "income": 5302200,
+              "expenses": 2540937
+            },
+            {
+              "month": "Jul",
+              "income": 7785478,
+              "expenses": 3954623
+            },
+            {
+              "month": "Aug",
+              "income": 6227256,
+              "expenses": 4239269
+            },
+            {
+              "month": "Sep",
+              "income": 3447088,
+              "expenses": 3413760
+            },
+            {
+              "month": "Oct",
+              "income": 7476418,
+              "expenses": 5391080
+            },
+            {
+              "month": "Nov",
+              "income": 6625465,
+              "expenses": 5874667
+            },
+            {
+              "month": "Dec",
+              "income": 5330540,
+              "expenses": 2503128
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Executive Director",
+            "count": 1,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Program Manager",
+            "count": 5,
+            "avg_salary": 800000
+          },
+          {
+            "role": "Field Coordinator",
+            "count": 15,
+            "avg_salary": 500000
+          },
+          {
+            "role": "Administrative Staff",
+            "count": 8,
+            "avg_salary": 350000
+          },
+          {
+            "role": "Support Staff",
+            "count": 20,
+            "avg_salary": 250000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "meals_served": 15750000,
+          "schools_covered": 19500,
+          "states_operational": 12,
+          "cost_per_meal": 18.5,
+          "kitchen_infrastructure": {
+            "centralized_kitchens": 64,
+            "school_kitchens": 150,
+            "total_capacity": "5 million meals/day"
+          }
+        }
+      },
+      {
+        "id": "cry_foundation",
+        "name": "Child Rights and You (CRY)",
+        "type": "Child Rights",
+        "financial": {
+          "income": {
+            "total_income": 209435915,
+            "donations": 125661549,
+            "government_grants": 52358978,
+            "program_revenue": 20943591,
+            "investment_income": 10471795
+          },
+          "expenses": {
+            "total_expenses": 178020527,
+            "program_expenses": 146605140,
+            "administrative_expenses": 20943591,
+            "fundraising_expenses": 10471795
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 31356957,
+              "expenses": 18894638
+            },
+            {
+              "month": "Feb",
+              "income": 15005019,
+              "expenses": 15601397
+            },
+            {
+              "month": "Mar",
+              "income": 11045865,
+              "expenses": 13075056
+            },
+            {
+              "month": "Apr",
+              "income": 22979101,
+              "expenses": 15262034
+            },
+            {
+              "month": "May",
+              "income": 21674599,
+              "expenses": 13796677
+            },
+            {
+              "month": "Jun",
+              "income": 10639536,
+              "expenses": 16928627
+            },
+            {
+              "month": "Jul",
+              "income": 26780319,
+              "expenses": 17858216
+            },
+            {
+              "month": "Aug",
+              "income": 27412798,
+              "expenses": 22940534
+            },
+            {
+              "month": "Sep",
+              "income": 20541220,
+              "expenses": 24953020
+            },
+            {
+              "month": "Oct",
+              "income": 25000989,
+              "expenses": 26170801
+            },
+            {
+              "month": "Nov",
+              "income": 30627502,
+              "expenses": 17072159
+            },
+            {
+              "month": "Dec",
+              "income": 27486031,
+              "expenses": 15996300
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Executive Director",
+            "count": 1,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Program Manager",
+            "count": 5,
+            "avg_salary": 800000
+          },
+          {
+            "role": "Field Coordinator",
+            "count": 15,
+            "avg_salary": 500000
+          },
+          {
+            "role": "Administrative Staff",
+            "count": 8,
+            "avg_salary": 350000
+          },
+          {
+            "role": "Support Staff",
+            "count": 20,
+            "avg_salary": 250000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "meals_served": 15750000,
+          "schools_covered": 19500,
+          "states_operational": 12,
+          "cost_per_meal": 18.5,
+          "kitchen_infrastructure": {
+            "centralized_kitchens": 64,
+            "school_kitchens": 150,
+            "total_capacity": "5 million meals/day"
+          }
+        }
+      },
+      {
+        "id": "goonj",
+        "name": "Goonj",
+        "type": "Rural Development",
+        "financial": {
+          "income": {
+            "total_income": 196037435,
+            "donations": 117622461,
+            "government_grants": 49009358,
+            "program_revenue": 19603743,
+            "investment_income": 9801871
+          },
+          "expenses": {
+            "total_expenses": 166631819,
+            "program_expenses": 137226204,
+            "administrative_expenses": 19603743,
+            "fundraising_expenses": 9801871
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 11017614,
+              "expenses": 13149406
+            },
+            {
+              "month": "Feb",
+              "income": 21342289,
+              "expenses": 24439043
+            },
+            {
+              "month": "Mar",
+              "income": 19499233,
+              "expenses": 17110071
+            },
+            {
+              "month": "Apr",
+              "income": 25461939,
+              "expenses": 23234479
+            },
+            {
+              "month": "May",
+              "income": 27042858,
+              "expenses": 16683431
+            },
+            {
+              "month": "Jun",
+              "income": 26558688,
+              "expenses": 21485415
+            },
+            {
+              "month": "Jul",
+              "income": 17077853,
+              "expenses": 11958977
+            },
+            {
+              "month": "Aug",
+              "income": 15507125,
+              "expenses": 21346451
+            },
+            {
+              "month": "Sep",
+              "income": 12459080,
+              "expenses": 22418121
+            },
+            {
+              "month": "Oct",
+              "income": 23074431,
+              "expenses": 12680619
+            },
+            {
+              "month": "Nov",
+              "income": 18919303,
+              "expenses": 11429748
+            },
+            {
+              "month": "Dec",
+              "income": 24737158,
+              "expenses": 11634235
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Executive Director",
+            "count": 1,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Program Manager",
+            "count": 5,
+            "avg_salary": 800000
+          },
+          {
+            "role": "Field Coordinator",
+            "count": 15,
+            "avg_salary": 500000
+          },
+          {
+            "role": "Administrative Staff",
+            "count": 8,
+            "avg_salary": 350000
+          },
+          {
+            "role": "Support Staff",
+            "count": 20,
+            "avg_salary": 250000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "meals_served": 15750000,
+          "schools_covered": 19500,
+          "states_operational": 12,
+          "cost_per_meal": 18.5,
+          "kitchen_infrastructure": {
+            "centralized_kitchens": 64,
+            "school_kitchens": 150,
+            "total_capacity": "5 million meals/day"
+          }
+        }
+      },
+      {
+        "id": "teach_india",
+        "name": "Teach for India",
+        "type": "Education",
+        "financial": {
+          "income": {
+            "total_income": 148582854,
+            "donations": 89149712,
+            "government_grants": 37145713,
+            "program_revenue": 14858285,
+            "investment_income": 7429142
+          },
+          "expenses": {
+            "total_expenses": 126295425,
+            "program_expenses": 104007997,
+            "administrative_expenses": 14858285,
+            "fundraising_expenses": 7429142
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 9132614,
+              "expenses": 9031425
+            },
+            {
+              "month": "Feb",
+              "income": 17537560,
+              "expenses": 14482038
+            },
+            {
+              "month": "Mar",
+              "income": 14002749,
+              "expenses": 15358424
+            },
+            {
+              "month": "Apr",
+              "income": 17728899,
+              "expenses": 11773177
+            },
+            {
+              "month": "May",
+              "income": 11410029,
+              "expenses": 11992428
+            },
+            {
+              "month": "Jun",
+              "income": 16890167,
+              "expenses": 7322033
+            },
+            {
+              "month": "Jul",
+              "income": 10318908,
+              "expenses": 8854073
+            },
+            {
+              "month": "Aug",
+              "income": 8025717,
+              "expenses": 12226341
+            },
+            {
+              "month": "Sep",
+              "income": 9787171,
+              "expenses": 12927914
+            },
+            {
+              "month": "Oct",
+              "income": 14742797,
+              "expenses": 10391759
+            },
+            {
+              "month": "Nov",
+              "income": 12485477,
+              "expenses": 6583316
+            },
+            {
+              "month": "Dec",
+              "income": 20032110,
+              "expenses": 16147074
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Executive Director",
+            "count": 1,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Program Manager",
+            "count": 5,
+            "avg_salary": 800000
+          },
+          {
+            "role": "Field Coordinator",
+            "count": 15,
+            "avg_salary": 500000
+          },
+          {
+            "role": "Administrative Staff",
+            "count": 8,
+            "avg_salary": 350000
+          },
+          {
+            "role": "Support Staff",
+            "count": 20,
+            "avg_salary": 250000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "meals_served": 15750000,
+          "schools_covered": 19500,
+          "states_operational": 12,
+          "cost_per_meal": 18.5,
+          "kitchen_infrastructure": {
+            "centralized_kitchens": 64,
+            "school_kitchens": 150,
+            "total_capacity": "5 million meals/day"
+          }
+        }
+      }
+    ],
+    "government_projects": [
+      {
+        "id": "swachh_bharat",
+        "name": "Swachh Bharat Mission",
+        "type": "Sanitation & Cleanliness",
+        "financial": {
+          "income": {
+            "total_income": 177681648,
+            "donations": 106608988,
+            "government_grants": 44420412,
+            "program_revenue": 17768164,
+            "investment_income": 8884082
+          },
+          "expenses": {
+            "total_expenses": 151029400,
+            "program_expenses": 124377153,
+            "administrative_expenses": 17768164,
+            "fundraising_expenses": 8884082
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 17871963,
+              "expenses": 17859876
+            },
+            {
+              "month": "Feb",
+              "income": 18298660,
+              "expenses": 17456787
+            },
+            {
+              "month": "Mar",
+              "income": 20560195,
+              "expenses": 10392510
+            },
+            {
+              "month": "Apr",
+              "income": 11029943,
+              "expenses": 7931350
+            },
+            {
+              "month": "May",
+              "income": 12363824,
+              "expenses": 22277398
+            },
+            {
+              "month": "Jun",
+              "income": 22669793,
+              "expenses": 18349530
+            },
+            {
+              "month": "Jul",
+              "income": 12076371,
+              "expenses": 20372923
+            },
+            {
+              "month": "Aug",
+              "income": 25983419,
+              "expenses": 14145472
+            },
+            {
+              "month": "Sep",
+              "income": 12252112,
+              "expenses": 16919787
+            },
+            {
+              "month": "Oct",
+              "income": 24124696,
+              "expenses": 10452237
+            },
+            {
+              "month": "Nov",
+              "income": 19258028,
+              "expenses": 15469322
+            },
+            {
+              "month": "Dec",
+              "income": 24183163,
+              "expenses": 17839900
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Project Director",
+            "count": 1,
+            "avg_salary": 1500000
+          },
+          {
+            "role": "Deputy Director",
+            "count": 3,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Assistant Director",
+            "count": 8,
+            "avg_salary": 900000
+          },
+          {
+            "role": "Section Officer",
+            "count": 15,
+            "avg_salary": 600000
+          },
+          {
+            "role": "Assistant",
+            "count": 25,
+            "avg_salary": 400000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "beneficiaries_covered": 25000000,
+          "districts_operational": 650,
+          "states_covered": 28,
+          "cost_per_beneficiary": 2500,
+          "infrastructure": {
+            "service_centers": 12000,
+            "digital_platforms": 45,
+            "total_reach": "Pan India"
+          }
+        }
+      },
+      {
+        "id": "pm_jan_dhan",
+        "name": "PM Jan Dhan Yojana",
+        "type": "Financial Inclusion",
+        "financial": {
+          "income": {
+            "total_income": 373533804,
+            "donations": 224120282,
+            "government_grants": 93383451,
+            "program_revenue": 37353380,
+            "investment_income": 18676690
+          },
+          "expenses": {
+            "total_expenses": 317503733,
+            "program_expenses": 261473662,
+            "administrative_expenses": 37353380,
+            "fundraising_expenses": 18676690
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 53741364,
+              "expenses": 20824486
+            },
+            {
+              "month": "Feb",
+              "income": 22528583,
+              "expenses": 38305250
+            },
+            {
+              "month": "Mar",
+              "income": 27430905,
+              "expenses": 29743306
+            },
+            {
+              "month": "Apr",
+              "income": 48931163,
+              "expenses": 22277865
+            },
+            {
+              "month": "May",
+              "income": 23459695,
+              "expenses": 34859954
+            },
+            {
+              "month": "Jun",
+              "income": 45308755,
+              "expenses": 38496706
+            },
+            {
+              "month": "Jul",
+              "income": 29223575,
+              "expenses": 33438849
+            },
+            {
+              "month": "Aug",
+              "income": 36020621,
+              "expenses": 41022836
+            },
+            {
+              "month": "Sep",
+              "income": 38713542,
+              "expenses": 29433216
+            },
+            {
+              "month": "Oct",
+              "income": 37582001,
+              "expenses": 43431752
+            },
+            {
+              "month": "Nov",
+              "income": 20216861,
+              "expenses": 33887060
+            },
+            {
+              "month": "Dec",
+              "income": 38632827,
+              "expenses": 30558283
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Project Director",
+            "count": 1,
+            "avg_salary": 1500000
+          },
+          {
+            "role": "Deputy Director",
+            "count": 3,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Assistant Director",
+            "count": 8,
+            "avg_salary": 900000
+          },
+          {
+            "role": "Section Officer",
+            "count": 15,
+            "avg_salary": 600000
+          },
+          {
+            "role": "Assistant",
+            "count": 25,
+            "avg_salary": 400000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "beneficiaries_covered": 25000000,
+          "districts_operational": 650,
+          "states_covered": 28,
+          "cost_per_beneficiary": 2500,
+          "infrastructure": {
+            "service_centers": 12000,
+            "digital_platforms": 45,
+            "total_reach": "Pan India"
+          }
+        }
+      },
+      {
+        "id": "digital_india",
+        "name": "Digital India Initiative",
+        "type": "Technology & Governance",
+        "financial": {
+          "income": {
+            "total_income": 69920072,
+            "donations": 41952043,
+            "government_grants": 17480018,
+            "program_revenue": 6992007,
+            "investment_income": 3496003
+          },
+          "expenses": {
+            "total_expenses": 59432061,
+            "program_expenses": 48944050,
+            "administrative_expenses": 6992007,
+            "fundraising_expenses": 3496003
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 5922578,
+              "expenses": 3889256
+            },
+            {
+              "month": "Feb",
+              "income": 9990994,
+              "expenses": 5713047
+            },
+            {
+              "month": "Mar",
+              "income": 6446309,
+              "expenses": 4211236
+            },
+            {
+              "month": "Apr",
+              "income": 10008118,
+              "expenses": 7478543
+            },
+            {
+              "month": "May",
+              "income": 5576097,
+              "expenses": 6106593
+            },
+            {
+              "month": "Jun",
+              "income": 10308676,
+              "expenses": 3064404
+            },
+            {
+              "month": "Jul",
+              "income": 3555839,
+              "expenses": 8471928
+            },
+            {
+              "month": "Aug",
+              "income": 5360146,
+              "expenses": 7386523
+            },
+            {
+              "month": "Sep",
+              "income": 8546020,
+              "expenses": 4200547
+            },
+            {
+              "month": "Oct",
+              "income": 6445584,
+              "expenses": 5304938
+            },
+            {
+              "month": "Nov",
+              "income": 9922525,
+              "expenses": 8378470
+            },
+            {
+              "month": "Dec",
+              "income": 6953198,
+              "expenses": 8700136
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Project Director",
+            "count": 1,
+            "avg_salary": 1500000
+          },
+          {
+            "role": "Deputy Director",
+            "count": 3,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Assistant Director",
+            "count": 8,
+            "avg_salary": 900000
+          },
+          {
+            "role": "Section Officer",
+            "count": 15,
+            "avg_salary": 600000
+          },
+          {
+            "role": "Assistant",
+            "count": 25,
+            "avg_salary": 400000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "beneficiaries_covered": 25000000,
+          "districts_operational": 650,
+          "states_covered": 28,
+          "cost_per_beneficiary": 2500,
+          "infrastructure": {
+            "service_centers": 12000,
+            "digital_platforms": 45,
+            "total_reach": "Pan India"
+          }
+        }
+      },
+      {
+        "id": "skill_india",
+        "name": "Skill India Mission",
+        "type": "Employment & Training",
+        "financial": {
+          "income": {
+            "total_income": 477256019,
+            "donations": 286353611,
+            "government_grants": 119314004,
+            "program_revenue": 47725601,
+            "investment_income": 23862800
+          },
+          "expenses": {
+            "total_expenses": 405667616,
+            "program_expenses": 334079213,
+            "administrative_expenses": 47725601,
+            "fundraising_expenses": 23862800
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 67067106,
+              "expenses": 60322469
+            },
+            {
+              "month": "Feb",
+              "income": 37228843,
+              "expenses": 49999235
+            },
+            {
+              "month": "Mar",
+              "income": 24948659,
+              "expenses": 24514156
+            },
+            {
+              "month": "Apr",
+              "income": 44137742,
+              "expenses": 51392563
+            },
+            {
+              "month": "May",
+              "income": 36814435,
+              "expenses": 48756940
+            },
+            {
+              "month": "Jun",
+              "income": 38397565,
+              "expenses": 25815486
+            },
+            {
+              "month": "Jul",
+              "income": 25840570,
+              "expenses": 23645273
+            },
+            {
+              "month": "Aug",
+              "income": 63792184,
+              "expenses": 32218818
+            },
+            {
+              "month": "Sep",
+              "income": 49545224,
+              "expenses": 24405217
+            },
+            {
+              "month": "Oct",
+              "income": 70158444,
+              "expenses": 51962260
+            },
+            {
+              "month": "Nov",
+              "income": 25187232,
+              "expenses": 35641382
+            },
+            {
+              "month": "Dec",
+              "income": 36780058,
+              "expenses": 56111012
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Project Director",
+            "count": 1,
+            "avg_salary": 1500000
+          },
+          {
+            "role": "Deputy Director",
+            "count": 3,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Assistant Director",
+            "count": 8,
+            "avg_salary": 900000
+          },
+          {
+            "role": "Section Officer",
+            "count": 15,
+            "avg_salary": 600000
+          },
+          {
+            "role": "Assistant",
+            "count": 25,
+            "avg_salary": 400000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "beneficiaries_covered": 25000000,
+          "districts_operational": 650,
+          "states_covered": 28,
+          "cost_per_beneficiary": 2500,
+          "infrastructure": {
+            "service_centers": 12000,
+            "digital_platforms": 45,
+            "total_reach": "Pan India"
+          }
+        }
+      },
+      {
+        "id": "ayushman_bharat",
+        "name": "Ayushman Bharat",
+        "type": "Healthcare",
+        "financial": {
+          "income": {
+            "total_income": 247319799,
+            "donations": 148391879,
+            "government_grants": 61829949,
+            "program_revenue": 24731979,
+            "investment_income": 12365989
+          },
+          "expenses": {
+            "total_expenses": 210221829,
+            "program_expenses": 173123859,
+            "administrative_expenses": 24731979,
+            "fundraising_expenses": 12365989
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 31403244,
+              "expenses": 11105163
+            },
+            {
+              "month": "Feb",
+              "income": 25449524,
+              "expenses": 21142125
+            },
+            {
+              "month": "Mar",
+              "income": 29814806,
+              "expenses": 21271365
+            },
+            {
+              "month": "Apr",
+              "income": 14106950,
+              "expenses": 26462495
+            },
+            {
+              "month": "May",
+              "income": 18719044,
+              "expenses": 12293183
+            },
+            {
+              "month": "Jun",
+              "income": 23020749,
+              "expenses": 18278781
+            },
+            {
+              "month": "Jul",
+              "income": 21327286,
+              "expenses": 28639327
+            },
+            {
+              "month": "Aug",
+              "income": 32612031,
+              "expenses": 11427295
+            },
+            {
+              "month": "Sep",
+              "income": 26463776,
+              "expenses": 20123726
+            },
+            {
+              "month": "Oct",
+              "income": 15548457,
+              "expenses": 17694851
+            },
+            {
+              "month": "Nov",
+              "income": 32269211,
+              "expenses": 18469274
+            },
+            {
+              "month": "Dec",
+              "income": 21633991,
+              "expenses": 19313536
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Project Director",
+            "count": 1,
+            "avg_salary": 1500000
+          },
+          {
+            "role": "Deputy Director",
+            "count": 3,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Assistant Director",
+            "count": 8,
+            "avg_salary": 900000
+          },
+          {
+            "role": "Section Officer",
+            "count": 15,
+            "avg_salary": 600000
+          },
+          {
+            "role": "Assistant",
+            "count": 25,
+            "avg_salary": 400000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "beneficiaries_covered": 25000000,
+          "districts_operational": 650,
+          "states_covered": 28,
+          "cost_per_beneficiary": 2500,
+          "infrastructure": {
+            "service_centers": 12000,
+            "digital_platforms": 45,
+            "total_reach": "Pan India"
+          }
+        }
+      }
+    ],
+    "colleges": [
+      {
+        "id": "iit_bangalore",
+        "name": "Indian Institute of Technology Bangalore",
+        "type": "Engineering",
+        "financial": {
+          "income": {
+            "total_income": 287422626,
+            "donations": 172453575,
+            "government_grants": 71855656,
+            "program_revenue": 28742262,
+            "investment_income": 14371131
+          },
+          "expenses": {
+            "total_expenses": 244309232,
+            "program_expenses": 201195838,
+            "administrative_expenses": 28742262,
+            "fundraising_expenses": 14371131
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 16788324,
+              "expenses": 19036594
+            },
+            {
+              "month": "Feb",
+              "income": 36776113,
+              "expenses": 22938193
+            },
+            {
+              "month": "Mar",
+              "income": 16696185,
+              "expenses": 35544241
+            },
+            {
+              "month": "Apr",
+              "income": 28587198,
+              "expenses": 17204167
+            },
+            {
+              "month": "May",
+              "income": 35661956,
+              "expenses": 23724534
+            },
+            {
+              "month": "Jun",
+              "income": 37096781,
+              "expenses": 24210419
+            },
+            {
+              "month": "Jul",
+              "income": 19635559,
+              "expenses": 30318422
+            },
+            {
+              "month": "Aug",
+              "income": 31008218,
+              "expenses": 25845759
+            },
+            {
+              "month": "Sep",
+              "income": 22964992,
+              "expenses": 25720052
+            },
+            {
+              "month": "Oct",
+              "income": 39009283,
+              "expenses": 15415254
+            },
+            {
+              "month": "Nov",
+              "income": 31361660,
+              "expenses": 24248903
+            },
+            {
+              "month": "Dec",
+              "income": 28376379,
+              "expenses": 29388053
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Principal/Director",
+            "count": 1,
+            "avg_salary": 2000000
+          },
+          {
+            "role": "Professor",
+            "count": 50,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Associate Professor",
+            "count": 80,
+            "avg_salary": 900000
+          },
+          {
+            "role": "Assistant Professor",
+            "count": 120,
+            "avg_salary": 700000
+          },
+          {
+            "role": "Administrative Staff",
+            "count": 40,
+            "avg_salary": 450000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "students_enrolled": 25000,
+          "faculty_count": 850,
+          "research_projects": 450,
+          "cost_per_student": 120000,
+          "infrastructure": {
+            "buildings": 25,
+            "laboratories": 120,
+            "library_books": 250000
+          }
+        }
+      },
+      {
+        "id": "du",
+        "name": "Delhi University",
+        "type": "Multi-Disciplinary",
+        "financial": {
+          "income": {
+            "total_income": 325334485,
+            "donations": 195200691,
+            "government_grants": 81333621,
+            "program_revenue": 32533448,
+            "investment_income": 16266724
+          },
+          "expenses": {
+            "total_expenses": 276534312,
+            "program_expenses": 227734139,
+            "administrative_expenses": 32533448,
+            "fundraising_expenses": 16266724
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 32174863,
+              "expenses": 24211486
+            },
+            {
+              "month": "Feb",
+              "income": 45602540,
+              "expenses": 16525233
+            },
+            {
+              "month": "Mar",
+              "income": 32930937,
+              "expenses": 38899633
+            },
+            {
+              "month": "Apr",
+              "income": 29138771,
+              "expenses": 31421510
+            },
+            {
+              "month": "May",
+              "income": 44148031,
+              "expenses": 36593136
+            },
+            {
+              "month": "Jun",
+              "income": 46556436,
+              "expenses": 28191480
+            },
+            {
+              "month": "Jul",
+              "income": 34299843,
+              "expenses": 35574821
+            },
+            {
+              "month": "Aug",
+              "income": 30154634,
+              "expenses": 31023645
+            },
+            {
+              "month": "Sep",
+              "income": 22721708,
+              "expenses": 14090112
+            },
+            {
+              "month": "Oct",
+              "income": 36950859,
+              "expenses": 33736289
+            },
+            {
+              "month": "Nov",
+              "income": 44974504,
+              "expenses": 32205608
+            },
+            {
+              "month": "Dec",
+              "income": 19164140,
+              "expenses": 20198141
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Principal/Director",
+            "count": 1,
+            "avg_salary": 2000000
+          },
+          {
+            "role": "Professor",
+            "count": 50,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Associate Professor",
+            "count": 80,
+            "avg_salary": 900000
+          },
+          {
+            "role": "Assistant Professor",
+            "count": 120,
+            "avg_salary": 700000
+          },
+          {
+            "role": "Administrative Staff",
+            "count": 40,
+            "avg_salary": 450000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "students_enrolled": 25000,
+          "faculty_count": 850,
+          "research_projects": 450,
+          "cost_per_student": 120000,
+          "infrastructure": {
+            "buildings": 25,
+            "laboratories": 120,
+            "library_books": 250000
+          }
+        }
+      },
+      {
+        "id": "iisc",
+        "name": "Indian Institute of Science",
+        "type": "Research",
+        "financial": {
+          "income": {
+            "total_income": 318755358,
+            "donations": 191253214,
+            "government_grants": 79688839,
+            "program_revenue": 31875535,
+            "investment_income": 15937767
+          },
+          "expenses": {
+            "total_expenses": 270942054,
+            "program_expenses": 223128750,
+            "administrative_expenses": 31875535,
+            "fundraising_expenses": 15937767
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 32759377,
+              "expenses": 37949778
+            },
+            {
+              "month": "Feb",
+              "income": 33712076,
+              "expenses": 21752273
+            },
+            {
+              "month": "Mar",
+              "income": 21130774,
+              "expenses": 30408093
+            },
+            {
+              "month": "Apr",
+              "income": 32261118,
+              "expenses": 21546629
+            },
+            {
+              "month": "May",
+              "income": 37969638,
+              "expenses": 30074074
+            },
+            {
+              "month": "Jun",
+              "income": 43437694,
+              "expenses": 19041103
+            },
+            {
+              "month": "Jul",
+              "income": 41390924,
+              "expenses": 25923970
+            },
+            {
+              "month": "Aug",
+              "income": 35438808,
+              "expenses": 30433005
+            },
+            {
+              "month": "Sep",
+              "income": 30144888,
+              "expenses": 18326355
+            },
+            {
+              "month": "Oct",
+              "income": 30911038,
+              "expenses": 15267414
+            },
+            {
+              "month": "Nov",
+              "income": 33650787,
+              "expenses": 26966916
+            },
+            {
+              "month": "Dec",
+              "income": 29654945,
+              "expenses": 20050209
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Principal/Director",
+            "count": 1,
+            "avg_salary": 2000000
+          },
+          {
+            "role": "Professor",
+            "count": 50,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Associate Professor",
+            "count": 80,
+            "avg_salary": 900000
+          },
+          {
+            "role": "Assistant Professor",
+            "count": 120,
+            "avg_salary": 700000
+          },
+          {
+            "role": "Administrative Staff",
+            "count": 40,
+            "avg_salary": 450000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "students_enrolled": 25000,
+          "faculty_count": 850,
+          "research_projects": 450,
+          "cost_per_student": 120000,
+          "infrastructure": {
+            "buildings": 25,
+            "laboratories": 120,
+            "library_books": 250000
+          }
+        }
+      },
+      {
+        "id": "jnu",
+        "name": "Jawaharlal Nehru University",
+        "type": "Liberal Arts",
+        "financial": {
+          "income": {
+            "total_income": 96303265,
+            "donations": 57781959,
+            "government_grants": 24075816,
+            "program_revenue": 9630326,
+            "investment_income": 4815163
+          },
+          "expenses": {
+            "total_expenses": 81857775,
+            "program_expenses": 67412285,
+            "administrative_expenses": 9630326,
+            "fundraising_expenses": 4815163
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 10624445,
+              "expenses": 9327066
+            },
+            {
+              "month": "Feb",
+              "income": 10116321,
+              "expenses": 7183621
+            },
+            {
+              "month": "Mar",
+              "income": 10295378,
+              "expenses": 9821408
+            },
+            {
+              "month": "Apr",
+              "income": 5438436,
+              "expenses": 9039171
+            },
+            {
+              "month": "May",
+              "income": 12374737,
+              "expenses": 5257356
+            },
+            {
+              "month": "Jun",
+              "income": 9592868,
+              "expenses": 9975360
+            },
+            {
+              "month": "Jul",
+              "income": 12559478,
+              "expenses": 9053352
+            },
+            {
+              "month": "Aug",
+              "income": 10837885,
+              "expenses": 9944454
+            },
+            {
+              "month": "Sep",
+              "income": 5808267,
+              "expenses": 5003147
+            },
+            {
+              "month": "Oct",
+              "income": 6567563,
+              "expenses": 5411337
+            },
+            {
+              "month": "Nov",
+              "income": 13846333,
+              "expenses": 10891037
+            },
+            {
+              "month": "Dec",
+              "income": 12439143,
+              "expenses": 6736049
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Principal/Director",
+            "count": 1,
+            "avg_salary": 2000000
+          },
+          {
+            "role": "Professor",
+            "count": 50,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Associate Professor",
+            "count": 80,
+            "avg_salary": 900000
+          },
+          {
+            "role": "Assistant Professor",
+            "count": 120,
+            "avg_salary": 700000
+          },
+          {
+            "role": "Administrative Staff",
+            "count": 40,
+            "avg_salary": 450000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "students_enrolled": 25000,
+          "faculty_count": 850,
+          "research_projects": 450,
+          "cost_per_student": 120000,
+          "infrastructure": {
+            "buildings": 25,
+            "laboratories": 120,
+            "library_books": 250000
+          }
+        }
+      },
+      {
+        "id": "rvce",
+        "name": "RV College of Engineering",
+        "type": "Engineering",
+        "financial": {
+          "income": {
+            "total_income": 301899280,
+            "donations": 181139568,
+            "government_grants": 75474820,
+            "program_revenue": 30189928,
+            "investment_income": 15094964
+          },
+          "expenses": {
+            "total_expenses": 256614388,
+            "program_expenses": 211329496,
+            "administrative_expenses": 30189928,
+            "fundraising_expenses": 15094964
+          },
+          "monthly_data": [
+            {
+              "month": "Jan",
+              "income": 41181536,
+              "expenses": 26519548
+            },
+            {
+              "month": "Feb",
+              "income": 24508184,
+              "expenses": 27093915
+            },
+            {
+              "month": "Mar",
+              "income": 34225568,
+              "expenses": 20764904
+            },
+            {
+              "month": "Apr",
+              "income": 44017663,
+              "expenses": 28031333
+            },
+            {
+              "month": "May",
+              "income": 34821197,
+              "expenses": 16172918
+            },
+            {
+              "month": "Jun",
+              "income": 32387466,
+              "expenses": 14147822
+            },
+            {
+              "month": "Jul",
+              "income": 42392720,
+              "expenses": 30772285
+            },
+            {
+              "month": "Aug",
+              "income": 44479617,
+              "expenses": 33902797
+            },
+            {
+              "month": "Sep",
+              "income": 23151260,
+              "expenses": 18348065
+            },
+            {
+              "month": "Oct",
+              "income": 33355580,
+              "expenses": 18702219
+            },
+            {
+              "month": "Nov",
+              "income": 21510534,
+              "expenses": 23549860
+            },
+            {
+              "month": "Dec",
+              "income": 15869565,
+              "expenses": 15884379
+            }
+          ]
+        },
+        "salaries": [
+          {
+            "role": "Principal/Director",
+            "count": 1,
+            "avg_salary": 2000000
+          },
+          {
+            "role": "Professor",
+            "count": 50,
+            "avg_salary": 1200000
+          },
+          {
+            "role": "Associate Professor",
+            "count": 80,
+            "avg_salary": 900000
+          },
+          {
+            "role": "Assistant Professor",
+            "count": 120,
+            "avg_salary": 700000
+          },
+          {
+            "role": "Administrative Staff",
+            "count": 40,
+            "avg_salary": 450000
+          }
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "\u20b92,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "\u20b985,000",
+            "status": "Resolved"
+          },
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "\u20b90",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "students_enrolled": 25000,
+          "faculty_count": 850,
+          "research_projects": 450,
+          "cost_per_student": 120000,
+          "infrastructure": {
+            "buildings": 25,
+            "laboratories": 120,
+            "library_books": 250000
+          }
+        }
+      }
+    ]
+  }
+}

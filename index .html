@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abba Accounts - Financial Transparency</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- first page -->
+    <div id="landing-page" class="page-container">
+        <header class="header">
+            <div class="container">
+                <h1 class="site-title">
+                    <i class="fas fa-chart-line"></i>
+                    Abba Accounts
+                </h1>
+                <p class="tagline">Promoting Financial Transparency Across Organizations</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <section class="hero-section">
+                    <h2>Choose Organization Type</h2>
+                    <p>Select an organization category to explore their financial data and transparency reports</p>
+                    
+                    <div class="org-type-grid">
+                        <div class="org-type-card" data-type="ngos">
+                            <div class="org-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h3>NGOs</h3>
+                            <p>Non-profit organizations working for social causes</p>
+                            <div class="org-dropdown hidden" id="ngos-dropdown">
+                                <div class="dropdown-item" data-org="akshaya_patra">Akshaya Patra Foundation</div>
+                                <div class="dropdown-item" data-org="smile_foundation">Smile Foundation</div>
+                            </div>
+                        </div>
+
+                        <div class="org-type-card" data-type="government">
+                            <div class="org-icon">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <h3>Government Projects</h3>
+                            <p>Public sector projects and government initiatives</p>
+                            <div class="org-dropdown hidden" id="government-dropdown">
+                                <div class="dropdown-item" data-org="swachh_bharat">Swachh Bharat Mission</div>
+                            </div>
+                        </div>
+
+                        <div class="org-type-card" data-type="colleges">
+                            <div class="org-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3>College Financials</h3>
+                            <p>Educational institutions and university finances</p>
+                            <div class="org-dropdown hidden" id="colleges-dropdown">
+                                <div class="dropdown-item" data-org="rvce">RV College of Engineering</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- charecter -->
+    <div id="role-selection-page" class="page-container hidden">
+        <header class="header">
+            <div class="container">
+                <h1 class="site-title">
+                    <i class="fas fa-chart-line"></i>
+                    Abba Accounts
+                </h1>
+                <button class="btn btn--outline back-to-home">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <section class="role-selection-section">
+                    <h2 id="selected-org-name">Select Your Role</h2>
+                    <p>Choose your access level to view relevant financial information</p>
+                    
+                    <div class="role-grid" id="role-options">
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- main page -->
+    <div id="dashboard-page" class="page-container hidden">
+        <header class="dashboard-header">
+            <div class="container">
+                <div class="dashboard-nav">
+                    <h1 class="dashboard-title" id="dashboard-org-name">Organization Dashboard</h1>
+                    <div class="dashboard-controls">
+                        <span class="role-badge" id="current-role">Admin</span>
+                        <button class="btn btn--outline back-to-home">
+                            <i class="fas fa-home"></i> Home
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tab-navigation">
+            <div class="container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="income">Income</button>
+                    <button class="tab-btn" data-tab="expenses">Expenses</button>
+                    <button class="tab-btn" data-tab="salaries">Salaries</button>
+                    <button class="tab-btn" data-tab="fraud">Fraud Detection</button>
+                    <button class="tab-btn" data-tab="impact">Development Impact</button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="dashboard-content">
+            <div class="container">
+                <!-- main page -->
+                <div id="overview-tab" class="tab-content active">
+                    <div class="overview-cards">
+                        <div class="card financial-card">
+                            <div class="card__body">
+                                <h3>Total Income</h3>
+                                <div class="amount-display" id="total-income">₹0</div>
+                                <div class="change-indicator positive">
+                                    <i class="fas fa-arrow-up"></i> 12% from last year
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card financial-card">
+                            <div class="card__body">
+                                <h3>Total Expenses</h3>
+                                <div class="amount-display" id="total-expenses">₹0</div>
+                                <div class="change-indicator negative">
+                                    <i class="fas fa-arrow-down"></i> 8% from last year
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card financial-card">
+                            <div class="card__body">
+                                <h3>Net Surplus</h3>
+                                <div class="amount-display" id="net-surplus">₹0</div>
+                                <div class="change-indicator positive">
+                                    <i class="fas fa-arrow-up"></i> Healthy margin
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-grid">
+                        <div class="card">
+                            <div class="card__body">
+                                <h4>Budget Allocation</h4>
+                                <div class="chart-container" style="position: relative; height: 300px;">
+                                    <canvas id="budgetChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h4>Monthly Income vs Expenses</h4>
+                                <div class="chart-container" style="position: relative; height: 300px;">
+                                    <canvas id="monthlyChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- money -->
+                <div id="income-tab" class="tab-content">
+                    <div class="chart-grid">
+                        <div class="card">
+                            <div class="card__body">
+                                <h4>Income Sources</h4>
+                                <div class="chart-container" style="position: relative; height: 350px;">
+                                    <canvas id="incomeSourceChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h4>Income Trend</h4>
+                                <div class="chart-container" style="position: relative; height: 350px;">
+                                    <canvas id="incomeTrendChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- expense -->
+                <div id="expenses-tab" class="tab-content">
+                    <div class="chart-grid">
+                        <div class="card">
+                            <div class="card__body">
+                                <h4>Expense Categories</h4>
+                                <div class="chart-container" style="position: relative; height: 350px;">
+                                    <canvas id="expenseCategoryChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h4>Monthly Expenses</h4>
+                                <div class="chart-container" style="position: relative; height: 350px;">
+                                    <canvas id="expenseTrendChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- payday -->
+                <div id="salaries-tab" class="tab-content">
+                    <div class="salary-content" id="salary-content">
+                    </div>
+                </div>
+
+                <!-- anolomy -->
+                <div id="fraud-tab" class="tab-content">
+                    <div class="fraud-alerts" id="fraud-alerts">
+
+                    </div>
+                </div>
+
+                <!--  Impact Tab -->
+                <div id="impact-tab" class="tab-content">
+                    <div class="impact-content" id="impact-content">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- chat bot-->
+    <div class="ai-assistant" id="ai-assistant">
+        <div class="ai-toggle" id="ai-toggle">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="ai-chat hidden" id="ai-chat">
+            <div class="ai-header">
+                <h4>AI Assistant</h4>
+                <button class="ai-close" id="ai-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="ai-messages" id="ai-messages">
+                <div class="ai-message bot-message">
+                    Hello! I'm here to help you navigate Abba Accounts and understand financial data. How can I assist you today?
+                </div>
+            </div>
+            <div class="ai-input">
+                <input type="text" id="ai-input" placeholder="Ask me anything...">
+                <button class="ai-send" id="ai-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
