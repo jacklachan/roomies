@@ -1,4 +1,24 @@
-// Application Data
+// SIMPLE SOLUTION: Reload page when ABBA logo is clicked
+document.addEventListener('DOMContentLoaded', function() {
+    const abbaLogo = document.querySelector('.nav__brand') || 
+                     document.querySelector('h1') ||
+                     document.querySelector('[class*="brand"]');
+    
+    if (abbaLogo) {
+        abbaLogo.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('ABBA logo clicked - going home...');
+            
+            // Reload the page to get back to initial state
+            window.location.reload();
+        });
+        
+        // Make sure it looks clickable
+        if (abbaLogo.tagName !== 'A') {
+            abbaLogo.style.cursor = 'pointer';
+        }
+    }
+});
 const organizationData = {
   "organizations": {
     "ngos": [
@@ -134,6 +154,7 @@ const organizationData = {
           }
         }
       },
+      
       {
         "id": "cry_foundation",
         "name": "Child Rights and You (CRY)",

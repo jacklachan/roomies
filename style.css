@@ -1,4 +1,5 @@
 :root {
+  
   #chatbot-widget {
     position: fixed !important;
     bottom: 20px !important;
@@ -772,8 +773,17 @@ select.form-control {
 }
 
 .nav__brand {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--duration-fast) var(--ease-standard);
+    cursor: pointer;
+}
+
+.nav__brand:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
 }
 
 .nav__brand h1 {

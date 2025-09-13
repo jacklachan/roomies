@@ -2,40 +2,48 @@ import json
 import random
 from datetime import datetime, timedelta
 
-# Generate comprehensive sample data for Abba Accounts
+#making real sample data for the website abba
 
-# Sample NGOs
+#sample NGOs - UPDATED WITH NEW ORGANIZATIONS
 ngos = [
     {"id": "akshaya_patra", "name": "Akshaya Patra Foundation", "type": "Education & Nutrition"},
     {"id": "smile_foundation", "name": "Smile Foundation", "type": "Education & Healthcare"},
     {"id": "cry_foundation", "name": "Child Rights and You (CRY)", "type": "Child Rights"},
     {"id": "goonj", "name": "Goonj", "type": "Rural Development"},
-    {"id": "teach_india", "name": "Teach for India", "type": "Education"}
+    {"id": "teach_india", "name": "Teach for India", "type": "Education"},
+    {"id": "diya_foundation", "name": "Diya Foundation", "type": "Intellectual Disability Support"},
+    {"id": "mitra_jyothi", "name": "Mitra Jyothi", "type": "Services for Visually Impaired"},
+    {"id": "sitaram_jindal_foundation", "name": "Sitaram Jindal Foundation", "type": "Education & Empowerment"}
 ]
 
-# Sample Government Projects
+#sample government projects - UPDATED WITH NEW ORGANIZATIONS
 govt_projects = [
     {"id": "swachh_bharat", "name": "Swachh Bharat Mission", "type": "Sanitation & Cleanliness"},
     {"id": "pm_jan_dhan", "name": "PM Jan Dhan Yojana", "type": "Financial Inclusion"},
     {"id": "digital_india", "name": "Digital India Initiative", "type": "Technology & Governance"},
     {"id": "skill_india", "name": "Skill India Mission", "type": "Employment & Training"},
-    {"id": "ayushman_bharat", "name": "Ayushman Bharat", "type": "Healthcare"}
+    {"id": "ayushman_bharat", "name": "Ayushman Bharat", "type": "Healthcare"},
+    {"id": "bsmile_infra", "name": "Bengaluru Smart Infrastructure Ltd (B-Smile)", "type": "Urban Infrastructure"},
+    {"id": "bbmp_municipal", "name": "Bruhat Bengaluru Mahanagara Palike (BBMP)", "type": "Municipal Services"}
 ]
 
-# Sample Colleges
+#sample colleges - UPDATED WITH NEW ORGANIZATIONS
 colleges = [
     {"id": "iit_bangalore", "name": "Indian Institute of Technology Bangalore", "type": "Engineering"},
     {"id": "du", "name": "Delhi University", "type": "Multi-Disciplinary"},
     {"id": "iisc", "name": "Indian Institute of Science", "type": "Research"},
     {"id": "jnu", "name": "Jawaharlal Nehru University", "type": "Liberal Arts"},
-    {"id": "rvce", "name": "RV College of Engineering", "type": "Engineering"}
+    {"id": "rvce", "name": "RV College of Engineering", "type": "Engineering"},
+    {"id": "bangalore_university", "name": "Bangalore University", "type": "Multi-Disciplinary University"},
+    {"id": "christ_university", "name": "Christ University", "type": "Multi-Disciplinary Private University"}
 ]
 
-# Generate financial data for each organization
+#generate money data for each organization
 def generate_financial_data(org_name, org_type):
-    # Base amounts vary by organization type
-    base_income = random.randint(50000000, 500000000)  # 5 crores to 50 crores
+    # Base numbers for each organization type vary
+    base_income = random.randint(50000000, 500000000) # 5 crores to 50 crores
     
+    #the income data
     income_data = {
         "total_income": base_income,
         "donations": int(base_income * 0.6),
@@ -51,16 +59,16 @@ def generate_financial_data(org_name, org_type):
         "fundraising_expenses": int(base_income * 0.05)
     }
     
-    # Monthly data for charts
+    # monthly data for charts
     monthly_data = []
     for i in range(12):
-        month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][i]
+        month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][i]
         monthly_data.append({
             "month": month_name,
-            "income": random.randint(int(income_data["total_income"] * 0.05), 
+            "income": random.randint(int(income_data["total_income"] * 0.05),
                                    int(income_data["total_income"] * 0.15)),
-            "expenses": random.randint(int(expense_data["total_expenses"] * 0.05), 
+            "expenses": random.randint(int(expense_data["total_expenses"] * 0.05),
                                      int(expense_data["total_expenses"] * 0.15))
         })
     
@@ -70,7 +78,7 @@ def generate_financial_data(org_name, org_type):
         "monthly_data": monthly_data
     }
 
-# Generate salary data
+#generate salary data
 def generate_salary_data(org_type):
     if org_type == "NGO":
         roles = [
@@ -88,7 +96,7 @@ def generate_salary_data(org_type):
             {"role": "Section Officer", "count": 15, "avg_salary": 600000},
             {"role": "Assistant", "count": 25, "avg_salary": 400000}
         ]
-    else:  # College
+    else: #college
         roles = [
             {"role": "Principal/Director", "count": 1, "avg_salary": 2000000},
             {"role": "Professor", "count": 50, "avg_salary": 1200000},
@@ -99,7 +107,7 @@ def generate_salary_data(org_type):
     
     return roles
 
-# Generate fraud detection alerts
+#generate anomaly detection alerts
 def generate_fraud_alerts():
     return [
         {
@@ -111,7 +119,7 @@ def generate_fraud_alerts():
             "status": "Under Review"
         },
         {
-            "alert_id": "FD002", 
+            "alert_id": "FD002",
             "type": "Duplicate Payment",
             "description": "Potential duplicate vendor payment detected",
             "severity": "High",
@@ -122,13 +130,13 @@ def generate_fraud_alerts():
             "alert_id": "FD003",
             "type": "Ratio Analysis",
             "description": "Program expense ratio below industry standard",
-            "severity": "Low", 
+            "severity": "Low",
             "amount": "₹0",
             "status": "Monitoring"
         }
     ]
 
-# Generate development impact data
+#generate development data
 def generate_ngo_impact():
     return {
         "meals_served": 15750000,
@@ -168,7 +176,7 @@ def generate_college_impact():
         }
     }
 
-# Create comprehensive data structure
+#setting comprehensive data structure
 abba_accounts_data = {
     "organizations": {
         "ngos": [],
@@ -177,7 +185,7 @@ abba_accounts_data = {
     }
 }
 
-# Generate data for NGOs
+#generate data for NGOs
 for ngo in ngos:
     financial_data = generate_financial_data(ngo["name"], "NGO")
     salary_data = generate_salary_data("NGO")
@@ -191,12 +199,13 @@ for ngo in ngos:
         "fraud_alerts": fraud_alerts,
         "impact": impact_data
     }
+    
     abba_accounts_data["organizations"]["ngos"].append(ngo_data)
 
-# Generate data for Government Projects  
+#generate data for Government Projects
 for project in govt_projects:
     financial_data = generate_financial_data(project["name"], "Government")
-    salary_data = generate_salary_data("Government") 
+    salary_data = generate_salary_data("Government")
     fraud_alerts = generate_fraud_alerts()
     impact_data = generate_govt_impact()
     
@@ -207,6 +216,7 @@ for project in govt_projects:
         "fraud_alerts": fraud_alerts,
         "impact": impact_data
     }
+    
     abba_accounts_data["organizations"]["government_projects"].append(project_data)
 
 # Generate data for Colleges
@@ -223,9 +233,10 @@ for college in colleges:
         "fraud_alerts": fraud_alerts,
         "impact": impact_data
     }
+    
     abba_accounts_data["organizations"]["colleges"].append(college_data)
 
-# Save data to JSON
+# saving data to JSON
 with open('abba_accounts_data.json', 'w') as f:
     json.dump(abba_accounts_data, f, indent=2)
 
@@ -234,6 +245,6 @@ print(f"NGOs: {len(abba_accounts_data['organizations']['ngos'])}")
 print(f"Government Projects: {len(abba_accounts_data['organizations']['government_projects'])}")
 print(f"Colleges: {len(abba_accounts_data['organizations']['colleges'])}")
 
-# Display sample structure
+#display structures
 print("\nSample NGO Data Structure:")
 print(json.dumps(abba_accounts_data["organizations"]["ngos"][0], indent=2)[:1000] + "...")
