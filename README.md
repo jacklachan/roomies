@@ -23,8 +23,7 @@
 
 ## 📝 Table of Contents
 - [Problem Statement](#problem_statement)
-- [Idea / Solution](#idea)
-- [Dependencies / Limitations](#limitations)
+- [Idea](#idea)
 - [Future Scope](#future_scope)
 - [Setting up a local environment](#getting_started)
 - [Usage](#usage)
@@ -36,18 +35,21 @@
 - [Acknowledgments](#acknowledgments)
 
 ## 🧐 Problem Statement <a name = "problem_statement"></a>
-
+Build a solution that brings clarity and trust to 
+how money flows in institutions. The system 
+should:
+ ● Make the movement of funds easy to 
+follow and understand, showing how a 
+budget gets divided into departments, 
+projects, and vendors.
+ ● Make this information easy to understand 
+for everyone, from citizens and students 
+to parents and other stakeholders.
+ ● Ensure the data is authentic, traceable, 
+and reliable, so people know they can 
+trust it
 ### IDEAL: 
 Organizations handling public funds (NGOs, government projects, educational institutions) should operate with complete financial transparency, enabling stakeholders to track fund allocation, detect anomalies, and assess impact metrics in real-time. Citizens and donors deserve accessible, comprehensive financial information presented in an intuitive format that promotes accountability and trust.
-
-### REALITY: 
-Currently, financial information from public organizations is often:
-- Scattered across multiple systems and formats
-- Difficult for non-experts to interpret
-- Updated infrequently or inconsistently  
-- Lacking interactive visualization tools
-- Missing fraud detection capabilities
-- Inaccessible to different stakeholder groups with varying access needs
 
 ### CONSEQUENCES: 
 Without proper financial transparency tools, organizations face:
@@ -60,7 +62,7 @@ Without proper financial transparency tools, organizations face:
 
 ## 💡 Idea / Solution <a name = "idea"></a>
 
-ABBA (Accountable Budget & Blockchain Accountability) is a comprehensive web-based financial transparency dashboard that transforms complex financial data into accessible, interactive visualizations. Our solution provides:
+ABBA is a comprehensive web-based financial transparency dashboard that transforms complex financial data into accessible, interactive visualizations. Our solution provides:
 
 ### Core Features:
 - **Multi-Organization Support**: Covers NGOs, government projects, and educational institutions
@@ -71,13 +73,6 @@ ABBA (Accountable Budget & Blockchain Accountability) is a comprehensive web-bas
 - **AI-Powered Chatbot**: Intelligent assistant for financial queries using Google Gemini API
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 - **Search & Discovery**: Cross-platform search functionality for finding organizations
-
-### Key Innovations:
-1. **Dual-View Architecture**: Public transparency with administrative depth
-2. **Automated Fraud Alerts**: Proactive detection of expense anomalies and duplicate payments
-3. **Interactive Data Visualization**: Chart.js powered dynamic charts and graphs
-4. **Comprehensive Coverage**: Single platform for multiple organization types
-5. **AI Integration**: Natural language queries about financial data
 
 ## ⛓️ Dependencies / Limitations <a name = "limitations"></a>
 
@@ -109,16 +104,13 @@ ABBA (Accountable Budget & Blockchain Accountability) is a comprehensive web-bas
 - **Export Capabilities**: PDF reports and CSV data exports
 
 ### Phase 2 Developments:
-- **Blockchain Integration**: Immutable transaction logging for enhanced accountability
-- **API Development**: RESTful API for third-party integrations
-- **Mobile Applications**: Native iOS and Android apps
-- **Multi-Language Support**: Internationalization for global deployment
+🔎 Search & Filter – Add a search bar to quickly find transactions by department/vendor.
+📊 Visualization – Use charts and graphs to make budgets, spending patterns, and trends easy to understand.
 
-### Phase 3 Vision:
-- **Machine Learning Models**: Advanced fraud detection using historical patterns
-- **Regulatory Compliance**: Automated compliance checking for various jurisdictions
-- **Stakeholder Portals**: Dedicated interfaces for donors, auditors, and regulators
-- **Integration Marketplace**: Plugin system for connecting various financial systems
+### Phase 3 Developements:
+🪫 Anomaly Challenge - Build an anomaly detection feature that triggers alerts for budget overruns.
+
+💭 Community Feedback Add-On - Add a "feedback button" where any user can leave a comment/suggestion on a budget item.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -306,8 +298,17 @@ We welcome contributions from the community! Here's how you can help improve ABB
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- **[@jacklachan](https://github.com/jacklachan)** - Project Lead & Frontend Development
-- **[@Auenchanters](https://github.com/Auenchanters)** - Backend Development & Data Generation
+Name - L MOHIT JAIN 
+Gmail - mohitlalith07@gmail.com
+
+Name - Tanush Deepak
+Gmail - officialtanushdeepak@gmail.com
+
+Name - ram bharat revankar
+Gmail - 400gbram@gmail.com
+
+Name - Utkarsh Singh Yadav
+Gmail - usy.joseph@gmail.com
 
 See also the list of [contributors](https://github.com/jacklachan/roomies/contributors) who participated in this project.
 
@@ -316,14 +317,9 @@ See also the list of [contributors](https://github.com/jacklachan/roomies/contri
 - **Chart.js Community** - Excellent documentation and visualization library
 - **Google AI Team** - Gemini API for natural language processing capabilities
 - **Open Source Contributors** - Various libraries and tools that made this project possible
-- **Financial Transparency Advocates** - Inspiration for creating accountable systems
-- **Hackathon Organizers** - Platform for rapid innovation and development
-- **Beta Testers** - Early feedback and usability insights
-
-### Special Recognition:
-- Thanks to all organizations working toward financial transparency
-- Appreciation for the open-source community enabling rapid development
-- Recognition of the importance of public accountability in fund management
+- **Google developer group** - Platform for rapid innovation and development
+- **BitNBuild 2025**- all the judges and support staff 
+specail thanks to 
 
 ---
 
@@ -336,8 +332,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 The application is designed for easy deployment on various platforms:
 - **GitHub Pages**: Static hosting for demo purposes
 - **Netlify/Vercel**: Enhanced hosting with form handling
-- **AWS S3/CloudFront**: Scalable cloud deployment
-- **Traditional Web Servers**: Apache/Nginx compatible
+-**local host**
 
 ## 📞 Support
 
@@ -349,5 +344,5 @@ For support, feedback, or questions:
 ---
 
 <p align="center">
-Made with ❤️ for Financial Transparency
+Made with ❤️
 </p>
