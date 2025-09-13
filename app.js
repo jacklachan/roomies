@@ -1,1144 +1,1624 @@
-// Application State
-let currentOrg = null;
-let currentOrgType = null;
-let currentRole = null;
-let currentAccessLevel = 'public';
-
-// Organization Data - Fixed structure
+// Application Data
 const organizationData = {
-  "ngos": [
-    {
-      "id": "akshaya_patra",
-      "name": "Akshaya Patra Foundation",
-      "type": "Education & Nutrition",
-      "financial": {
-        "income": {
-          "total_income": 379806594,
-          "donations": 227883956,
-          "government_grants": 94951648,
-          "program_revenue": 37980659,
-          "investment_income": 18990329
+  "organizations": {
+    "ngos": [
+      {
+        "id": "akshaya_patra",
+        "name": "Akshaya Patra Foundation",
+        "type": "Education & Nutrition",
+        "financial": {
+          "income": {
+            "total_income": 379806594,
+            "donations": 227883956,
+            "government_grants": 94951648,
+            "program_revenue": 37980659,
+            "investment_income": 18990329
+          },
+          "expenses": {
+            "total_expenses": 322835604,
+            "program_expenses": 265864615,
+            "administrative_expenses": 37980659,
+            "fundraising_expenses": 18990329
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 48582864, "expenses": 21113388},
+            {"month": "Feb", "income": 44283829, "expenses": 31682734},
+            {"month": "Mar", "income": 41526473, "expenses": 18299223},
+            {"month": "Apr", "income": 23354105, "expenses": 26210253},
+            {"month": "May", "income": 48300769, "expenses": 45885509},
+            {"month": "Jun", "income": 25524754, "expenses": 17146542},
+            {"month": "Jul", "income": 55511469, "expenses": 34338545},
+            {"month": "Aug", "income": 40704711, "expenses": 21560794},
+            {"month": "Sep", "income": 23370101, "expenses": 19674518},
+            {"month": "Oct", "income": 41606350, "expenses": 45128435},
+            {"month": "Nov", "income": 22785801, "expenses": 26162374},
+            {"month": "Dec", "income": 45331395, "expenses": 29664760}
+          ]
         },
-        "expenses": {
-          "total_expenses": 322835604,
-          "program_expenses": 265864615,
-          "administrative_expenses": 37980659,
-          "fundraising_expenses": 18990329
-        },
-        "monthly_data": [
-          {"month": "Jan", "income": 48582864, "expenses": 21113388},
-          {"month": "Feb", "income": 44283829, "expenses": 31682734},
-          {"month": "Mar", "income": 41526473, "expenses": 18299223},
-          {"month": "Apr", "income": 23354105, "expenses": 26210253},
-          {"month": "May", "income": 48300769, "expenses": 45885509},
-          {"month": "Jun", "income": 35247891, "expenses": 28456123},
-          {"month": "Jul", "income": 42138567, "expenses": 33567234},
-          {"month": "Aug", "income": 39456789, "expenses": 31234567},
-          {"month": "Sep", "income": 46789123, "expenses": 28945612},
-          {"month": "Oct", "income": 52341678, "expenses": 35678901},
-          {"month": "Nov", "income": 38567234, "expires": 29123456},
-          {"month": "Dec", "income": 45234567, "expenses": 32456789}
-        ]
-      },
-      "salaries": [
-        {"role": "Executive Director", "count": 1, "avg_salary": 1200000},
-        {"role": "Program Manager", "count": 5, "avg_salary": 800000},
-        {"role": "Field Coordinator", "count": 15, "avg_salary": 500000},
-        {"role": "Administrative Staff", "count": 8, "avg_salary": 350000},
-        {"role": "Support Staff", "count": 20, "avg_salary": 250000}
-      ],
-      "fraud_alerts": [
-        {
-          "alert_id": "FD001",
-          "type": "Expense Anomaly",
-          "description": "Unusual spike in administrative expenses in March 2024",
-          "severity": "Medium",
-          "amount": "₹2,50,000",
-          "status": "Under Review"
-        },
-        {
-          "alert_id": "FD002", 
-          "type": "Duplicate Payment",
-          "description": "Potential duplicate vendor payment detected",
-          "severity": "High",
-          "amount": "₹85,000",
-          "status": "Resolved"
+        "salaries": [
+          {"role": "Executive Director", "count": 1, "avg_salary": 1200000},
+          {"role": "Program Manager", "count": 5, "avg_salary": 800000},
+          {"role": "Field Coordinator", "count": 15, "avg_salary": 500000},
+          {"role": "Administrative Staff", "count": 8, "avg_salary": 350000},
+          {"role": "Support Staff", "count": 20, "avg_salary": 250000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "₹2,50,000",
+            "status": "Under Review"
+          },
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "₹85,000",
+            "status": "Resolved"
+          }
+        ],
+        "impact": {
+          "meals_served": 15750000,
+          "schools_covered": 19500,
+          "states_operational": 12,
+          "cost_per_meal": 18.5,
+          "kitchen_infrastructure": {
+            "centralized_kitchens": 64,
+            "school_kitchens": 150,
+            "total_capacity": "5 million meals/day"
+          }
         }
-      ],
-      "impact": {
-        "meals_served": 15750000,
-        "schools_covered": 19500,
-        "states_operational": 12,
-        "cost_per_meal": 18.50,
-        "kitchen_infrastructure": {
-          "centralized_kitchens": 64,
-          "school_kitchens": 150,
-          "total_capacity": "5 million meals/day"
+      },
+      {
+        "id": "smile_foundation",
+        "name": "Smile Foundation",
+        "type": "Education & Healthcare",
+        "financial": {
+          "income": {
+            "total_income": 52381609,
+            "donations": 31428965,
+            "government_grants": 13095402,
+            "program_revenue": 5238160,
+            "investment_income": 2619080
+          },
+          "expenses": {
+            "total_expenses": 44524367,
+            "program_expenses": 36667126,
+            "administrative_expenses": 5238160,
+            "fundraising_expenses": 2619080
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 3408435, "expenses": 5817631},
+            {"month": "Feb", "income": 5046587, "expenses": 4337127},
+            {"month": "Mar", "income": 3553617, "expenses": 5672529},
+            {"month": "Apr", "income": 6065749, "expenses": 6447701},
+            {"month": "May", "income": 5672838, "expenses": 6385771},
+            {"month": "Jun", "income": 5302200, "expenses": 2540937},
+            {"month": "Jul", "income": 7785478, "expenses": 3954623},
+            {"month": "Aug", "income": 6227256, "expenses": 4239269},
+            {"month": "Sep", "income": 3447088, "expenses": 3413760},
+            {"month": "Oct", "income": 7476418, "expenses": 5391080},
+            {"month": "Nov", "income": 6625465, "expenses": 5874667},
+            {"month": "Dec", "income": 5330540, "expenses": 2503128}
+          ]
+        },
+        "salaries": [
+          {"role": "Executive Director", "count": 1, "avg_salary": 1200000},
+          {"role": "Program Manager", "count": 5, "avg_salary": 800000},
+          {"role": "Field Coordinator", "count": 15, "avg_salary": 500000},
+          {"role": "Administrative Staff", "count": 8, "avg_salary": 350000},
+          {"role": "Support Staff", "count": 20, "avg_salary": 250000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "₹0",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "beneficiaries_served": 12500000,
+          "programs_active": 850,
+          "states_operational": 18,
+          "cost_per_beneficiary": 22.8,
+          "infrastructure": {
+            "learning_centers": 350,
+            "health_centers": 125,
+            "total_reach": "Rural and Urban India"
+          }
+        }
+      },
+      {
+        "id": "cry_foundation",
+        "name": "Child Rights and You (CRY)",
+        "type": "Child Rights",
+        "financial": {
+          "income": {
+            "total_income": 209435915,
+            "donations": 125661549,
+            "government_grants": 52358978,
+            "program_revenue": 20943591,
+            "investment_income": 10471795
+          },
+          "expenses": {
+            "total_expenses": 178020527,
+            "program_expenses": 146605140,
+            "administrative_expenses": 20943591,
+            "fundraising_expenses": 10471795
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 31356957, "expenses": 18894638},
+            {"month": "Feb", "income": 15005019, "expenses": 15601397},
+            {"month": "Mar", "income": 11045865, "expenses": 13075056},
+            {"month": "Apr", "income": 22979101, "expenses": 15262034},
+            {"month": "May", "income": 21674599, "expenses": 13796677},
+            {"month": "Jun", "income": 10639536, "expenses": 16928627},
+            {"month": "Jul", "income": 26780319, "expenses": 17858216},
+            {"month": "Aug", "income": 27412798, "expenses": 22940534},
+            {"month": "Sep", "income": 20541220, "expenses": 24953020},
+            {"month": "Oct", "income": 25000989, "expenses": 26170801},
+            {"month": "Nov", "income": 30627502, "expenses": 17072159},
+            {"month": "Dec", "income": 27486031, "expenses": 15996300}
+          ]
+        },
+        "salaries": [
+          {"role": "Executive Director", "count": 1, "avg_salary": 1200000},
+          {"role": "Program Manager", "count": 5, "avg_salary": 800000},
+          {"role": "Field Coordinator", "count": 15, "avg_salary": 500000},
+          {"role": "Administrative Staff", "count": 8, "avg_salary": 350000},
+          {"role": "Support Staff", "count": 20, "avg_salary": 250000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD001",
+            "type": "Expense Anomaly",
+            "description": "Unusual spike in administrative expenses in March 2024",
+            "severity": "Medium",
+            "amount": "₹2,50,000",
+            "status": "Under Review"
+          }
+        ],
+        "impact": {
+          "children_reached": 2800000,
+          "programs_active": 450,
+          "states_operational": 19,
+          "cost_per_child": 75.5,
+          "infrastructure": {
+            "community_centers": 180,
+            "learning_centers": 320,
+            "total_reach": "Pan India Rural Focus"
+          }
+        }
+      },
+      {
+        "id": "goonj",
+        "name": "Goonj",
+        "type": "Rural Development",
+        "financial": {
+          "income": {
+            "total_income": 196037435,
+            "donations": 117622461,
+            "government_grants": 49009358,
+            "program_revenue": 19603743,
+            "investment_income": 9801871
+          },
+          "expenses": {
+            "total_expenses": 166631819,
+            "program_expenses": 137226204,
+            "administrative_expenses": 19603743,
+            "fundraising_expenses": 9801871
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 11017614, "expenses": 13149406},
+            {"month": "Feb", "income": 21342289, "expenses": 24439043},
+            {"month": "Mar", "income": 19499233, "expenses": 17110071},
+            {"month": "Apr", "income": 25461939, "expenses": 23234479},
+            {"month": "May", "income": 27042858, "expenses": 16683431},
+            {"month": "Jun", "income": 26558688, "expenses": 21485415},
+            {"month": "Jul", "income": 17077853, "expenses": 11958977},
+            {"month": "Aug", "income": 15507125, "expenses": 21346451},
+            {"month": "Sep", "income": 12459080, "expenses": 22418121},
+            {"month": "Oct", "income": 23074431, "expenses": 12680619},
+            {"month": "Nov", "income": 18919303, "expenses": 11429748},
+            {"month": "Dec", "income": 24737158, "expenses": 11634235}
+          ]
+        },
+        "salaries": [
+          {"role": "Executive Director", "count": 1, "avg_salary": 1200000},
+          {"role": "Program Manager", "count": 5, "avg_salary": 800000},
+          {"role": "Field Coordinator", "count": 15, "avg_salary": 500000},
+          {"role": "Administrative Staff", "count": 8, "avg_salary": 350000},
+          {"role": "Support Staff", "count": 20, "avg_salary": 250000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD002",
+            "type": "Duplicate Payment",
+            "description": "Potential duplicate vendor payment detected",
+            "severity": "High",
+            "amount": "₹85,000",
+            "status": "Resolved"
+          }
+        ],
+        "impact": {
+          "villages_covered": 8500,
+          "people_reached": 3200000,
+          "states_operational": 23,
+          "cost_per_person": 52.1,
+          "infrastructure": {
+            "collection_centers": 240,
+            "processing_units": 45,
+            "total_reach": "Rural India Focus"
+          }
+        }
+      },
+      {
+        "id": "teach_india",
+        "name": "Teach for India",
+        "type": "Education",
+        "financial": {
+          "income": {
+            "total_income": 148582854,
+            "donations": 89149712,
+            "government_grants": 37145713,
+            "program_revenue": 14858285,
+            "investment_income": 7429142
+          },
+          "expenses": {
+            "total_expenses": 126295425,
+            "program_expenses": 104007997,
+            "administrative_expenses": 14858285,
+            "fundraising_expenses": 7429142
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 9132614, "expenses": 9031425},
+            {"month": "Feb", "income": 17537560, "expenses": 14482038},
+            {"month": "Mar", "income": 14002749, "expenses": 15358424},
+            {"month": "Apr", "income": 17728899, "expenses": 11773177},
+            {"month": "May", "income": 11410029, "expenses": 11992428},
+            {"month": "Jun", "income": 16890167, "expenses": 7322033},
+            {"month": "Jul", "income": 10318908, "expenses": 8854073},
+            {"month": "Aug", "income": 8025717, "expenses": 12226341},
+            {"month": "Sep", "income": 9787171, "expenses": 12927914},
+            {"month": "Oct", "income": 14742797, "expenses": 10391759},
+            {"month": "Nov", "income": 12485477, "expenses": 6583316},
+            {"month": "Dec", "income": 20032110, "expenses": 16147074}
+          ]
+        },
+        "salaries": [
+          {"role": "Executive Director", "count": 1, "avg_salary": 1200000},
+          {"role": "Program Manager", "count": 5, "avg_salary": 800000},
+          {"role": "Field Coordinator", "count": 15, "avg_salary": 500000},
+          {"role": "Administrative Staff", "count": 8, "avg_salary": 350000},
+          {"role": "Support Staff", "count": 20, "avg_salary": 250000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "FD003",
+            "type": "Ratio Analysis",
+            "description": "Program expense ratio below industry standard",
+            "severity": "Low",
+            "amount": "₹0",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "students_reached": 850000,
+          "teachers_trained": 4500,
+          "schools_partnered": 320,
+          "cost_per_student": 175,
+          "infrastructure": {
+            "training_centers": 12,
+            "partner_schools": 320,
+            "total_reach": "Urban Low-Income Schools"
+          }
         }
       }
-    },
-    {
-      "id": "smile_foundation",
-      "name": "Smile Foundation",
-      "type": "Education & Healthcare",
-      "financial": {
-        "income": {
-          "total_income": 285000000,
-          "donations": 171000000,
-          "government_grants": 71250000,
-          "program_revenue": 28500000,
-          "investment_income": 14250000
+    ],
+    "government_projects": [
+      {
+        "id": "swachh_bharat",
+        "name": "Swachh Bharat Mission",
+        "type": "Sanitation & Cleanliness",
+        "financial": {
+          "income": {
+            "total_income": 177681648,
+            "central_funding": 106608988,
+            "state_funding": 44420412,
+            "corporate_csr": 17768164,
+            "international_aid": 8884082
+          },
+          "expenses": {
+            "total_expenses": 151029400,
+            "program_expenses": 124377153,
+            "administrative_expenses": 17768164,
+            "monitoring_expenses": 8884082
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 17871963, "expenses": 17859876},
+            {"month": "Feb", "income": 18298660, "expenses": 17456787},
+            {"month": "Mar", "income": 20560195, "expenses": 10392510},
+            {"month": "Apr", "income": 11029943, "expenses": 7931350},
+            {"month": "May", "income": 12363824, "expenses": 22277398},
+            {"month": "Jun", "income": 22669793, "expenses": 18349530},
+            {"month": "Jul", "income": 12076371, "expenses": 20372923},
+            {"month": "Aug", "income": 25983419, "expenses": 14145472},
+            {"month": "Sep", "income": 12252112, "expenses": 16919787},
+            {"month": "Oct", "income": 24124696, "expenses": 10452237},
+            {"month": "Nov", "income": 19258028, "expenses": 15469322},
+            {"month": "Dec", "income": 24183163, "expenses": 17839900}
+          ]
         },
-        "expenses": {
-          "total_expenses": 242250000,
-          "program_expenses": 199500000,
-          "administrative_expenses": 28500000,
-          "fundraising_expenses": 14250000
-        },
-        "monthly_data": [
-          {"month": "Jan", "income": 23750000, "expenses": 20187500},
-          {"month": "Feb", "income": 23750000, "expenses": 20187500},
-          {"month": "Mar", "income": 23750000, "expenses": 20187500},
-          {"month": "Apr", "income": 23750000, "expenses": 20187500},
-          {"month": "May", "income": 23750000, "expenses": 20187500},
-          {"month": "Jun", "income": 23750000, "expenses": 20187500},
-          {"month": "Jul", "income": 23750000, "expenses": 20187500},
-          {"month": "Aug", "income": 23750000, "expenses": 20187500},
-          {"month": "Sep", "income": 23750000, "expenses": 20187500},
-          {"month": "Oct", "income": 23750000, "expenses": 20187500},
-          {"month": "Nov", "income": 23750000, "expenses": 20187500},
-          {"month": "Dec", "income": 23750000, "expenses": 20187500}
-        ]
-      },
-      "salaries": [
-        {"role": "Executive Director", "count": 1, "avg_salary": 1200000},
-        {"role": "Program Manager", "count": 5, "avg_salary": 800000},
-        {"role": "Field Coordinator", "count": 15, "avg_salary": 500000},
-        {"role": "Administrative Staff", "count": 8, "avg_salary": 350000},
-        {"role": "Support Staff", "count": 20, "avg_salary": 250000}
-      ],
-      "fraud_alerts": [
-        {
-          "alert_id": "FD003",
-          "type": "Ratio Analysis",
-          "description": "Program expense ratio below industry standard",
-          "severity": "Low", 
-          "amount": "₹0",
-          "status": "Monitoring"
+        "salaries": [
+          {"role": "Project Director", "count": 1, "avg_salary": 1500000},
+          {"role": "Deputy Director", "count": 3, "avg_salary": 1200000},
+          {"role": "Assistant Director", "count": 8, "avg_salary": 900000},
+          {"role": "Section Officer", "count": 15, "avg_salary": 600000},
+          {"role": "Assistant", "count": 25, "avg_salary": 400000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "GD001",
+            "type": "Procurement Irregularity",
+            "description": "Unusual vendor selection pattern in toilet construction contracts",
+            "severity": "High",
+            "amount": "₹15,00,000",
+            "status": "Under Investigation"
+          }
+        ],
+        "impact": {
+          "toilets_built": 110000000,
+          "districts_covered": 704,
+          "states_covered": 36,
+          "waste_processed_daily": "70000 tonnes",
+          "infrastructure": {
+            "solid_waste_plants": 1200,
+            "liquid_waste_plants": 800,
+            "community_toilets": 650000
+          }
         }
-      ],
-      "impact": {
-        "beneficiaries_served": 12500000,
-        "programs_active": 850,
-        "states_operational": 18,
-        "cost_per_beneficiary": 22.8,
-        "infrastructure": {
-          "learning_centers": 350,
-          "health_centers": 125,
-          "total_reach": "Rural and Urban India"
+      },
+      {
+        "id": "pm_jan_dhan",
+        "name": "PM Jan Dhan Yojana",
+        "type": "Financial Inclusion",
+        "financial": {
+          "income": {
+            "total_income": 373533804,
+            "central_funding": 224120282,
+            "state_funding": 93383451,
+            "corporate_csr": 37353380,
+            "international_aid": 18676690
+          },
+          "expenses": {
+            "total_expenses": 317503733,
+            "program_expenses": 261473662,
+            "administrative_expenses": 37353380,
+            "monitoring_expenses": 18676690
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 53741364, "expenses": 20824486},
+            {"month": "Feb", "income": 22528583, "expenses": 38305250},
+            {"month": "Mar", "income": 27430905, "expenses": 29743306},
+            {"month": "Apr", "income": 48931163, "expenses": 22277865},
+            {"month": "May", "income": 23459695, "expenses": 34859954},
+            {"month": "Jun", "income": 45308755, "expenses": 38496706},
+            {"month": "Jul", "income": 29223575, "expenses": 33438849},
+            {"month": "Aug", "income": 36020621, "expenses": 41022836},
+            {"month": "Sep", "income": 38713542, "expenses": 29433216},
+            {"month": "Oct", "income": 37582001, "expenses": 43431752},
+            {"month": "Nov", "income": 20216861, "expenses": 33887060},
+            {"month": "Dec", "income": 38632827, "expenses": 30558283}
+          ]
+        },
+        "salaries": [
+          {"role": "Project Director", "count": 1, "avg_salary": 1500000},
+          {"role": "Deputy Director", "count": 3, "avg_salary": 1200000},
+          {"role": "Assistant Director", "count": 8, "avg_salary": 900000},
+          {"role": "Section Officer", "count": 15, "avg_salary": 600000},
+          {"role": "Assistant", "count": 25, "avg_salary": 400000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "GD002",
+            "type": "Account Opening Irregularity",
+            "description": "Suspicious pattern in zero-balance account openings",
+            "severity": "Medium",
+            "amount": "₹5,75,000",
+            "status": "Under Review"
+          }
+        ],
+        "impact": {
+          "accounts_opened": 487000000,
+          "districts_covered": 739,
+          "states_covered": 36,
+          "deposits_mobilized": "₹1,85,000 crores",
+          "infrastructure": {
+            "banking_points": 460000,
+            "rural_branches": 52000,
+            "digital_transactions": "98% of total"
+          }
+        }
+      },
+      {
+        "id": "digital_india",
+        "name": "Digital India Initiative",
+        "type": "Technology & Governance",
+        "financial": {
+          "income": {
+            "total_income": 69920072,
+            "central_funding": 41952043,
+            "state_funding": 17480018,
+            "corporate_csr": 6992007,
+            "international_aid": 3496003
+          },
+          "expenses": {
+            "total_expenses": 59432061,
+            "program_expenses": 48944050,
+            "administrative_expenses": 6992007,
+            "monitoring_expenses": 3496003
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 5922578, "expenses": 3889256},
+            {"month": "Feb", "income": 9990994, "expenses": 5713047},
+            {"month": "Mar", "income": 6446309, "expenses": 4211236},
+            {"month": "Apr", "income": 10008118, "expenses": 7478543},
+            {"month": "May", "income": 5576097, "expenses": 6106593},
+            {"month": "Jun", "income": 10308676, "expenses": 3064404},
+            {"month": "Jul", "income": 3555839, "expenses": 8471928},
+            {"month": "Aug", "income": 5360146, "expenses": 7386523},
+            {"month": "Sep", "income": 8546020, "expenses": 4200547},
+            {"month": "Oct", "income": 6445584, "expenses": 5304938},
+            {"month": "Nov", "income": 9922525, "expenses": 8378470},
+            {"month": "Dec", "income": 6953198, "expenses": 8700136}
+          ]
+        },
+        "salaries": [
+          {"role": "Project Director", "count": 1, "avg_salary": 1500000},
+          {"role": "Deputy Director", "count": 3, "avg_salary": 1200000},
+          {"role": "Assistant Director", "count": 8, "avg_salary": 900000},
+          {"role": "Section Officer", "count": 15, "avg_salary": 600000},
+          {"role": "Assistant", "count": 25, "avg_salary": 400000}
+        ],
+        "fraud_alerts": [],
+        "impact": {
+          "digital_services_launched": 450,
+          "districts_digitized": 720,
+          "states_covered": 36,
+          "citizen_transactions_daily": "12 million",
+          "infrastructure": {
+            "common_service_centers": 400000,
+            "wifi_hotspots": 250000,
+            "digital_literacy_trained": "50 million citizens"
+          }
+        }
+      },
+      {
+        "id": "skill_india",
+        "name": "Skill India Mission",
+        "type": "Employment & Training",
+        "financial": {
+          "income": {
+            "total_income": 477256019,
+            "central_funding": 286353611,
+            "state_funding": 119314004,
+            "corporate_csr": 47725601,
+            "international_aid": 23862800
+          },
+          "expenses": {
+            "total_expenses": 405667616,
+            "program_expenses": 334079213,
+            "administrative_expenses": 47725601,
+            "monitoring_expenses": 23862800
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 67067106, "expenses": 60322469},
+            {"month": "Feb", "income": 37228843, "expenses": 49999235},
+            {"month": "Mar", "income": 24948659, "expenses": 24514156},
+            {"month": "Apr", "income": 44137742, "expenses": 51392563},
+            {"month": "May", "income": 36814435, "expenses": 48756940},
+            {"month": "Jun", "income": 38397565, "expenses": 25815486},
+            {"month": "Jul", "income": 25840570, "expenses": 23645273},
+            {"month": "Aug", "income": 63792184, "expenses": 32218818},
+            {"month": "Sep", "income": 49545224, "expenses": 24405217},
+            {"month": "Oct", "income": 70158444, "expenses": 51962260},
+            {"month": "Nov", "income": 25187232, "expenses": 35641382},
+            {"month": "Dec", "income": 36780058, "expenses": 56111012}
+          ]
+        },
+        "salaries": [
+          {"role": "Project Director", "count": 1, "avg_salary": 1500000},
+          {"role": "Deputy Director", "count": 3, "avg_salary": 1200000},
+          {"role": "Assistant Director", "count": 8, "avg_salary": 900000},
+          {"role": "Section Officer", "count": 15, "avg_salary": 600000},
+          {"role": "Assistant", "count": 25, "avg_salary": 400000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "GD003",
+            "type": "Training Certificate Fraud",
+            "description": "Irregular certification patterns detected in certain training centers",
+            "severity": "High",
+            "amount": "₹25,00,000",
+            "status": "Under Investigation"
+          }
+        ],
+        "impact": {
+          "people_trained": 12500000,
+          "districts_covered": 700,
+          "states_covered": 36,
+          "employment_rate": "68% of trained candidates",
+          "infrastructure": {
+            "training_centers": 15000,
+            "sector_skill_councils": 37,
+            "industry_partnerships": 2500
+          }
+        }
+      },
+      {
+        "id": "ayushman_bharat",
+        "name": "Ayushman Bharat",
+        "type": "Healthcare",
+        "financial": {
+          "income": {
+            "total_income": 247319799,
+            "central_funding": 148391879,
+            "state_funding": 61829949,
+            "corporate_csr": 24731979,
+            "international_aid": 12365989
+          },
+          "expenses": {
+            "total_expenses": 210221829,
+            "program_expenses": 173123859,
+            "administrative_expenses": 24731979,
+            "monitoring_expenses": 12365989
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 31403244, "expenses": 11105163},
+            {"month": "Feb", "income": 25449524, "expenses": 21142125},
+            {"month": "Mar", "income": 29814806, "expenses": 21271365},
+            {"month": "Apr", "income": 14106950, "expenses": 26462495},
+            {"month": "May", "income": 18719044, "expenses": 12293183},
+            {"month": "Jun", "income": 23020749, "expenses": 18278781},
+            {"month": "Jul", "income": 21327286, "expenses": 28639327},
+            {"month": "Aug", "income": 32612031, "expenses": 11427295},
+            {"month": "Sep", "income": 26463776, "expenses": 20123726},
+            {"month": "Oct", "income": 15548457, "expenses": 17694851},
+            {"month": "Nov", "income": 32269211, "expenses": 18469274},
+            {"month": "Dec", "income": 21633991, "expenses": 19313536}
+          ]
+        },
+        "salaries": [
+          {"role": "Project Director", "count": 1, "avg_salary": 1500000},
+          {"role": "Deputy Director", "count": 3, "avg_salary": 1200000},
+          {"role": "Assistant Director", "count": 8, "avg_salary": 900000},
+          {"role": "Section Officer", "count": 15, "avg_salary": 600000},
+          {"role": "Assistant", "count": 25, "avg_salary": 400000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "GD004",
+            "type": "Hospital Billing Fraud",
+            "description": "Suspicious billing patterns in empaneled hospitals",
+            "severity": "High",
+            "amount": "₹45,00,000",
+            "status": "Under Investigation"
+          }
+        ],
+        "impact": {
+          "beneficiaries_covered": 550000000,
+          "hospitals_empaneled": 25000,
+          "states_covered": 36,
+          "treatments_covered": "1400+ procedures",
+          "infrastructure": {
+            "health_wellness_centers": 150000,
+            "ayushman_cards_issued": 230000000,
+            "claim_settlements": "₹65,000 crores"
+          }
         }
       }
-    }
-  ],
-  "government": [
-    {
-      "id": "swachh_bharat",
-      "name": "Swachh Bharat Mission",
-      "type": "Sanitation & Cleanliness",
-      "financial": {
-        "income": {
-          "total_income": 1200000000,
-          "central_funding": 720000000,
-          "state_funding": 300000000,
-          "corporate_csr": 120000000,
-          "international_aid": 60000000
+    ],
+    "colleges": [
+      {
+        "id": "iit_bangalore",
+        "name": "Indian Institute of Technology Bangalore",
+        "type": "Engineering",
+        "financial": {
+          "income": {
+            "total_income": 287422626,
+            "student_fees": 172453575,
+            "government_grants": 71855656,
+            "research_funding": 28742262,
+            "endowment_income": 14371131
+          },
+          "expenses": {
+            "total_expenses": 244309232,
+            "faculty_salaries": 146585539,
+            "infrastructure": 73292769,
+            "research_expenses": 14665847,
+            "administrative_expenses": 9765078
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 16788324, "expenses": 19036594},
+            {"month": "Feb", "income": 36776113, "expenses": 22938193},
+            {"month": "Mar", "income": 16696185, "expenses": 35544241},
+            {"month": "Apr", "income": 28587198, "expenses": 17204167},
+            {"month": "May", "income": 35661956, "expenses": 23724534},
+            {"month": "Jun", "income": 37096781, "expenses": 24210419},
+            {"month": "Jul", "income": 19635559, "expenses": 30318422},
+            {"month": "Aug", "income": 31008218, "expenses": 25845759},
+            {"month": "Sep", "income": 22964992, "expenses": 25720052},
+            {"month": "Oct", "income": 39009283, "expenses": 15415254},
+            {"month": "Nov", "income": 31361660, "expenses": 24248903},
+            {"month": "Dec", "income": 28376379, "expenses": 29388053}
+          ]
         },
-        "expenses": {
-          "total_expenses": 1020000000,
-          "program_expenses": 840000000,
-          "administrative_expenses": 120000000,
-          "monitoring_expenses": 60000000
-        },
-        "monthly_data": [
-          {"month": "Jan", "income": 100000000, "expenses": 85000000},
-          {"month": "Feb", "income": 100000000, "expenses": 85000000},
-          {"month": "Mar", "income": 100000000, "expenses": 85000000},
-          {"month": "Apr", "income": 100000000, "expenses": 85000000},
-          {"month": "May", "income": 100000000, "expenses": 85000000},
-          {"month": "Jun", "income": 100000000, "expenses": 85000000},
-          {"month": "Jul", "income": 100000000, "expenses": 85000000},
-          {"month": "Aug", "income": 100000000, "expenses": 85000000},
-          {"month": "Sep", "income": 100000000, "expenses": 85000000},
-          {"month": "Oct", "income": 100000000, "expenses": 85000000},
-          {"month": "Nov", "income": 100000000, "expenses": 85000000},
-          {"month": "Dec", "income": 100000000, "expenses": 85000000}
-        ]
-      },
-      "salaries": [
-        {"role": "Project Director", "count": 1, "avg_salary": 1500000},
-        {"role": "Deputy Director", "count": 3, "avg_salary": 1200000},
-        {"role": "Assistant Director", "count": 8, "avg_salary": 900000},
-        {"role": "Section Officer", "count": 15, "avg_salary": 600000},
-        {"role": "Assistant", "count": 25, "avg_salary": 400000}
-      ],
-      "fraud_alerts": [
-        {
-          "alert_id": "GD001",
-          "type": "Procurement Irregularity",
-          "description": "Unusual vendor selection pattern in toilet construction contracts",
-          "severity": "High",
-          "amount": "₹15,00,000",
-          "status": "Under Investigation"
+        "salaries": [
+          {"role": "Director", "count": 1, "avg_salary": 2500000},
+          {"role": "Professor", "count": 450, "avg_salary": 1800000},
+          {"role": "Associate Professor", "count": 320, "avg_salary": 1400000},
+          {"role": "Assistant Professor", "count": 280, "avg_salary": 1000000},
+          {"role": "Administrative Staff", "count": 180, "avg_salary": 650000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "CD001",
+            "type": "Equipment Purchase",
+            "description": "Inflated prices detected in laboratory equipment procurement",
+            "severity": "Medium",
+            "amount": "₹8,75,000",
+            "status": "Under Review"
+          }
+        ],
+        "impact": {
+          "students_enrolled": 12000,
+          "faculty_count": 1051,
+          "research_projects": 850,
+          "cost_per_student": 203576,
+          "infrastructure": {
+            "buildings": 45,
+            "laboratories": 180,
+            "library_books": 450000,
+            "placement_rate": "98%"
+          }
         }
-      ],
-      "impact": {
-        "toilets_built": 110000000,
-        "districts_covered": 704,
-        "states_covered": 36,
-        "waste_processed_daily": "70000 tonnes",
-        "infrastructure": {
-          "solid_waste_plants": 1200,
-          "liquid_waste_plants": 800,
-          "community_toilets": 650000
+      },
+      {
+        "id": "du",
+        "name": "Delhi University",
+        "type": "Multi-Disciplinary",
+        "financial": {
+          "income": {
+            "total_income": 325334485,
+            "student_fees": 195200691,
+            "government_grants": 81333621,
+            "research_funding": 32533448,
+            "endowment_income": 16266724
+          },
+          "expenses": {
+            "total_expenses": 276534312,
+            "faculty_salaries": 165920587,
+            "infrastructure": 82960293,
+            "research_expenses": 16600155,
+            "administrative_expenses": 11053276
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 32174863, "expenses": 24211486},
+            {"month": "Feb", "income": 45602540, "expenses": 16525233},
+            {"month": "Mar", "income": 32930937, "expenses": 38899633},
+            {"month": "Apr", "income": 29138771, "expenses": 31421510},
+            {"month": "May", "income": 44148031, "expenses": 36593136},
+            {"month": "Jun", "income": 46556436, "expenses": 28191480},
+            {"month": "Jul", "income": 34299843, "expenses": 35574821},
+            {"month": "Aug", "income": 30154634, "expenses": 31023645},
+            {"month": "Sep", "income": 22721708, "expenses": 14090112},
+            {"month": "Oct", "income": 36950859, "expenses": 33736289},
+            {"month": "Nov", "income": 44974504, "expenses": 32205608},
+            {"month": "Dec", "income": 19164140, "expenses": 20198141}
+          ]
+        },
+        "salaries": [
+          {"role": "Vice Chancellor", "count": 1, "avg_salary": 2200000},
+          {"role": "Professor", "count": 850, "avg_salary": 1600000},
+          {"role": "Associate Professor", "count": 1200, "avg_salary": 1200000},
+          {"role": "Assistant Professor", "count": 1500, "avg_salary": 850000},
+          {"role": "Administrative Staff", "count": 420, "avg_salary": 550000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "CD002",
+            "type": "Examination Fee Discrepancy",
+            "description": "Irregular patterns in examination fee collection",
+            "severity": "Low",
+            "amount": "₹2,25,000",
+            "status": "Monitoring"
+          }
+        ],
+        "impact": {
+          "students_enrolled": 132000,
+          "faculty_count": 3970,
+          "research_projects": 1200,
+          "cost_per_student": 20948,
+          "infrastructure": {
+            "colleges": 91,
+            "departments": 86,
+            "library_books": 1500000,
+            "placement_rate": "85%"
+          }
+        }
+      },
+      {
+        "id": "iisc",
+        "name": "Indian Institute of Science",
+        "type": "Research",
+        "financial": {
+          "income": {
+            "total_income": 318755358,
+            "research_grants": 191253214,
+            "government_funding": 79688839,
+            "industry_collaboration": 31875535,
+            "endowment_income": 15937767
+          },
+          "expenses": {
+            "total_expenses": 270942054,
+            "research_expenses": 162565232,
+            "faculty_salaries": 81473587,
+            "infrastructure": 16256523,
+            "administrative_expenses": 10646711
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 32759377, "expenses": 37949778},
+            {"month": "Feb", "income": 33712076, "expenses": 21752273},
+            {"month": "Mar", "income": 21130774, "expenses": 30408093},
+            {"month": "Apr", "income": 32261118, "expenses": 21546629},
+            {"month": "May", "income": 37969638, "expenses": 30074074},
+            {"month": "Jun", "income": 43437694, "expenses": 19041103},
+            {"month": "Jul", "income": 41390924, "expenses": 25923970},
+            {"month": "Aug", "income": 35438808, "expenses": 30433005},
+            {"month": "Sep", "income": 30144888, "expenses": 18326355},
+            {"month": "Oct", "income": 30911038, "expenses": 15267414},
+            {"month": "Nov", "income": 33650787, "expenses": 26966916},
+            {"month": "Dec", "income": 29654945, "expenses": 20050209}
+          ]
+        },
+        "salaries": [
+          {"role": "Director", "count": 1, "avg_salary": 2800000},
+          {"role": "Professor", "count": 280, "avg_salary": 2200000},
+          {"role": "Associate Professor", "count": 180, "avg_salary": 1800000},
+          {"role": "Assistant Professor", "count": 150, "avg_salary": 1400000},
+          {"role": "Research Staff", "count": 320, "avg_salary": 950000}
+        ],
+        "fraud_alerts": [],
+        "impact": {
+          "research_scholars": 3200,
+          "faculty_count": 931,
+          "research_projects": 2400,
+          "cost_per_scholar": 84669,
+          "infrastructure": {
+            "research_centers": 45,
+            "laboratories": 350,
+            "patents_filed": "1200+ annually",
+            "publications": "4500+ annually"
+          }
+        }
+      },
+      {
+        "id": "jnu",
+        "name": "Jawaharlal Nehru University",
+        "type": "Liberal Arts",
+        "financial": {
+          "income": {
+            "total_income": 96303265,
+            "government_grants": 57781959,
+            "student_fees": 24075816,
+            "research_funding": 9630326,
+            "other_income": 4815163
+          },
+          "expenses": {
+            "total_expenses": 81857775,
+            "faculty_salaries": 49114665,
+            "infrastructure": 20464443,
+            "research_expenses": 8185777,
+            "administrative_expenses": 4092888
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 10624445, "expenses": 9327066},
+            {"month": "Feb", "income": 10116321, "expenses": 7183621},
+            {"month": "Mar", "income": 10295378, "expenses": 9821408},
+            {"month": "Apr", "income": 5438436, "expenses": 9039171},
+            {"month": "May", "income": 12374737, "expenses": 5257356},
+            {"month": "Jun", "income": 9592868, "expenses": 9975360},
+            {"month": "Jul", "income": 12559478, "expenses": 9053352},
+            {"month": "Aug", "income": 10837885, "expenses": 9944454},
+            {"month": "Sep", "income": 5808267, "expenses": 5003147},
+            {"month": "Oct", "income": 6567563, "expenses": 5411337},
+            {"month": "Nov", "income": 13846333, "expenses": 10891037},
+            {"month": "Dec", "income": 12439143, "expenses": 6736049}
+          ]
+        },
+        "salaries": [
+          {"role": "Vice Chancellor", "count": 1, "avg_salary": 2000000},
+          {"role": "Professor", "count": 320, "avg_salary": 1500000},
+          {"role": "Associate Professor", "count": 280, "avg_salary": 1100000},
+          {"role": "Assistant Professor", "count": 450, "avg_salary": 750000},
+          {"role": "Administrative Staff", "count": 180, "avg_salary": 480000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "CD003",
+            "type": "Scholarship Disbursement",
+            "description": "Delayed scholarship payments affecting student welfare",
+            "severity": "Medium",
+            "amount": "₹12,50,000",
+            "status": "Under Review"
+          }
+        ],
+        "impact": {
+          "students_enrolled": 8500,
+          "faculty_count": 1231,
+          "research_projects": 420,
+          "cost_per_student": 96362,
+          "infrastructure": {
+            "schools": 16,
+            "centers": 25,
+            "library_books": 650000,
+            "placement_rate": "78%"
+          }
+        }
+      },
+      {
+        "id": "rvce",
+        "name": "RV College of Engineering",
+        "type": "Engineering",
+        "financial": {
+          "income": {
+            "total_income": 301899280,
+            "student_fees": 181139568,
+            "government_grants": 75474820,
+            "industry_collaboration": 30189928,
+            "other_income": 15094964
+          },
+          "expenses": {
+            "total_expenses": 256614388,
+            "faculty_salaries": 153968632,
+            "infrastructure": 76984316,
+            "research_expenses": 15396863,
+            "administrative_expenses": 10264576
+          },
+          "monthly_data": [
+            {"month": "Jan", "income": 41181536, "expenses": 26519548},
+            {"month": "Feb", "income": 24508184, "expenses": 27093915},
+            {"month": "Mar", "income": 34225568, "expenses": 20764904},
+            {"month": "Apr", "income": 44017663, "expenses": 28031333},
+            {"month": "May", "income": 34821197, "expenses": 16172918},
+            {"month": "Jun", "income": 32387466, "expenses": 14147822},
+            {"month": "Jul", "income": 42392720, "expenses": 30772285},
+            {"month": "Aug", "income": 44479617, "expenses": 33902797},
+            {"month": "Sep", "income": 23151260, "expenses": 18348065},
+            {"month": "Oct", "income": 33355580, "expenses": 18702219},
+            {"month": "Nov", "income": 21510534, "expenses": 23549860},
+            {"month": "Dec", "income": 15869565, "expenses": 15884379}
+          ]
+        },
+        "salaries": [
+          {"role": "Principal", "count": 1, "avg_salary": 1800000},
+          {"role": "Professor", "count": 85, "avg_salary": 1300000},
+          {"role": "Associate Professor", "count": 120, "avg_salary": 950000},
+          {"role": "Assistant Professor", "count": 180, "avg_salary": 720000},
+          {"role": "Administrative Staff", "count": 65, "avg_salary": 450000}
+        ],
+        "fraud_alerts": [
+          {
+            "alert_id": "CD004",
+            "type": "Infrastructure Billing",
+            "description": "Overcharging detected in infrastructure development contracts",
+            "severity": "Medium",
+            "amount": "₹18,75,000",
+            "status": "Under Review"
+          }
+        ],
+        "impact": {
+          "students_enrolled": 8000,
+          "faculty_count": 451,
+          "research_projects": 180,
+          "cost_per_student": 320768,
+          "infrastructure": {
+            "buildings": 12,
+            "laboratories": 85,
+            "library_books": 125000,
+            "placement_rate": "95%"
+          }
         }
       }
-    }
-  ],
-  "colleges": [
-    {
-      "id": "rvce",
-      "name": "RV College of Engineering",
-      "type": "Engineering",
-      "financial": {
-        "income": {
-          "total_income": 450000000,
-          "student_fees": 270000000,
-          "government_grants": 112500000,
-          "research_funding": 45000000,
-          "endowment_income": 22500000
-        },
-        "expenses": {
-          "total_expenses": 382500000,
-          "faculty_salaries": 225000000,
-          "infrastructure": 90000000,
-          "research_expenses": 45000000,
-          "administrative_expenses": 22500000
-        },
-        "monthly_data": [
-          {"month": "Jan", "income": 37500000, "expenses": 31875000},
-          {"month": "Feb", "income": 37500000, "expenses": 31875000},
-          {"month": "Mar", "income": 37500000, "expenses": 31875000},
-          {"month": "Apr", "income": 37500000, "expenses": 31875000},
-          {"month": "May", "income": 37500000, "expenses": 31875000},
-          {"month": "Jun", "income": 37500000, "expenses": 31875000},
-          {"month": "Jul", "income": 37500000, "expenses": 31875000},
-          {"month": "Aug", "income": 37500000, "expenses": 31875000},
-          {"month": "Sep", "income": 37500000, "expenses": 31875000},
-          {"month": "Oct", "income": 37500000, "expenses": 31875000},
-          {"month": "Nov", "income": 37500000, "expenses": 31875000},
-          {"month": "Dec", "income": 37500000, "expenses": 31875000}
-        ]
-      },
-      "salaries": [
-        {"role": "Principal/Director", "count": 1, "avg_salary": 2000000},
-        {"role": "Professor", "count": 50, "avg_salary": 1200000},
-        {"role": "Associate Professor", "count": 80, "avg_salary": 900000},
-        {"role": "Assistant Professor", "count": 120, "avg_salary": 700000},
-        {"role": "Administrative Staff", "count": 40, "avg_salary": 450000}
-      ],
-      "fraud_alerts": [
-        {
-          "alert_id": "CD001",
-          "type": "Equipment Purchase",
-          "description": "Inflated prices detected in laboratory equipment procurement",
-          "severity": "Medium",
-          "amount": "₹5,75,000",
-          "status": "Under Review"
-        }
-      ],
-      "impact": {
-        "students_enrolled": 8000,
-        "faculty_count": 251,
-        "research_projects": 180,
-        "cost_per_student": 47812,
-        "infrastructure": {
-          "buildings": 12,
-          "laboratories": 85,
-          "library_books": 125000,
-          "placement_rate": "95%"
-        }
-      }
-    }
-  ]
+    ]
+  }
+};
+
+// Application State
+let currentCategory = '';
+let currentOrganization = null;
+let currentRole = 'public';
+let activeCharts = {};
+
+// Chart Colors
+const chartColors = ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5', '#5D878F', '#DB4545', '#D2BA4C', '#964325', '#944454', '#13343B'];
+
+// DOM Elements
+const pages = {
+  landing: document.getElementById('landingPage'),
+  orgSelection: document.getElementById('orgSelectionPage'),
+  roleSelection: document.getElementById('roleSelectionPage'),
+  dashboard: document.getElementById('dashboardPage')
+};
+
+// Make navigation functions global
+window.goToOrgSelection = function(category) {
+  currentCategory = category;
+  const categoryTitle = {
+    'ngos': 'NGOs',
+    'government_projects': 'Government Projects',
+    'colleges': 'Educational Institutions'
+  };
+  
+  document.getElementById('categoryTitle').textContent = `Select ${categoryTitle[category]}`;
+  populateOrganizations(category);
+  showPage('orgSelection');
+};
+
+window.goToRoleSelection = function(organization) {
+  currentOrganization = organization;
+  showPage('roleSelection');
+};
+
+window.goToDashboard = function(role) {
+  currentRole = role;
+  showLoading();
+  
+  setTimeout(() => {
+    populateDashboard();
+    hideLoading();
+    showPage('dashboard');
+  }, 1000);
 };
 
 // Utility Functions
 function formatCurrency(amount) {
-    return new Intl.NumberFormat('en-IN', {
-        style: 'currency',
-        currency: 'INR',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-    }).format(amount);
+  if (amount >= 10000000) {
+    return `₹${(amount / 10000000).toFixed(1)} Cr`;
+  } else if (amount >= 100000) {
+    return `₹${(amount / 100000).toFixed(1)} L`;
+  } else {
+    return `₹${amount.toLocaleString('en-IN')}`;
+  }
 }
 
 function formatNumber(num) {
-    return new Intl.NumberFormat('en-IN').format(num);
+  if (num >= 10000000) {
+    return `${(num / 10000000).toFixed(1)} Cr`;
+  } else if (num >= 100000) {
+    return `${(num / 100000).toFixed(1)} L`;
+  } else if (num >= 1000) {
+    return `${(num / 1000).toFixed(1)}K`;
+  } else {
+    return num.toLocaleString('en-IN');
+  }
 }
 
-function showPage(pageId) {
-    document.querySelectorAll('.page-container').forEach(page => {
-        page.classList.add('hidden');
-    });
-    document.getElementById(pageId).classList.remove('hidden');
+function showPage(pageName) {
+  Object.keys(pages).forEach(key => {
+    pages[key].classList.remove('active');
+  });
+  pages[pageName].classList.add('active');
 }
 
-function showTab(tabId) {
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    document.getElementById(tabId).classList.add('active');
-    document.querySelector(`[data-tab="${tabId.replace('-tab', '')}"]`).classList.add('active');
+function showLoading() {
+  document.getElementById('loadingOverlay').classList.remove('hidden');
 }
 
-// Landing Page Functions - Completely rewritten for better reliability
-function initializeLandingPage() {
-    // Add click listeners for dropdown items using a more direct approach
-    function setupDropdownHandlers() {
-        const dropdownItems = document.querySelectorAll('.dropdown-item');
-        dropdownItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const orgId = this.dataset.org;
-                const parentCard = this.closest('.org-type-card');
-                const orgType = parentCard.dataset.type;
-                
-                console.log('Organization selected:', orgType, orgId);
-                
-                // Hide dropdown immediately
-                const dropdown = this.closest('.org-dropdown');
-                if (dropdown) {
-                    dropdown.classList.add('hidden');
-                }
-                
-                // Navigate to role selection
-                selectOrganization(orgType, orgId);
-            });
-        });
-    }
-
-    // Handle organization card clicks for dropdown toggle
-    document.querySelectorAll('.org-type-card').forEach(card => {
-        card.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const dropdown = this.querySelector('.org-dropdown');
-            
-            // Hide all other dropdowns first
-            document.querySelectorAll('.org-dropdown').forEach(dd => {
-                if (dd !== dropdown) {
-                    dd.classList.add('hidden');
-                }
-            });
-            
-            // Toggle current dropdown
-            if (dropdown) {
-                dropdown.classList.toggle('hidden');
-            }
-        });
-    });
-
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.org-type-card') && !e.target.closest('.org-dropdown')) {
-            document.querySelectorAll('.org-dropdown').forEach(dropdown => {
-                dropdown.classList.add('hidden');
-            });
-        }
-    });
-
-    // Initialize dropdown handlers
-    setupDropdownHandlers();
+function hideLoading() {
+  document.getElementById('loadingOverlay').classList.add('hidden');
 }
 
-function selectOrganization(orgType, orgId) {
-    console.log('Selecting organization:', orgType, orgId);
-    
-    // Map frontend types to data keys
-    let dataKey = orgType;
-    if (orgType === 'government') {
-        dataKey = 'government';
-    }
-    
-    currentOrgType = dataKey;
-    
-    // Find the organization data
-    const orgList = organizationData[dataKey];
-    if (orgList && orgList.length > 0) {
-        currentOrg = orgList.find(org => org.id === orgId);
-        
-        if (currentOrg) {
-            console.log('Organization found:', currentOrg.name);
-            // Small delay to ensure smooth transition
-            setTimeout(() => {
-                showRoleSelection();
-            }, 100);
-        } else {
-            console.error('Organization not found:', orgId, 'in', dataKey);
-            console.log('Available orgs:', orgList.map(org => org.id));
-        }
-    } else {
-        console.error('Organization type not found:', dataKey);
-        console.log('Available types:', Object.keys(organizationData));
-    }
+function populateOrganizations(category) {
+  const grid = document.getElementById('organizationGrid');
+  const organizations = organizationData.organizations[category];
+  
+  grid.innerHTML = organizations.map(org => `
+    <div class="org-card" data-org-id="${org.id}">
+      <h3>${org.name}</h3>
+      <span class="org-type">${org.type}</span>
+      <div class="org-stats">
+        <div>Budget: ${formatCurrency(org.financial.income.total_income)}</div>
+        <div>Efficiency: ${Math.round((org.financial.expenses.program_expenses / org.financial.expenses.total_expenses) * 100)}%</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Add event listeners to organization cards
+  grid.querySelectorAll('.org-card').forEach(card => {
+    card.addEventListener('click', function() {
+      const orgId = this.getAttribute('data-org-id');
+      goToRoleSelection(orgId);
+    });
+  });
 }
 
-// Role Selection Functions
-function showRoleSelection() {
-    const orgNameElement = document.getElementById('selected-org-name');
-    const roleOptionsElement = document.getElementById('role-options');
-    
-    orgNameElement.textContent = `${currentOrg.name} - Select Your Role`;
-    
-    let roleOptions = [];
-    
-    if (currentOrgType === 'ngos') {
-        roleOptions = [
-            { role: 'supporter', name: 'Supporter/Donor', icon: 'fas fa-heart', access: 'public' },
-            { role: 'admin', name: 'Administration', icon: 'fas fa-user-cog', access: 'admin' }
-        ];
-    } else if (currentOrgType === 'government') {
-        roleOptions = [
-            { role: 'civilian', name: 'Civilian', icon: 'fas fa-user', access: 'public' },
-            { role: 'admin', name: 'Administration', icon: 'fas fa-user-shield', access: 'admin' }
-        ];
-    } else if (currentOrgType === 'colleges') {
-        roleOptions = [
-            { role: 'parent', name: 'Parent/Student', icon: 'fas fa-user-graduate', access: 'public' },
-            { role: 'stakeholder', name: 'Stakeholder/Admin', icon: 'fas fa-briefcase', access: 'admin' }
-        ];
-    }
-    
-    roleOptionsElement.innerHTML = roleOptions.map(option => `
-        <div class="role-card" data-role="${option.role}" data-access="${option.access}">
-            <i class="${option.icon}"></i>
-            <h4>${option.name}</h4>
+function populateDashboard() {
+  const org = findOrganization(currentOrganization);
+  if (!org) return;
+
+  // Update header
+  document.getElementById('currentOrgName').textContent = org.name;
+  document.getElementById('currentOrgType').textContent = org.type;
+  document.getElementById('currentRole').textContent = currentRole === 'admin' ? 'Administrator' : 'Public View';
+
+  // Populate all tabs
+  populateOverviewTab(org);
+  populateFinancialsTab(org);
+  populateSalariesTab(org);
+  populateFraudTab(org);
+  populateImpactTab(org);
+}
+
+function findOrganization(id) {
+  const categories = ['ngos', 'government_projects', 'colleges'];
+  for (const category of categories) {
+    const org = organizationData.organizations[category].find(o => o.id === id);
+    if (org) return org;
+  }
+  return null;
+}
+
+function populateOverviewTab(org) {
+  const income = org.financial.income.total_income;
+  const expenses = org.financial.expenses.total_expenses;
+  const surplus = income - expenses;
+  const efficiency = Math.round((org.financial.expenses.program_expenses / expenses) * 100);
+
+  document.getElementById('totalIncome').textContent = formatCurrency(income);
+  document.getElementById('totalExpenses').textContent = formatCurrency(expenses);
+  document.getElementById('netSurplus').textContent = formatCurrency(surplus);
+  document.getElementById('efficiencyRatio').textContent = `${efficiency}%`;
+
+  // Create monthly chart
+  createMonthlyChart(org.financial.monthly_data);
+}
+
+function populateFinancialsTab(org) {
+  createIncomeChart(org.financial.income);
+  createExpenseChart(org.financial.expenses);
+  populateFinancialDetails(org.financial);
+}
+
+function populateSalariesTab(org) {
+  const salaryContainer = document.getElementById('salaryTable');
+  const isAdmin = currentRole === 'admin';
+  
+  const tableHTML = `
+    <table ${!isAdmin ? 'class="admin-only"' : ''}>
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Count</th>
+          <th>Average Salary</th>
+          <th>Total Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${org.salaries.map(salary => `
+          <tr>
+            <td>${salary.role}</td>
+            <td>${salary.count}</td>
+            <td>${isAdmin ? formatCurrency(salary.avg_salary) : '***'}</td>
+            <td>${isAdmin ? formatCurrency(salary.avg_salary * salary.count) : '***'}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+  
+  salaryContainer.innerHTML = tableHTML;
+  
+  if (isAdmin) {
+    createSalaryChart(org.salaries);
+  }
+}
+
+function populateFraudTab(org) {
+  const alertsContainer = document.getElementById('fraudAlerts');
+  
+  if (org.fraud_alerts.length === 0) {
+    alertsContainer.innerHTML = `
+      <div class="fraud-alert low">
+        <div class="alert-header">
+          <span class="alert-id">No Active Alerts</span>
+          <span class="alert-severity low">Clean</span>
         </div>
-    `).join('');
-    
-    // Add event listeners to role cards
-    const roleCards = roleOptionsElement.querySelectorAll('.role-card');
-    roleCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            e.preventDefault();
-            currentRole = this.dataset.role;
-            currentAccessLevel = this.dataset.access;
-            console.log('Role selected:', currentRole, currentAccessLevel);
-            
-            // Small delay for smooth transition
-            setTimeout(() => {
-                showDashboard();
-            }, 100);
-        });
-    });
-    
-    showPage('role-selection-page');
-}
-
-// Dashboard Functions
-function showDashboard() {
-    const dashboardOrgName = document.getElementById('dashboard-org-name');
-    const currentRoleElement = document.getElementById('current-role');
-    
-    dashboardOrgName.textContent = currentOrg.name;
-    currentRoleElement.textContent = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
-    
-    // Initialize dashboard data
-    populateOverviewTab();
-    populateIncomeTab();
-    populateExpensesTab();
-    populateSalariesTab();
-    populateFraudTab();
-    populateImpactTab();
-    
-    showPage('dashboard-page');
-}
-
-function populateOverviewTab() {
-    const financial = currentOrg.financial;
-    
-    document.getElementById('total-income').textContent = formatCurrency(financial.income.total_income);
-    document.getElementById('total-expenses').textContent = formatCurrency(financial.expenses.total_expenses);
-    document.getElementById('net-surplus').textContent = formatCurrency(financial.income.total_income - financial.expenses.total_expenses);
-    
-    setTimeout(() => {
-        createBudgetChart();
-        createMonthlyChart();
-    }, 200);
-}
-
-function createBudgetChart() {
-    try {
-        const ctx = document.getElementById('budgetChart').getContext('2d');
-        const income = currentOrg.financial.income;
-        
-        const incomeKeys = Object.keys(income).filter(key => key !== 'total_income');
-        const incomeLabels = incomeKeys.map(key => key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()));
-        const incomeValues = incomeKeys.map(key => income[key]);
-        
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: incomeLabels,
-                datasets: [{
-                    data: incomeValues,
-                    backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5', '#5D878F']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }
-        });
-    } catch (error) {
-        console.error('Error creating budget chart:', error);
-    }
-}
-
-function createMonthlyChart() {
-    try {
-        const ctx = document.getElementById('monthlyChart').getContext('2d');
-        const monthlyData = currentOrg.financial.monthly_data;
-        
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: monthlyData.map(d => d.month),
-                datasets: [{
-                    label: 'Income',
-                    data: monthlyData.map(d => d.income),
-                    borderColor: '#1FB8CD',
-                    backgroundColor: 'rgba(31, 184, 205, 0.1)',
-                    fill: true
-                }, {
-                    label: 'Expenses',
-                    data: monthlyData.map(d => d.expenses || d.expires), // Fix typo in data
-                    borderColor: '#B4413C',
-                    backgroundColor: 'rgba(180, 65, 60, 0.1)',
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return '₹' + (value / 1000000).toFixed(1) + 'M';
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    } catch (error) {
-        console.error('Error creating monthly chart:', error);
-    }
-}
-
-function populateIncomeTab() {
-    setTimeout(() => {
-        createIncomeSourceChart();
-        createIncomeTrendChart();
-    }, 200);
-}
-
-function createIncomeSourceChart() {
-    try {
-        const ctx = document.getElementById('incomeSourceChart').getContext('2d');
-        const income = currentOrg.financial.income;
-        
-        const incomeKeys = Object.keys(income).filter(key => key !== 'total_income');
-        const incomeLabels = incomeKeys.map(key => key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()));
-        const incomeValues = incomeKeys.map(key => income[key]);
-        
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: incomeLabels,
-                datasets: [{
-                    data: incomeValues,
-                    backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5', '#5D878F', '#DB4545']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'right'
-                    }
-                }
-            }
-        });
-    } catch (error) {
-        console.error('Error creating income source chart:', error);
-    }
-}
-
-function createIncomeTrendChart() {
-    try {
-        const ctx = document.getElementById('incomeTrendChart').getContext('2d');
-        const monthlyData = currentOrg.financial.monthly_data;
-        
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: monthlyData.map(d => d.month),
-                datasets: [{
-                    label: 'Monthly Income',
-                    data: monthlyData.map(d => d.income),
-                    backgroundColor: '#1FB8CD',
-                    borderColor: '#1FB8CD',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return '₹' + (value / 1000000).toFixed(1) + 'M';
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    } catch (error) {
-        console.error('Error creating income trend chart:', error);
-    }
-}
-
-function populateExpensesTab() {
-    setTimeout(() => {
-        createExpenseCategoryChart();
-        createExpenseTrendChart();
-    }, 200);
-}
-
-function createExpenseCategoryChart() {
-    try {
-        const ctx = document.getElementById('expenseCategoryChart').getContext('2d');
-        const expenses = currentOrg.financial.expenses;
-        
-        const expenseKeys = Object.keys(expenses).filter(key => key !== 'total_expenses');
-        const expenseLabels = expenseKeys.map(key => key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()));
-        const expenseValues = expenseKeys.map(key => expenses[key]);
-        
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: expenseLabels,
-                datasets: [{
-                    data: expenseValues,
-                    backgroundColor: ['#B4413C', '#FFC185', '#5D878F', '#ECEBD5']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }
-        });
-    } catch (error) {
-        console.error('Error creating expense category chart:', error);
-    }
-}
-
-function createExpenseTrendChart() {
-    try {
-        const ctx = document.getElementById('expenseTrendChart').getContext('2d');
-        const monthlyData = currentOrg.financial.monthly_data;
-        
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: monthlyData.map(d => d.month),
-                datasets: [{
-                    label: 'Monthly Expenses',
-                    data: monthlyData.map(d => d.expenses || d.expires), // Fix typo in data
-                    borderColor: '#B4413C',
-                    backgroundColor: 'rgba(180, 65, 60, 0.2)',
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return '₹' + (value / 1000000).toFixed(1) + 'M';
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    } catch (error) {
-        console.error('Error creating expense trend chart:', error);
-    }
-}
-
-function populateSalariesTab() {
-    const salaryContent = document.getElementById('salary-content');
-    
-    if (currentAccessLevel === 'admin') {
-        // Show detailed salary information
-        const totalSalaryBudget = currentOrg.salaries.reduce((total, role) => total + (role.count * role.avg_salary), 0);
-        const totalEmployees = currentOrg.salaries.reduce((total, role) => total + role.count, 0);
-        const avgSalary = totalSalaryBudget / totalEmployees;
-        
-        salaryContent.innerHTML = `
-            <div class="salary-summary">
-                <h4>Salary Overview</h4>
-                <div class="salary-stats">
-                    <div class="salary-stat">
-                        <span class="number">${formatCurrency(totalSalaryBudget)}</span>
-                        <span class="label">Total Budget</span>
-                    </div>
-                    <div class="salary-stat">
-                        <span class="number">${totalEmployees}</span>
-                        <span class="label">Total Employees</span>
-                    </div>
-                    <div class="salary-stat">
-                        <span class="number">${formatCurrency(avgSalary)}</span>
-                        <span class="label">Average Salary</span>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card__body">
-                    <h4>Detailed Salary Breakdown</h4>
-                    <table class="salary-table">
-                        <thead>
-                            <tr>
-                                <th>Role</th>
-                                <th>Count</th>
-                                <th>Average Salary</th>
-                                <th>Total Cost</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${currentOrg.salaries.map(role => `
-                                <tr>
-                                    <td>${role.role}</td>
-                                    <td>${role.count}</td>
-                                    <td>${formatCurrency(role.avg_salary)}</td>
-                                    <td>${formatCurrency(role.count * role.avg_salary)}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        `;
-    } else {
-        // Show only general budget information
-        const totalSalaryBudget = currentOrg.salaries.reduce((total, role) => total + (role.count * role.avg_salary), 0);
-        const totalEmployees = currentOrg.salaries.reduce((total, role) => total + role.count, 0);
-        
-        salaryContent.innerHTML = `
-            <div class="salary-summary">
-                <h4>General Salary Information</h4>
-                <p>For privacy reasons, detailed salary information is only available to administrators.</p>
-                <div class="salary-stats">
-                    <div class="salary-stat">
-                        <span class="number">${formatCurrency(totalSalaryBudget)}</span>
-                        <span class="label">Total Salary Budget</span>
-                    </div>
-                    <div class="salary-stat">
-                        <span class="number">${totalEmployees}</span>
-                        <span class="label">Total Employees</span>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-}
-
-function populateFraudTab() {
-    const fraudAlertsElement = document.getElementById('fraud-alerts');
-    
-    if (currentOrg.fraud_alerts && currentOrg.fraud_alerts.length > 0) {
-        fraudAlertsElement.innerHTML = `
-            <h3>Fraud Detection Alerts</h3>
-            ${currentOrg.fraud_alerts.map(alert => `
-                <div class="fraud-alert ${alert.severity.toLowerCase()}">
-                    <div class="fraud-alert-header">
-                        <h4 class="fraud-alert-title">${alert.type}</h4>
-                        <span class="fraud-alert-amount">${alert.amount}</span>
-                    </div>
-                    <p>${alert.description}</p>
-                    <div class="fraud-alert-meta">
-                        <span class="fraud-status ${alert.status.toLowerCase().replace(' ', '-')}">${alert.status}</span>
-                        <span class="status status--${alert.severity.toLowerCase() === 'high' ? 'error' : alert.severity.toLowerCase() === 'medium' ? 'warning' : 'info'}">${alert.severity} Priority</span>
-                    </div>
-                </div>
-            `).join('')}
-        `;
-    } else {
-        fraudAlertsElement.innerHTML = `
-            <div class="card">
-                <div class="card__body">
-                    <h3>No Active Alerts</h3>
-                    <p>No fraud detection alerts are currently active for this organization.</p>
-                </div>
-            </div>
-        `;
-    }
-}
-
-function populateImpactTab() {
-    const impactContent = document.getElementById('impact-content');
-    const impact = currentOrg.impact;
-    
-    let impactMetrics = '';
-    let infrastructureDetails = '';
-    
-    if (currentOrgType === 'ngos') {
-        if (impact.meals_served) {
-            impactMetrics = `
-                <div class="impact-metric">
-                    <span class="metric-number">${formatNumber(impact.meals_served)}</span>
-                    <span class="metric-label">Meals Served</span>
-                </div>
-                <div class="impact-metric">
-                    <span class="metric-number">${formatNumber(impact.schools_covered)}</span>
-                    <span class="metric-label">Schools Covered</span>
-                </div>
-                <div class="impact-metric">
-                    <span class="metric-number">${impact.states_operational}</span>
-                    <span class="metric-label">States Operational</span>
-                </div>
-                <div class="impact-metric">
-                    <span class="metric-number">₹${impact.cost_per_meal}</span>
-                    <span class="metric-label">Cost per Meal</span>
-                </div>
-            `;
-            
-            infrastructureDetails = `
-                <div class="impact-details">
-                    <h4>Kitchen Infrastructure</h4>
-                    <div class="infrastructure-grid">
-                        <div class="infra-item">
-                            <span class="infra-number">${impact.kitchen_infrastructure.centralized_kitchens}</span>
-                            <span class="metric-label">Centralized Kitchens</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-number">${impact.kitchen_infrastructure.school_kitchens}</span>
-                            <span class="metric-label">School Kitchens</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-number">${impact.kitchen_infrastructure.total_capacity}</span>
-                            <span class="metric-label">Daily Capacity</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        } else {
-            impactMetrics = `
-                <div class="impact-metric">
-                    <span class="metric-number">${formatNumber(impact.beneficiaries_served)}</span>
-                    <span class="metric-label">Beneficiaries Served</span>
-                </div>
-                <div class="impact-metric">
-                    <span class="metric-number">${formatNumber(impact.programs_active)}</span>
-                    <span class="metric-label">Active Programs</span>
-                </div>
-                <div class="impact-metric">
-                    <span class="metric-number">${impact.states_operational}</span>
-                    <span class="metric-label">States Operational</span>
-                </div>
-                <div class="impact-metric">
-                    <span class="metric-number">₹${impact.cost_per_beneficiary}</span>
-                    <span class="metric-label">Cost per Beneficiary</span>
-                </div>
-            `;
-            
-            infrastructureDetails = `
-                <div class="impact-details">
-                    <h4>Program Infrastructure</h4>
-                    <div class="infrastructure-grid">
-                        <div class="infra-item">
-                            <span class="infra-number">${impact.infrastructure.learning_centers}</span>
-                            <span class="metric-label">Learning Centers</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-number">${impact.infrastructure.health_centers}</span>
-                            <span class="metric-label">Health Centers</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-number">${impact.infrastructure.total_reach}</span>
-                            <span class="metric-label">Geographic Reach</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-    } else if (currentOrgType === 'government') {
-        impactMetrics = `
-            <div class="impact-metric">
-                <span class="metric-number">${formatNumber(impact.toilets_built)}</span>
-                <span class="metric-label">Toilets Built</span>
-            </div>
-            <div class="impact-metric">
-                <span class="metric-number">${impact.districts_covered}</span>
-                <span class="metric-label">Districts Covered</span>
-            </div>
-            <div class="impact-metric">
-                <span class="metric-number">${impact.states_covered}</span>
-                <span class="metric-label">States Covered</span>
-            </div>
-            <div class="impact-metric">
-                <span class="metric-number">${impact.waste_processed_daily}</span>
-                <span class="metric-label">Daily Waste Processing</span>
-            </div>
-        `;
-        
-        infrastructureDetails = `
-            <div class="impact-details">
-                <h4>Sanitation Infrastructure</h4>
-                <div class="infrastructure-grid">
-                    <div class="infra-item">
-                        <span class="infra-number">${formatNumber(impact.infrastructure.solid_waste_plants)}</span>
-                        <span class="metric-label">Solid Waste Plants</span>
-                    </div>
-                    <div class="infra-item">
-                        <span class="infra-number">${formatNumber(impact.infrastructure.liquid_waste_plants)}</span>
-                        <span class="metric-label">Liquid Waste Plants</span>
-                    </div>
-                    <div class="infra-item">
-                        <span class="infra-number">${formatNumber(impact.infrastructure.community_toilets)}</span>
-                        <span class="metric-label">Community Toilets</span>
-                    </div>
-                </div>
-            </div>
-        `;
-    } else if (currentOrgType === 'colleges') {
-        impactMetrics = `
-            <div class="impact-metric">
-                <span class="metric-number">${formatNumber(impact.students_enrolled)}</span>
-                <span class="metric-label">Students Enrolled</span>
-            </div>
-            <div class="impact-metric">
-                <span class="metric-number">${impact.faculty_count}</span>
-                <span class="metric-label">Faculty Members</span>
-            </div>
-            <div class="impact-metric">
-                <span class="metric-number">${impact.research_projects}</span>
-                <span class="metric-label">Research Projects</span>
-            </div>
-            <div class="impact-metric">
-                <span class="metric-number">₹${formatNumber(impact.cost_per_student)}</span>
-                <span class="metric-label">Cost per Student</span>
-            </div>
-        `;
-        
-        infrastructureDetails = `
-            <div class="impact-details">
-                <h4>Campus Infrastructure</h4>
-                <div class="infrastructure-grid">
-                    <div class="infra-item">
-                        <span class="infra-number">${impact.infrastructure.buildings}</span>
-                        <span class="metric-label">Buildings</span>
-                    </div>
-                    <div class="infra-item">
-                        <span class="infra-number">${impact.infrastructure.laboratories}</span>
-                        <span class="metric-label">Laboratories</span>
-                    </div>
-                    <div class="infra-item">
-                        <span class="infra-number">${formatNumber(impact.infrastructure.library_books)}</span>
-                        <span class="metric-label">Library Books</span>
-                    </div>
-                    <div class="infra-item">
-                        <span class="infra-number">${impact.infrastructure.placement_rate}</span>
-                        <span class="metric-label">Placement Rate</span>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-    
-    impactContent.innerHTML = `
-        <h3>Development Impact</h3>
-        <div class="impact-metrics">
-            ${impactMetrics}
-        </div>
-        ${infrastructureDetails}
-        <div class="articles-section">
-            <h4>Program Evidence & Documentation</h4>
-            <div class="article-item">
-                <div class="article-title">Annual Impact Report 2024</div>
-                <div class="article-meta">Published: March 2024 | Type: Impact Assessment</div>
-            </div>
-            <div class="article-item">
-                <div class="article-title">Third-Party Audit Results</div>
-                <div class="article-meta">Published: February 2024 | Type: Financial Audit</div>
-            </div>
-            <div class="article-item">
-                <div class="article-title">Beneficiary Testimonials</div>
-                <div class="article-meta">Published: January 2024 | Type: Case Studies</div>
-            </div>
-        </div>
+        <div class="alert-description">No fraud alerts detected for this organization.</div>
+      </div>
     `;
+  } else {
+    alertsContainer.innerHTML = org.fraud_alerts.map(alert => `
+      <div class="fraud-alert ${alert.severity.toLowerCase()}">
+        <div class="alert-header">
+          <span class="alert-id">${alert.alert_id}</span>
+          <span class="alert-severity ${alert.severity.toLowerCase()}">${alert.severity}</span>
+        </div>
+        <div class="alert-description">${alert.description}</div>
+        <div class="alert-details">
+          <span class="alert-amount">${alert.amount}</span>
+          <span class="alert-status">${alert.status}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Update risk assessment
+  const riskLevel = calculateRiskLevel(org.fraud_alerts);
+  document.getElementById('riskLevel').textContent = riskLevel;
+  updateRiskIndicator(riskLevel);
 }
 
-// Tab Navigation
-function initializeTabs() {
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const tabId = this.dataset.tab + '-tab';
-            showTab(tabId);
+function populateImpactTab(org) {
+  const metricsContainer = document.getElementById('impactMetrics');
+  const infrastructureContainer = document.getElementById('infrastructureDetails');
+  
+  // Generate impact metrics based on organization type
+  const metrics = generateImpactMetrics(org);
+  metricsContainer.innerHTML = metrics.map(metric => `
+    <div class="impact-metric">
+      <h5>${metric.label}</h5>
+      <div class="impact-value">${metric.value}</div>
+    </div>
+  `).join('');
+
+  // Generate infrastructure details
+  const infrastructure = generateInfrastructureDetails(org);
+  infrastructureContainer.innerHTML = infrastructure.map(item => `
+    <div class="infrastructure-item">
+      <h6>${item.label}</h6>
+      <p>${item.value}</p>
+    </div>
+  `).join('');
+}
+
+function generateImpactMetrics(org) {
+  const impact = org.impact;
+  const metrics = [];
+  
+  Object.keys(impact).forEach(key => {
+    if (key !== 'infrastructure' && key !== 'kitchen_infrastructure') {
+      const value = impact[key];
+      const label = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      
+      if (typeof value === 'number') {
+        metrics.push({
+          label: label,
+          value: formatNumber(value)
         });
-    });
+      } else {
+        metrics.push({
+          label: label,
+          value: value
+        });
+      }
+    }
+  });
+  
+  return metrics;
 }
 
-// AI Assistant Functions
-function initializeAIAssistant() {
-    const aiToggle = document.getElementById('ai-toggle');
-    const aiChat = document.getElementById('ai-chat');
-    const aiClose = document.getElementById('ai-close');
-    const aiSend = document.getElementById('ai-send');
-    const aiInput = document.getElementById('ai-input');
-    const aiMessages = document.getElementById('ai-messages');
-
-    aiToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('AI assistant toggled');
-        aiChat.classList.toggle('hidden');
-    });
-
-    aiClose.addEventListener('click', function() {
-        aiChat.classList.add('hidden');
-    });
-
-    if (aiSend) {
-        aiSend.addEventListener('click', sendMessage);
-    }
+function generateInfrastructureDetails(org) {
+  const infrastructure = org.impact.infrastructure || org.impact.kitchen_infrastructure || {};
+  const details = [];
+  
+  Object.keys(infrastructure).forEach(key => {
+    const value = infrastructure[key];
+    const label = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
     
-    if (aiInput) {
-        aiInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
+    if (typeof value === 'number') {
+      details.push({
+        label: label,
+        value: formatNumber(value)
+      });
+    } else {
+      details.push({
+        label: label,
+        value: value
+      });
     }
+  });
+  
+  return details;
+}
 
-    function sendMessage() {
-        const message = aiInput.value.trim();
-        if (!message) return;
+function calculateRiskLevel(alerts) {
+  if (alerts.length === 0) return 'Low Risk';
+  
+  const highSeverityCount = alerts.filter(a => a.severity === 'High').length;
+  const mediumSeverityCount = alerts.filter(a => a.severity === 'Medium').length;
+  
+  if (highSeverityCount > 0) return 'High Risk';
+  if (mediumSeverityCount > 1) return 'Medium Risk';
+  return 'Low Risk';
+}
 
-        // Add user message
-        aiMessages.innerHTML += `
-            <div class="ai-message user-message">${message}</div>
-        `;
+function updateRiskIndicator(riskLevel) {
+  const indicator = document.getElementById('riskIndicator');
+  const colors = {
+    'Low Risk': 'conic-gradient(var(--color-success) 0deg, var(--color-success) 120deg, var(--color-bg-3) 120deg)',
+    'Medium Risk': 'conic-gradient(var(--color-warning) 0deg, var(--color-warning) 180deg, var(--color-bg-3) 180deg)',
+    'High Risk': 'conic-gradient(var(--color-error) 0deg, var(--color-error) 270deg, var(--color-bg-3) 270deg)'
+  };
+  
+  indicator.style.background = colors[riskLevel];
+}
 
-        // Generate bot response
-        const response = generateAIResponse(message);
-        setTimeout(() => {
-            aiMessages.innerHTML += `
-                <div class="ai-message bot-message">${response}</div>
-            `;
-            aiMessages.scrollTop = aiMessages.scrollHeight;
-        }, 500);
+function populateFinancialDetails(financial) {
+  const incomeDetails = document.getElementById('incomeDetails');
+  const expenseDetails = document.getElementById('expenseDetails');
+  
+  // Income details
+  const incomeItems = Object.keys(financial.income).filter(key => key !== 'total_income');
+  incomeDetails.innerHTML = incomeItems.map(key => `
+    <div class="detail-item">
+      <span class="detail-label">${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</span>
+      <span class="detail-value">${formatCurrency(financial.income[key])}</span>
+    </div>
+  `).join('');
 
-        aiInput.value = '';
-        aiMessages.scrollTop = aiMessages.scrollHeight;
-    }
+  // Expense details
+  const expenseItems = Object.keys(financial.expenses).filter(key => key !== 'total_expenses');
+  expenseDetails.innerHTML = expenseItems.map(key => `
+    <div class="detail-item">
+      <span class="detail-label">${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</span>
+      <span class="detail-value">${formatCurrency(financial.expenses[key])}</span>
+    </div>
+  `).join('');
+}
 
-    function generateAIResponse(message) {
-        const lowerMessage = message.toLowerCase();
-        
-        if (lowerMessage.includes('navigate') || lowerMessage.includes('help') || lowerMessage.includes('how')) {
-            return "I can help you navigate Abba Accounts! Use the tabs at the top to explore different sections: Overview shows key financials, Income & Expenses provide detailed breakdowns, Salaries shows employment costs, Fraud Detection highlights any irregularities, and Development Impact shows the organization's achievements.";
-        } else if (lowerMessage.includes('income') || lowerMessage.includes('revenue')) {
-            if (currentOrg) {
-                return `${currentOrg.name} has a total income of ${formatCurrency(currentOrg.financial.income.total_income)} this year. The main sources include donations, grants, and program revenue. Check the Income tab for detailed breakdowns and trends.`;
-            }
-            return "Please select an organization first to view income information.";
-        } else if (lowerMessage.includes('expense') || lowerMessage.includes('spending')) {
-            if (currentOrg) {
-                return `${currentOrg.name} has total expenses of ${formatCurrency(currentOrg.financial.expenses.total_expenses)} this year. The majority goes to program expenses, ensuring funds directly benefit the cause. See the Expenses tab for detailed analysis.`;
-            }
-            return "Please select an organization first to view expense information.";
-        } else if (lowerMessage.includes('fraud') || lowerMessage.includes('alert')) {
-            if (currentOrg) {
-                const alertCount = currentOrg.fraud_alerts?.length || 0;
-                return `There are currently ${alertCount} fraud detection alerts for ${currentOrg.name}. These alerts help maintain financial transparency and accountability. Check the Fraud Detection tab for details.`;
-            }
-            return "Please select an organization first to view fraud detection information.";
-        } else if (lowerMessage.includes('impact') || lowerMessage.includes('beneficiary')) {
-            if (currentOrg) {
-                return `${currentOrg.name} has made significant impact in their field. Check the Development Impact tab to see specific metrics like beneficiaries served, programs active, and infrastructure developed.`;
-            }
-            return "Please select an organization first to view impact information.";
-        } else if (lowerMessage.includes('salary') || lowerMessage.includes('employee')) {
-            return `Salary information is available based on your access level. ${currentAccessLevel === 'admin' ? 'As an admin, you can see detailed salary breakdowns in the Salaries tab.' : 'As a public user, you can see general salary budget information in the Salaries tab.'}`;
-        } else {
-            return "I'm here to help you understand financial data and navigate the platform. You can ask me about income, expenses, fraud alerts, impact metrics, or how to use different features of Abba Accounts!";
+// Chart Creation Functions
+function createMonthlyChart(monthlyData) {
+  const ctx = document.getElementById('monthlyChart').getContext('2d');
+  
+  if (activeCharts.monthly) {
+    activeCharts.monthly.destroy();
+  }
+  
+  activeCharts.monthly = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: monthlyData.map(d => d.month),
+      datasets: [
+        {
+          label: 'Income',
+          data: monthlyData.map(d => d.income),
+          borderColor: chartColors[0],
+          backgroundColor: chartColors[0] + '20',
+          tension: 0.4,
+          fill: true
+        },
+        {
+          label: 'Expenses',
+          data: monthlyData.map(d => d.expenses),
+          borderColor: chartColors[2],
+          backgroundColor: chartColors[2] + '20',
+          tension: 0.4,
+          fill: true
         }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top'
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+              return formatCurrency(value);
+            }
+          }
+        }
+      },
+      interaction: {
+        intersect: false
+      }
     }
+  });
 }
 
-// Back to Home Functions
-function initializeBackButtons() {
-    document.querySelectorAll('.back-to-home').forEach(btn => {
-        btn.addEventListener('click', function() {
-            showPage('landing-page');
-            // Reset state
-            currentOrg = null;
-            currentOrgType = null;
-            currentRole = null;
-            currentAccessLevel = 'public';
+function createIncomeChart(income) {
+  const ctx = document.getElementById('incomeChart').getContext('2d');
+  
+  if (activeCharts.income) {
+    activeCharts.income.destroy();
+  }
+  
+  const labels = Object.keys(income).filter(key => key !== 'total_income');
+  const data = labels.map(key => income[key]);
+  
+  activeCharts.income = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: labels.map(l => l.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())),
+      datasets: [{
+        data: data,
+        backgroundColor: chartColors.slice(0, labels.length),
+        borderWidth: 2,
+        borderColor: '#ffffff'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+  });
+}
+
+function createExpenseChart(expenses) {
+  const ctx = document.getElementById('expenseChart').getContext('2d');
+  
+  if (activeCharts.expense) {
+    activeCharts.expense.destroy();
+  }
+  
+  const labels = Object.keys(expenses).filter(key => key !== 'total_expenses');
+  const data = labels.map(key => expenses[key]);
+  
+  activeCharts.expense = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: labels.map(l => l.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())),
+      datasets: [{
+        data: data,
+        backgroundColor: chartColors.slice(0, labels.length),
+        borderWidth: 2,
+        borderColor: '#ffffff'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+  });
+}
+
+function createSalaryChart(salaries) {
+  const ctx = document.getElementById('salaryChart').getContext('2d');
+  
+  if (activeCharts.salary) {
+    activeCharts.salary.destroy();
+  }
+  
+  activeCharts.salary = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: salaries.map(s => s.role),
+      datasets: [{
+        label: 'Average Salary',
+        data: salaries.map(s => s.avg_salary),
+        backgroundColor: chartColors[0],
+        borderColor: chartColors[0],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+              return formatCurrency(value);
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+// Search Functionality
+function performSearch(query) {
+  if (query.length < 2) {
+    closeSearchModal();
+    return;
+  }
+  
+  const results = [];
+  const categories = ['ngos', 'government_projects', 'colleges'];
+  
+  categories.forEach(category => {
+    organizationData.organizations[category].forEach(org => {
+      if (org.name.toLowerCase().includes(query.toLowerCase()) ||
+          org.type.toLowerCase().includes(query.toLowerCase())) {
+        results.push({
+          name: org.name,
+          type: org.type,
+          category: category,
+          id: org.id
         });
+      }
     });
+  });
+  
+  displaySearchResults(results);
 }
 
-// Initialize Application
+function displaySearchResults(results) {
+  const modal = document.getElementById('searchModal');
+  const container = document.getElementById('searchResults');
+  
+  if (results.length === 0) {
+    container.innerHTML = '<p>No results found.</p>';
+  } else {
+    container.innerHTML = results.map(result => `
+      <div class="search-result" onclick="selectSearchResult('${result.category}', '${result.id}')">
+        <h5>${result.name}</h5>
+        <p>${result.type} - ${result.category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</p>
+      </div>
+    `).join('');
+  }
+  
+  modal.classList.remove('hidden');
+}
+
+function closeSearchModal() {
+  document.getElementById('searchModal').classList.add('hidden');
+}
+
+window.selectSearchResult = function(category, orgId) {
+  closeSearchModal();
+  // Clear search input
+  document.getElementById('searchInput').value = '';
+  goToOrgSelection(category);
+  // Small delay to ensure the page is rendered
+  setTimeout(() => {
+    goToRoleSelection(orgId);
+  }, 100);
+};
+
+// Theme Management
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-color-scheme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-color-scheme', newTheme);
+}
+
+// Tab Management
+function switchTab(tabName) {
+  // Update tab buttons
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+  
+  // Update tab panels
+  document.querySelectorAll('.tab-panel').forEach(panel => {
+    panel.classList.remove('active');
+  });
+  document.getElementById(`${tabName}Tab`).classList.add('active');
+}
+
+// Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Initializing Abba Accounts application...');
-    initializeLandingPage();
-    initializeTabs();
-    initializeAIAssistant();
-    initializeBackButtons();
-    
-    // Show landing page by default
-    showPage('landing-page');
-    console.log('Application initialized successfully');
+  // Category cards
+  document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', function() {
+      goToOrgSelection(this.dataset.category);
+    });
+  });
+
+  // Role cards
+  document.querySelectorAll('.role-card').forEach(card => {
+    card.addEventListener('click', function() {
+      goToDashboard(this.dataset.role);
+    });
+  });
+
+  // Back buttons
+  document.getElementById('backToLanding').addEventListener('click', () => showPage('landing'));
+  document.getElementById('backToOrgs').addEventListener('click', () => showPage('orgSelection'));
+  document.getElementById('backToRoles').addEventListener('click', () => showPage('roleSelection'));
+
+  // Theme toggle
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+  // Search functionality
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.querySelector('.search-btn');
+  
+  searchInput.addEventListener('input', function(e) {
+    e.stopPropagation();
+    if (this.value.length >= 2) {
+      performSearch(this.value);
+    } else if (this.value.length === 0) {
+      closeSearchModal();
+    }
+  });
+
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeSearchModal();
+      this.blur();
+    }
+  });
+  
+  searchBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const query = searchInput.value.trim();
+    if (query.length >= 2) {
+      performSearch(query);
+    }
+  });
+
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      switchTab(this.dataset.tab);
+    });
+  });
+
+  // Modal close functionality
+  const modalCloseBtn = document.querySelector('.modal-close');
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeSearchModal();
+    });
+  }
+
+  // Click outside modal to close
+  const searchModal = document.getElementById('searchModal');
+  if (searchModal) {
+    searchModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeSearchModal();
+      }
+    });
+  }
+
+  // Ensure modal is hidden on load
+  document.getElementById('searchModal').classList.add('hidden');
+});
+
+// Initialize the application
+window.addEventListener('load', function() {
+  // Set initial theme based on user preference
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-color-scheme', prefersDark ? 'dark' : 'light');
+  
+  // Ensure modal is hidden on load
+  document.getElementById('searchModal').classList.add('hidden');
 });
