@@ -29,7 +29,7 @@ govt_projects = [
 
 #sample colleges - UPDATED WITH NEW ORGANIZATIONS
 colleges = [
-    {"id": "iit_bangalore", "name": "Indian Institute of Technology Bangalore", "type": "Engineering"},
+    {"id": "iiit_bangalore", "name": "Indian Institute  information Technology Bangalore", "type": "Engineering"},
     {"id": "du", "name": "Delhi University", "type": "Multi-Disciplinary"},
     {"id": "iisc", "name": "Indian Institute of Science", "type": "Research"},
     {"id": "jnu", "name": "Jawaharlal Nehru University", "type": "Liberal Arts"},
@@ -248,3 +248,34 @@ print(f"Colleges: {len(abba_accounts_data['organizations']['colleges'])}")
 #display structures
 print("\nSample NGO Data Structure:")
 print(json.dumps(abba_accounts_data["organizations"]["ngos"][0], indent=2)[:1000] + "...")
+# Let me analyze the JSON structure to understand the data format
+import json
+
+# Load and analyze one of the JSON files to understand the structure
+try:
+    with open('Indian_Institute_of_Technology_Delhi_Financial_Transactions.json', 'r') as f:
+        iit_delhi_data = json.load(f)
+    
+    print("IIT Delhi Data Structure:")
+    print(f"Institution: {iit_delhi_data['institution']}")
+    print(f"Financial Year: {iit_delhi_data['financial_year']}")
+    print(f"Total Transactions: {len(iit_delhi_data['transactions'])}")
+    
+    # Sample transaction structure
+    sample_transaction = iit_delhi_data['transactions'][0]
+    print(f"\nSample Transaction Structure:")
+    for key, value in sample_transaction.items():
+        print(f"  {key}: {value} ({type(value).__name__})")
+    
+    # Get unique departments
+    departments = set(tx['department'] for tx in iit_delhi_data['transactions'])
+    print(f"\nUnique Departments ({len(departments)}):")
+    for dept in sorted(departments):
+        print(f"  - {dept}")
+    
+    # Get transaction types
+    types = set(tx['type'] for tx in iit_delhi_data['transactions'])
+    print(f"\nTransaction Types: {types}")
+    
+except Exception as e:
+    print(f"Error loading JSON: {e}")

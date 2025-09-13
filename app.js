@@ -647,8 +647,8 @@ const organizationData = {
     ],
     "colleges": [
       {
-        "id": "iit_bangalore",
-        "name": "Indian Institute of Technology Bangalore",
+        "id": "iiit_bangalore",
+        "name": "Indian Institute  information Technology Bangalore",
         "type": "Engineering",
         "financial": {
           "income": {
