@@ -1643,3 +1643,132 @@ window.addEventListener('load', function() {
   // Ensure modal is hidden on load
   document.getElementById('searchModal').classList.add('hidden');
 });
+let currentCurrency = 'INR';
+const rates = { 'INR': 1, 'USD': 0.012, 'EUR': 0.011, 'GBP': 0.009 };
+
+function formatMoney(amount) {
+    const converted = amount * rates[currentCurrency];
+    const symbols = {'INR': '₹', 'USD': '$', 'EUR': '€', 'GBP': '£'};
+    
+    if (converted >= 10000000) {
+        return symbols[currentCurrency] + (converted / 10000000).toFixed(1) + ' Cr';
+    } else if (converted >= 100000) {
+        return symbols[currentCurrency] + (converted / 100000).toFixed(1) + ' L';
+    } else {
+        return symbols[currentCurrency] + converted.toFixed(0);
+    }
+}
+
+function toggleCurrency() {
+    const currencies = ['INR', 'USD', 'EUR', 'GBP'];
+    const index = currencies.indexOf(currentCurrency);
+    currentCurrency = currencies[(index + 1) % currencies.length];
+    
+    // Update currency button
+    const btn = document.getElementById('currencyBtn');
+    if (btn) btn.textContent = currentCurrency;
+    
+    // Update all existing amounts on the page
+    updateExistingAmounts();
+}
+
+function updateExistingAmounts() {
+    // Find and update metric values
+    const metricValues = document.querySelectorAll('.metric-value');
+    metricValues.forEach(el => {
+        const text = el.textContent;
+        
+        // Extract number and convert
+        if (text.includes('₹') || text.includes('$') || text.includes('€') || text.includes('£')) {
+            // Store original INR amount if not already stored
+            if (!el.dataset.originalAmount) {
+                const numStr = text.replace(/[₹$€£,\s]/g, '');
+                let amount = parseFloat(numStr);
+                
+                // Convert Cr and L back to actual numbers
+                if (text.includes('Cr')) amount *= 10000000;
+                else if (text.includes('L')) amount *= 100000;
+                
+                el.dataset.originalAmount = amount;
+            }
+            
+            // Update display
+            const originalAmount = parseFloat(el.dataset.originalAmount);
+            el.textContent = formatMoney(originalAmount);
+        }
+    });
+    
+    // Update any elements with data-amount
+    document.querySelectorAll('[data-amount]').forEach(el => {
+        const amount = parseFloat(el.dataset.amount);
+        el.textContent = formatMoney(amount);
+    });
+    
+    // Update chart labels if they exist
+    updateChartLabels();
+}
+
+function updateChartLabels() {
+    // Update y-axis labels on charts
+    const yLabels = document.querySelectorAll('.chartjs-axis-label, .tick');
+    yLabels.forEach(label => {
+        if (label.textContent.includes('₹') || label.textContent.includes('Cr') || label.textContent.includes('L')) {
+            if (!label.dataset.originalAmount) {
+                const numStr = label.textContent.replace(/[₹$€£,\s]/g, '');
+                let amount = parseFloat(numStr);
+                
+                if (label.textContent.includes('Cr')) amount *= 10000000;
+                else if (label.textContent.includes('L')) amount *= 100000;
+                
+                label.dataset.originalAmount = amount;
+            }
+            
+            const originalAmount = parseFloat(label.dataset.originalAmount);
+            label.textContent = formatMoney(originalAmount);
+        }
+    });
+}
+
+// Initialize amounts when page loads
+function initializeAmounts() {
+    // Store original amounts for all metric values
+    const metricValues = document.querySelectorAll('.metric-value');
+    metricValues.forEach(el => {
+        const text = el.textContent;
+        if (text.includes('₹')) {
+            const numStr = text.replace(/[₹,\s]/g, '');
+            let amount = parseFloat(numStr);
+            
+            if (text.includes('Cr')) amount *= 10000000;
+            else if (text.includes('L')) amount *= 100000;
+            
+            el.dataset.originalAmount = amount;
+        }
+    });
+}
+
+// Enhanced dashboard population to initialize amounts
+const originalPopulateDashboard = window.populateDashboard;
+if (originalPopulateDashboard) {
+    window.populateDashboard = function() {
+        originalPopulateDashboard();
+        setTimeout(initializeAmounts, 500);
+    };
+}
+
+// Also initialize when dashboard loads
+setTimeout(() => {
+    initializeAmounts();
+    
+    // Add currency button if dashboard exists
+    if (document.querySelector('.dashboard-nav') && !document.getElementById('currencyBtn')) {
+        const currBtn = document.createElement('button');
+        currBtn.id = 'currencyBtn';
+        currBtn.textContent = 'INR';
+        currBtn.onclick = toggleCurrency;
+        currBtn.style.cssText = 'background: #1FB8CD; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-left: 10px;';
+        document.querySelector('.dashboard-nav').appendChild(currBtn);
+    }
+}, 2000);
+
+window.toggleCurrency = toggleCurrency;
