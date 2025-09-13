@@ -319,7 +319,6 @@ See also the list of [contributors](https://github.com/jacklachan/roomies/contri
 - **Open Source Contributors** - Various libraries and tools that made this project possible
 - **Google developer group** - Platform for rapid innovation and development
 - **BitNBuild 2025**- all the judges and support staff 
-specail thanks to 
 
 ---
 
