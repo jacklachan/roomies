@@ -3,7 +3,7 @@
   <a href="https://github.com/jacklachan/roomies" rel="noopener">
  <img src="https://i.imgur.com/AZ2iWek.png" alt="ABBA Logo"></a>
 </p>
-<h1 align="center">ABBA - Accountable Budget & Blockchain Accountability</h1>
+<h1 align="center">ABBA --financial transparency dashboard providing real-time insights</h1>
 
 <div align="center">
 
