@@ -1378,7 +1378,7 @@ function createIncomeChart(income) {
         data: data,
         backgroundColor: chartColors.slice(0, labels.length),
         borderWidth: 2,
-        borderColor: '#ffffff'
+        borderColor: '#1f2121'
       }]
     },
     options: {
@@ -1411,7 +1411,7 @@ function createExpenseChart(expenses) {
         data: data,
         backgroundColor: chartColors.slice(0, labels.length),
         borderWidth: 2,
-        borderColor: '#ffffff'
+        borderColor: '#1f2121'
       }]
     },
     options: {
@@ -1772,3 +1772,920 @@ setTimeout(() => {
 }, 2000);
 
 window.toggleCurrency = toggleCurrency;
+ // Feedback System
+function showFeedbackModal() {
+    let modal = document.getElementById('feedbackModal');
+    if (!modal) {
+        modal = createFeedbackModal();
+        document.body.appendChild(modal);
+    }
+    modal.style.display = 'flex';
+}
+
+    function createFeedbackModal() {
+        const modal = document.createElement('div');
+        modal.id = 'feedbackModal';
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Send Feedback</h3>
+                    <button class="modal-close" onclick="this.closest('.modal').style.display='none'">×</button>
+                </div>
+                <div class="modal-body">
+                    <form id="feedbackForm">
+                        <div class="form-group">
+                            <label class="form-label">Feedback Type</label>
+                            <select class="form-control" required>
+                                <option value="">Select type...</option>
+                                <option value="bug">Bug Report</option>
+                                <option value="feature">Feature Request</option>
+                                <option value="improvement">Improvement</option>
+                                <option value="general">General Feedback</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-control" placeholder="Brief description" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" rows="5" placeholder="Please provide detailed feedback..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email (optional)</label>
+                            <input type="email" class="form-control" placeholder="your.email@example.com">
+                        </div>
+                        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                            <button type="button" class="btn btn--secondary" onclick="this.closest('.modal').style.display='none'">Cancel</button>
+                            <button type="submit" class="btn btn--primary">Send Feedback</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        `;
+    
+        modal.querySelector('#feedbackForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            submitFeedback(e.target);
+        });
+    
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    
+        return modal;
+    }
+
+    function submitFeedback(form) {
+        const formData = new FormData(form);
+        console.log('📧 Feedback submitted:', Object.fromEntries(formData));
+    
+        const modal = document.getElementById('feedbackModal');
+        const modalBody = modal.querySelector('.modal-body');
+        modalBody.innerHTML = `
+            <div style="text-align: center; padding: 20px;">
+                <div style="color: var(--color-success); font-size: 48px; margin-bottom: 10px;">✓</div>
+                <h4 style="color: var(--color-success); margin-bottom: 10px;">Feedback Sent!</h4>
+                <p>Thank you for your feedback. We'll review it and get back to you if needed.</p>
+                <button class="btn btn--primary" onclick="this.closest('.modal').style.display='none'">Close</button>
+            </div>
+        `;
+    }
+    const transactionData = {
+    'rvce': [
+        {id: 'TXN001', date: '2024-09-10', vendor: 'Academic Publishers Ltd', department: 'Library', amount: 180000, status: 'Completed', description: 'Books and journals purchase'},
+        {id: 'TXN002', date: '2024-09-08', vendor: 'Lab Equipment Co', department: 'Research', amount: 750000, status: 'Pending', description: 'Laboratory equipment'},
+        {id: 'TXN003', date: '2024-09-06', vendor: 'Construction Services', department: 'Infrastructure', amount: 950000, status: 'Completed', description: 'Building maintenance'},
+        {id: 'TXN004', date: '2024-09-03', vendor: 'Faculty Development Co', department: 'HR', amount: 320000, status: 'Completed', description: 'Faculty training programs'},
+        {id: 'TXN005', date: '2024-08-30', vendor: 'IT Solutions Pvt Ltd', department: 'Technology', amount: 280000, status: 'Completed', description: 'Network upgrade'},
+        {id: 'TXN006', date: '2024-08-28', vendor: 'Office Supplies Inc', department: 'Administration', amount: 45000, status: 'Completed', description: 'Office stationery'},
+        {id: 'TXN007', date: '2024-08-25', vendor: 'Cleaning Services', department: 'Maintenance', amount: 85000, status: 'Pending', description: 'Campus cleaning contract'},
+        {id: 'TXN008', date: '2024-08-22', vendor: 'Security Systems Ltd', department: 'Security', amount: 165000, status: 'Completed', description: 'Security system upgrade'},
+        {id: 'TXN009', date: '2024-08-20', vendor: 'Catering Services', department: 'Student Affairs', amount: 95000, status: 'Completed', description: 'Event catering'},
+        {id: 'TXN010', date: '2024-08-18', vendor: 'Transport Co', department: 'Operations', amount: 125000, status: 'Pending', description: 'Student transport services'}
+    ],
+    'akshaya_patra': [
+        {id: 'TXN101', date: '2024-09-10', vendor: 'Food Suppliers Ltd', department: 'Operations', amount: 250000, status: 'Completed', description: 'Meal ingredients'},
+        {id: 'TXN102', date: '2024-09-08', vendor: 'Transport Services', department: 'Logistics', amount: 85000, status: 'Pending', description: 'Food delivery'},
+        {id: 'TXN103', date: '2024-09-05', vendor: 'Kitchen Equipment Co', department: 'Infrastructure', amount: 450000, status: 'Completed', description: 'Equipment maintenance'},
+        {id: 'TXN104', date: '2024-09-01', vendor: 'Cleaning Supplies Inc', department: 'Hygiene', amount: 35000, status: 'Completed', description: 'Cleaning materials'},
+        {id: 'TXN105', date: '2024-08-28', vendor: 'Tech Solutions', department: 'IT', amount: 120000, status: 'Completed', description: 'Software licensing'},
+        {id: 'TXN106', date: '2024-08-25', vendor: 'Uniform Suppliers', department: 'HR', amount: 75000, status: 'Pending', description: 'Staff uniforms'},
+        {id: 'TXN107', date: '2024-08-22', vendor: 'Vehicle Maintenance', department: 'Transport', amount: 95000, status: 'Completed', description: 'Vehicle servicing'},
+        {id: 'TXN108', date: '2024-08-20', vendor: 'Training Institute', department: 'HR', amount: 65000, status: 'Completed', description: 'Staff training programs'}
+    ]
+};
+
+let currentTransactions = [];
+let filteredTransactions = [];
+
+// Function to show transactions tab
+function showTransactionsTab() {
+    // Remove active class from all tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    
+    // Hide all panels
+    document.querySelectorAll('.tab-panel').forEach(panel => panel.style.display = 'none');
+    
+    // Add active class to transactions tab
+    const transTab = document.querySelector('.tab-btn[onclick*="showTransactionsTab"]');
+    if (transTab) transTab.classList.add('active');
+    
+    // Create or show transactions panel
+    let transPanel = document.getElementById('transactionsPanel');
+    if (!transPanel) {
+        transPanel = createTransactionsPanel();
+        document.getElementById('dashboardPage').appendChild(transPanel);
+    }
+    
+    // Load transactions for current organization
+    loadTransactionsData();
+    transPanel.style.display = 'block';
+}
+
+// Function to create transactions panel
+function createTransactionsPanel() {
+    const panel = document.createElement('div');
+    panel.id = 'transactionsPanel';
+    panel.className = 'tab-panel';
+    panel.style.display = 'none';
+    
+    panel.innerHTML = `
+        <div style="background: var(--color-surface, #1f2121); border-radius: 8px; padding: 24px; margin-bottom: 24px; border: 1px solid #e1e5e9;">
+            <h3 style="margin-bottom: 20px; color: var(--color-text, #4c9b9bff);">Transaction Records</h3>
+            
+            <!-- Search and Filter Section -->
+            <div style="display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 250px;">
+                    <input type="text" 
+                           id="transactionSearch" 
+                           placeholder="Search by vendor, department, or description..." 
+                           style="width: 100%; padding: 12px 16px; border: 2px solid #4c9b9bff; border-radius: 8px; font-size: 14px;">
+                </div>
+                <select id="departmentFilter" 
+                        style="padding: 12px 16px; border: 2px solid ##1f2121; border-radius: 8px; min-width: 150px;">
+                    <option value="">All Departments</option>
+                </select>
+                <button onclick="clearTransactionFilters()" 
+                        style="padding: 12px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    Clear Filters
+                </button>
+            </div>
+            
+            <!-- Summary Section -->
+            <div id="transactionSummary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+            </div>
+            
+            <!-- Transactions Table -->
+            <div style="overflow-x: auto; border: 1px solid #4c9b9bff; border-radius: 8px;">
+                <table id="transactionsTable" style="width: 100%; border-collapse: collapse; background: white;">
+                    <thead>
+                        <tr style="background: #1f2121; border-bottom: 2px solid #4c9b9bff;">
+                            <th style="padding: 12px 16px; text-align: left; font-weight: 600; cursor: pointer;" onclick="sortTransactions('id')">
+                                Transaction ID ↕
+                            </th>
+                            <th style="padding: 12px 16px; text-align: left; font-weight: 600; cursor: pointer;" onclick="sortTransactions('date')">
+                                Date ↕
+                            </th>
+                            <th style="padding: 12px 16px; text-align: left; font-weight: 600; cursor: pointer;" onclick="sortTransactions('vendor')">
+                                Vendor ↕
+                            </th>
+                            <th style="padding: 12px 16px; text-align: left; font-weight: 600; cursor: pointer;" onclick="sortTransactions('department')">
+                                Department ↕
+                            </th>
+                            <th style="padding: 12px 16px; text-align: left; font-weight: 600; cursor: pointer;" onclick="sortTransactions('amount')">
+                                Amount ↕
+                            </th>
+                            <th style="padding: 12px 16px; text-align: left; font-weight: 600;">Status</th>
+                            <th style="padding: 12px 16px; text-align: left; font-weight: 600;">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    
+    // Add search event listener
+    setTimeout(() => {
+        const searchInput = document.getElementById('transactionSearch');
+        const deptFilter = document.getElementById('departmentFilter');
+        
+        if (searchInput) {
+            searchInput.addEventListener('input', filterTransactions);
+        }
+        if (deptFilter) {
+            deptFilter.addEventListener('change', filterTransactions);
+        }
+    }, 100);
+    
+    return panel;
+}
+
+// Function to load transactions data
+function loadTransactionsData() {
+    const orgId = currentOrganization?.id || 'rvce';
+    currentTransactions = transactionData[orgId] || transactionData['rvce'];
+    filteredTransactions = [...currentTransactions];
+    
+    // Populate department filter
+    populateDepartmentFilter();
+    
+    // Display transactions and summary
+    displayTransactions();
+    updateTransactionSummary();
+}
+
+// Function to populate department filter
+function populateDepartmentFilter() {
+    const deptFilter = document.getElementById('departmentFilter');
+    if (!deptFilter) return;
+    
+    const departments = [...new Set(currentTransactions.map(t => t.department))].sort();
+    
+    deptFilter.innerHTML = '<option value="">All Departments</option>';
+    departments.forEach(dept => {
+        deptFilter.innerHTML += `<option value="${dept}">${dept}</option>`;
+    });
+}
+
+// Function to display transactions
+function displayTransactions() {
+    const tableBody = document.getElementById('transactionsTableBody');
+    if (!tableBody) return;
+    
+    if (filteredTransactions.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="7" style="padding: 40px; text-align: center; color: #6c757d;">
+                    No transactions found matching your search criteria.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    tableBody.innerHTML = filteredTransactions.map(transaction => `
+        <tr style="border-bottom: 1px solid ##1f2121; cursor: pointer;" 
+            onmouseover="this.style.backgroundColor='##1f2121'" 
+            onmouseout="this.style.backgroundColor='white'"
+            onclick="showTransactionDetails('${transaction.id}')">
+            <td style="padding: 12px 16px; font-family: monospace; color: #0066cc; font-weight: 500;">
+                ${transaction.id}
+            </td>
+            <td style="padding: 12px 16px;">
+                ${new Date(transaction.date).toLocaleDateString('en-IN')}
+            </td>
+            <td style="padding: 12px 16px; font-weight: 500;">
+                ${transaction.vendor}
+            </td>
+            <td style="padding: 12px 16px;">
+                <span style="background: ##1f2121; color: #1976d2; padding: 4px 8px; border-radius: 12px; font-size: 12px;">
+                    ${transaction.department}
+                </span>
+            </td>
+            <td style="padding: 12px 16px; font-weight: 600; text-align: right;" data-amount="${transaction.amount}">
+                ${formatMoney ? formatMoney(transaction.amount) : '₹' + transaction.amount.toLocaleString('en-IN')}
+            </td>
+            <td style="padding: 12px 16px;">
+                <span style="padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;
+                             background: ${transaction.status === 'Completed' ? '#d4edda' : '#fff3cd'};
+                             color: ${transaction.status === 'Completed' ? '#155724' : '#856404'};">
+                    ${transaction.status}
+                </span>
+            </td>
+            <td style="padding: 12px 16px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                ${transaction.description}
+            </td>
+        </tr>
+    `).join('');
+}
+
+// Function to filter transactions
+function filterTransactions() {
+    const searchTerm = document.getElementById('transactionSearch')?.value.toLowerCase() || '';
+    const selectedDept = document.getElementById('departmentFilter')?.value || '';
+    
+    filteredTransactions = currentTransactions.filter(transaction => {
+        const matchesSearch = !searchTerm || 
+            transaction.vendor.toLowerCase().includes(searchTerm) ||
+            transaction.department.toLowerCase().includes(searchTerm) ||
+            transaction.description.toLowerCase().includes(searchTerm) ||
+            transaction.id.toLowerCase().includes(searchTerm);
+            
+        const matchesDept = !selectedDept || transaction.department === selectedDept;
+        
+        return matchesSearch && matchesDept;
+    });
+    
+    displayTransactions();
+    updateTransactionSummary();
+}
+
+// Function to clear filters
+function clearTransactionFilters() {
+    const searchInput = document.getElementById('transactionSearch');
+    const deptFilter = document.getElementById('departmentFilter');
+    
+    if (searchInput) searchInput.value = '';
+    if (deptFilter) deptFilter.value = '';
+    
+    filteredTransactions = [...currentTransactions];
+    displayTransactions();
+    updateTransactionSummary();
+}
+
+// Function to update transaction summary
+function updateTransactionSummary() {
+    const summaryDiv = document.getElementById('transactionSummary');
+    if (!summaryDiv) return;
+    
+    const totalAmount = filteredTransactions.reduce((sum, t) => sum + t.amount, 0);
+    const completedCount = filteredTransactions.filter(t => t.status === 'Completed').length;
+    const pendingCount = filteredTransactions.filter(t => t.status === 'Pending').length;
+    
+    summaryDiv.innerHTML = `
+        <div style="background: #1f2121; padding: 16px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 12px; color: #666; margin-bottom: 4px;">Total Transactions</div>
+            <div style="font-size: 24px; font-weight: bold; color: #1976d2;">${filteredTransactions.length}</div>
+        </div>
+        <div style="background: #1f2121; padding: 16px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 12px; color: #666; margin-bottom: 4px;">Total Amount</div>
+            <div style="font-size: 24px; font-weight: bold; color: #2e7d2e;" data-amount="${totalAmount}">
+                ${formatMoney ? formatMoney(totalAmount) : '₹' + totalAmount.toLocaleString('en-IN')}
+            </div>
+        </div>
+        <div style="background: #1f2121; padding: 16px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 12px; color: #666; margin-bottom: 4px;">Completed</div>
+            <div style="font-size: 24px; font-weight: bold; color: #f57c00;">${completedCount}</div>
+        </div>
+        <div style="background: #1f2121; padding: 16px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 12px; color: #666; margin-bottom: 4px;">Pending</div>
+            <div style="font-size: 24px; font-weight: bold; color: #d32f2f;">${pendingCount}</div>
+        </div>
+    `;
+}
+
+// Function to sort transactions
+function sortTransactions(column) {
+    filteredTransactions.sort((a, b) => {
+        let aVal = a[column];
+        let bVal = b[column];
+        
+        if (column === 'amount') {
+            return bVal - aVal; // Descending for amount
+        } else if (column === 'date') {
+            return new Date(bVal) - new Date(aVal); // Descending for date
+        } else {
+            return aVal.toString().localeCompare(bVal.toString());
+        }
+    });
+    
+    displayTransactions();
+}
+
+// Function to show transaction details (optional)
+function showTransactionDetails(transactionId) {
+    const transaction = filteredTransactions.find(t => t.id === transactionId);
+    if (!transaction) return;
+    
+    alert(`Transaction Details:\n\nID: ${transaction.id}\nDate: ${transaction.date}\nVendor: ${transaction.vendor}\nDepartment: ${transaction.department}\nAmount: ${formatMoney ? formatMoney(transaction.amount) : '₹' + transaction.amount.toLocaleString('en-IN')}\nStatus: ${transaction.status}\nDescription: ${transaction.description}`);
+}
+
+// Add transactions tab button if it doesn't exist
+setTimeout(() => {
+    if (document.querySelector('.dashboard-tabs') && !document.querySelector('.tab-btn[onclick*="showTransactionsTab"]')) {
+        const transBtn = document.createElement('button');
+        transBtn.className = 'tab-btn';
+        transBtn.textContent = 'Transactions';
+        transBtn.onclick = showTransactionsTab;
+        document.querySelector('.dashboard-tabs').appendChild(transBtn);
+    }
+}, 2000);
+
+// Make functions global
+window.showTransactionsTab = showTransactionsTab;
+window.clearTransactionFilters = clearTransactionFilters;
+window.sortTransactions = sortTransactions;
+window.showTransactionDetails = showTransactionDetails;
+let feedbackData = [];
+
+// Function to create floating feedback button
+function createFeedbackButton() {
+    // Check if button already exists
+    if (document.getElementById('feedbackBtn')) return;
+    
+    const feedbackBtn = document.createElement('div');
+    feedbackBtn.id = 'feedbackBtn';
+    feedbackBtn.innerHTML = '💬';
+    feedbackBtn.title = 'Leave Feedback';
+    
+    // Floating button styles
+    feedbackBtn.style.cssText = `
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: #1FB8CD;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 999;
+        transition: all 0.3s ease;
+        user-select: none;
+    `;
+    
+    // Add hover effect
+    feedbackBtn.onmouseover = function() {
+        this.style.transform = 'scale(1.1)';
+        this.style.background = '#159fb0';
+    };
+    
+    feedbackBtn.onmouseout = function() {
+        this.style.transform = 'scale(1)';
+        this.style.background = '#1FB8CD';
+    };
+    
+    feedbackBtn.onclick = openFeedbackModal;
+    
+    document.body.appendChild(feedbackBtn);
+}
+
+// Function to open feedback modal
+function openFeedbackModal() {
+    // Check if modal already exists
+    if (document.getElementById('feedbackModal')) return;
+    
+    const modal = document.createElement('div');
+    modal.id = 'feedbackModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+    `;
+    
+    modal.innerHTML = `
+        <div style="background: #1f2121; border-radius: 12px; padding: 30px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; border: 1px solid #444;">
+            <button onclick="closeFeedbackModal()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: #ccc; font-size: 24px; cursor: pointer; padding: 5px;">×</button>
+            
+            <h3 style="color: #fff; margin-bottom: 20px; text-align: center;">💬 Share Your Feedback</h3>
+            <p style="color: #ccc; margin-bottom: 25px; text-align: center; font-size: 14px;">Help us improve our financial transparency dashboard</p>
+            
+            <form id="feedbackForm" onsubmit="submitFeedback(event)">
+                <!-- Email Input -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #fff; margin-bottom: 8px; font-weight: 500;">Email Address (Optional)</label>
+                    <input type="email" 
+                           id="feedbackEmail" 
+                           placeholder="your.email@example.com"
+                           style="width: 100%; padding: 12px 16px; border: 2px solid #444; border-radius: 8px; background: #2a2a2a; color: #fff; font-size: 14px;">
+                </div>
+                
+                <!-- Star Rating -->
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; color: #fff; margin-bottom: 12px; font-weight: 500;">Rate Your Experience</label>
+                    <div id="starRating" style="display: flex; gap: 5px; justify-content: center; margin-bottom: 10px;">
+                        <span class="star" data-rating="1" onclick="setRating(1)" style="font-size: 30px; cursor: pointer; color: #666; transition: color 0.2s;">⭐</span>
+                        <span class="star" data-rating="2" onclick="setRating(2)" style="font-size: 30px; cursor: pointer; color: #666; transition: color 0.2s;">⭐</span>
+                        <span class="star" data-rating="3" onclick="setRating(3)" style="font-size: 30px; cursor: pointer; color: #666; transition: color 0.2s;">⭐</span>
+                        <span class="star" data-rating="4" onclick="setRating(4)" style="font-size: 30px; cursor: pointer; color: #666; transition: color 0.2s;">⭐</span>
+                        <span class="star" data-rating="5" onclick="setRating(5)" style="font-size: 30px; cursor: pointer; color: #666; transition: color 0.2s;">⭐</span>
+                    </div>
+                    <div id="ratingText" style="text-align: center; color: #ccc; font-size: 12px;">Click stars to rate</div>
+                </div>
+                
+                <!-- Feedback Category -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #fff; margin-bottom: 8px; font-weight: 500;">Feedback Type</label>
+                    <select id="feedbackCategory" 
+                            style="width: 100%; padding: 12px 16px; border: 2px solid #444; border-radius: 8px; background: #2a2a2a; color: #fff; font-size: 14px;">
+                        <option value="general">General Feedback</option>
+                        <option value="bug">Bug Report</option>
+                        <option value="feature">Feature Request</option>
+                        <option value="data">Data Accuracy</option>
+                        <option value="ui">User Interface</option>
+                        <option value="suggestion">Suggestion</option>
+                    </select>
+                </div>
+                
+                <!-- Current Organization Context -->
+                <div style="margin-bottom: 20px; padding: 12px; background: #2a2a2a; border-radius: 8px; border: 1px solid #444;">
+                    <div style="color: #ccc; font-size: 12px; margin-bottom: 4px;">Current Page:</div>
+                    <div id="currentContext" style="color: #1FB8CD; font-size: 14px; font-weight: 500;"></div>
+                </div>
+                
+                <!-- Feedback Text -->
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; color: #fff; margin-bottom: 8px; font-weight: 500;">Your Feedback <span style="color: #ff6b6b;">*</span></label>
+                    <textarea id="feedbackText" 
+                              required
+                              placeholder="Please share your thoughts, suggestions, or report any issues..."
+                              style="width: 100%; min-height: 120px; padding: 12px 16px; border: 2px solid #444; border-radius: 8px; background: #2a2a2a; color: #fff; font-size: 14px; resize: vertical; font-family: inherit;"></textarea>
+                </div>
+                
+                <!-- Submit Button -->
+                <div style="text-align: center;">
+                    <button type="submit" 
+                            style="background: #1FB8CD; color: white; border: none; padding: 14px 30px; border-radius: 8px; font-size: 16px; font-weight: 500; cursor: pointer; transition: background 0.3s;">
+                        Submit Feedback
+                    </button>
+                </div>
+            </form>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Set current context
+    updateFeedbackContext();
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeFeedbackModal();
+        }
+    });
+    
+    // Add fadeIn animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Function to close feedback modal
+function closeFeedbackModal() {
+    const modal = document.getElementById('feedbackModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// Function to set star rating
+function setRating(rating) {
+    const stars = document.querySelectorAll('.star');
+    const ratingText = document.getElementById('ratingText');
+    
+    // Update star colors
+    stars.forEach((star, index) => {
+        if (index < rating) {
+            star.style.color = '#ffc107';
+        } else {
+            star.style.color = '#666';
+        }
+    });
+    
+    // Update rating text
+    const ratingTexts = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+    ratingText.textContent = ratingTexts[rating];
+    ratingText.style.color = '#1FB8CD';
+    
+    // Store rating
+    window.currentRating = rating;
+}
+
+// Function to update feedback context
+function updateFeedbackContext() {
+    const contextEl = document.getElementById('currentContext');
+    if (!contextEl) return;
+    
+    const orgName = document.getElementById('orgName')?.textContent || 'Dashboard';
+    const activeTab = document.querySelector('.tab-btn.active')?.textContent || 'Overview';
+    
+    contextEl.textContent = `${orgName} - ${activeTab} Tab`;
+}
+
+// Function to submit feedback
+function submitFeedback(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('feedbackEmail').value;
+    const rating = window.currentRating || 0;
+    const category = document.getElementById('feedbackCategory').value;
+    const text = document.getElementById('feedbackText').value;
+    const context = document.getElementById('currentContext').textContent;
+    
+    if (!text.trim()) {
+        alert('Please enter your feedback before submitting.');
+        return;
+    }
+    
+    // Create feedback object
+    const feedback = {
+        id: 'FB' + Date.now(),
+        timestamp: new Date().toISOString(),
+        email: email || 'Anonymous',
+        rating: rating,
+        category: category,
+        text: text.trim(),
+        context: context,
+        userAgent: navigator.userAgent,
+        url: window.location.href
+    };
+    
+    // Store feedback (in production, send to server)
+    feedbackData.push(feedback);
+    
+    // Show success message
+    showFeedbackSuccess();
+    
+    // Close modal
+    setTimeout(closeFeedbackModal, 2000);
+    
+    // Log feedback (for development)
+    console.log('Feedback submitted:', feedback);
+}
+
+// Function to show success message
+function showFeedbackSuccess() {
+    const modal = document.getElementById('feedbackModal');
+    if (!modal) return;
+    
+    modal.innerHTML = `
+        <div style="background: #1f2121; border-radius: 12px; padding: 40px; max-width: 400px; width: 90%; text-align: center; border: 1px solid #444;">
+            <div style="font-size: 48px; margin-bottom: 20px;">✅</div>
+            <h3 style="color: #28a745; margin-bottom: 15px;">Thank You!</h3>
+            <p style="color: #ccc; margin-bottom: 25px;">Your feedback has been submitted successfully. We appreciate your input!</p>
+            <div style="color: #666; font-size: 12px;">This window will close automatically...</div>
+        </div>
+    `;
+}
+
+// Function to view all feedback (admin only)
+function viewFeedback() {
+    console.log('All Feedback:', feedbackData);
+    
+    if (feedbackData.length === 0) {
+        alert('No feedback received yet.');
+        return;
+    }
+    
+    let feedbackSummary = 'Recent Feedback:\n\n';
+    feedbackData.slice(-5).forEach(fb => {
+        feedbackSummary += `ID: ${fb.id}\n`;
+        feedbackSummary += `Rating: ${'⭐'.repeat(fb.rating)}\n`;
+        feedbackSummary += `Category: ${fb.category}\n`;
+        feedbackSummary += `Context: ${fb.context}\n`;
+        feedbackSummary += `Feedback: ${fb.text}\n`;
+        feedbackSummary += `Email: ${fb.email}\n`;
+        feedbackSummary += `Time: ${new Date(fb.timestamp).toLocaleString()}\n`;
+        feedbackSummary += '-'.repeat(50) + '\n';
+    });
+    
+    alert(feedbackSummary);
+}
+
+// Initialize feedback button when page loads
+setTimeout(() => {
+    createFeedbackButton();
+}, 3000);
+
+// Make functions global
+window.openFeedbackModal = openFeedbackModal;
+window.closeFeedbackModal = closeFeedbackModal;
+window.setRating = setRating;
+window.submitFeedback = submitFeedback;
+window.viewFeedback = viewFeedback; // For admin use
+
+// Optional: Add keyboard shortcut to open feedback (Ctrl+Shift+F)
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.shiftKey && e.key === 'F') {
+        e.preventDefault();
+        openFeedbackModal();
+    }
+});function openFeedbackModal() {
+    // Check if modal already exists
+    if (document.getElementById('feedbackModal')) return;
+    
+    const modal = document.createElement('div');
+    modal.id = 'feedbackModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+    `;
+    
+    modal.innerHTML = `
+        <div style="background: #1f2121; border-radius: 12px; padding: 30px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; border: 1px solid #444;">
+            <button onclick="closeFeedbackModal()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: #ccc; font-size: 24px; cursor: pointer; padding: 5px;">×</button>
+            
+            <h3 style="color: #fff; margin-bottom: 20px; text-align: center;">💬 Share Your Feedback</h3>
+            <p style="color: #ccc; margin-bottom: 25px; text-align: center; font-size: 14px;">Help us improve our financial transparency dashboard</p>
+            
+            <form id="feedbackForm" onsubmit="submitFeedback(event)">
+                <!-- Email Input -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #fff; margin-bottom: 8px; font-weight: 500;">Email Address (Optional)</label>
+                    <input type="email" 
+                           id="feedbackEmail" 
+                           placeholder="your.email@example.com"
+                           style="width: 100%; padding: 12px 16px; border: 2px solid #444; border-radius: 8px; background: #2a2a2a; color: #fff; font-size: 14px;">
+                </div>
+                
+                <!-- FIXED Star Rating -->
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; color: #fff; margin-bottom: 12px; font-weight: 500;">Rate Your Experience</label>
+                    <div id="starRating" style="display: flex; gap: 5px; justify-content: center; margin-bottom: 10px;">
+                        <span class="star" data-rating="1" onclick="setRating(1)" onmouseover="hoverRating(1)" onmouseout="resetHover()" style="font-size: 35px; cursor: pointer; color: #666; transition: all 0.2s ease; user-select: none;">★</span>
+                        <span class="star" data-rating="2" onclick="setRating(2)" onmouseover="hoverRating(2)" onmouseout="resetHover()" style="font-size: 35px; cursor: pointer; color: #666; transition: all 0.2s ease; user-select: none;">★</span>
+                        <span class="star" data-rating="3" onclick="setRating(3)" onmouseover="hoverRating(3)" onmouseout="resetHover()" style="font-size: 35px; cursor: pointer; color: #666; transition: all 0.2s ease; user-select: none;">★</span>
+                        <span class="star" data-rating="4" onclick="setRating(4)" onmouseover="hoverRating(4)" onmouseout="resetHover()" style="font-size: 35px; cursor: pointer; color: #666; transition: all 0.2s ease; user-select: none;">★</span>
+                        <span class="star" data-rating="5" onclick="setRating(5)" onmouseover="hoverRating(5)" onmouseout="resetHover()" style="font-size: 35px; cursor: pointer; color: #666; transition: all 0.2s ease; user-select: none;">★</span>
+                    </div>
+                    <div id="ratingText" style="text-align: center; color: #ccc; font-size: 14px; font-weight: 500;">Click stars to rate</div>
+                </div>
+                
+                <!-- Feedback Category -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #fff; margin-bottom: 8px; font-weight: 500;">Feedback Type</label>
+                    <select id="feedbackCategory" 
+                            style="width: 100%; padding: 12px 16px; border: 2px solid #444; border-radius: 8px; background: #2a2a2a; color: #fff; font-size: 14px;">
+                        <option value="general">General Feedback</option>
+                        <option value="bug">Bug Report</option>
+                        <option value="feature">Feature Request</option>
+                        <option value="data">Data Accuracy</option>
+                        <option value="ui">User Interface</option>
+                        <option value="suggestion">Suggestion</option>
+                    </select>
+                </div>
+                
+                <!-- Current Organization Context -->
+                <div style="margin-bottom: 20px; padding: 12px; background: #2a2a2a; border-radius: 8px; border: 1px solid #444;">
+                    <div style="color: #ccc; font-size: 12px; margin-bottom: 4px;">Current Page:</div>
+                    <div id="currentContext" style="color: #1FB8CD; font-size: 14px; font-weight: 500;"></div>
+                </div>
+                
+                <!-- Feedback Text -->
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; color: #fff; margin-bottom: 8px; font-weight: 500;">Your Feedback <span style="color: #ff6b6b;">*</span></label>
+                    <textarea id="feedbackText" 
+                              required
+                              placeholder="Please share your thoughts, suggestions, or report any issues..."
+                              style="width: 100%; min-height: 120px; padding: 12px 16px; border: 2px solid #444; border-radius: 8px; background: #2a2a2a; color: #fff; font-size: 14px; resize: vertical; font-family: inherit;"></textarea>
+                </div>
+                
+                <!-- Submit Button -->
+                <div style="text-align: center;">
+                    <button type="submit" 
+                            style="background: #1FB8CD; color: white; border: none; padding: 14px 30px; border-radius: 8px; font-size: 16px; font-weight: 500; cursor: pointer; transition: background 0.3s;">
+                        Submit Feedback
+                    </button>
+                </div>
+            </form>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Set current context
+    updateFeedbackContext();
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeFeedbackModal();
+        }
+    });
+    
+    // Add fadeIn animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// FIXED: Enhanced star rating functions
+let selectedRating = 0;
+
+function setRating(rating) {
+    selectedRating = rating;
+    updateStars(rating);
+    
+    const ratingText = document.getElementById('ratingText');
+    const ratingTexts = ['', 'Poor 😞', 'Fair 😐', 'Good 🙂', 'Very Good 😊', 'Excellent 🤩'];
+    
+    if (ratingText) {
+        ratingText.textContent = ratingTexts[rating];
+        ratingText.style.color = getRatingColor(rating);
+    }
+    
+    // Store rating globally
+    window.currentRating = rating;
+}
+
+function hoverRating(rating) {
+    updateStars(rating, true);
+}
+
+function resetHover() {
+    updateStars(selectedRating);
+}
+
+function updateStars(rating, isHover = false) {
+    const stars = document.querySelectorAll('.star');
+    
+    stars.forEach((star, index) => {
+        const starRating = index + 1;
+        
+        if (starRating <= rating) {
+            // Filled star
+            star.style.color = isHover ? '#ffeb3b' : '#ffc107';
+            star.style.textShadow = '0 0 10px rgba(255, 193, 7, 0.5)';
+            star.style.transform = isHover ? 'scale(1.1)' : 'scale(1)';
+        } else {
+            // Empty star
+            star.style.color = '#666';
+            star.style.textShadow = 'none';
+            star.style.transform = 'scale(1)';
+        }
+    });
+}
+
+function getRatingColor(rating) {
+    const colors = ['', '#ff4444', '#ff8800', '#ffbb00', '#44bb44', '#00aa00'];
+    return colors[rating] || '#ccc';
+}
+
+// Enhanced submit feedback function
+function submitFeedback(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('feedbackEmail').value;
+    const rating = selectedRating;
+    const category = document.getElementById('feedbackCategory').value;
+    const text = document.getElementById('feedbackText').value;
+    const context = document.getElementById('currentContext').textContent;
+    
+    if (!text.trim()) {
+        alert('Please enter your feedback before submitting.');
+        return;
+    }
+    
+    if (rating === 0) {
+        alert('Please select a star rating before submitting.');
+        return;
+    }
+    
+    // Create feedback object
+    const feedback = {
+        id: 'FB' + Date.now(),
+        timestamp: new Date().toISOString(),
+        email: email || 'Anonymous',
+        rating: rating,
+        category: category,
+        text: text.trim(),
+        context: context,
+        userAgent: navigator.userAgent,
+        url: window.location.href
+    };
+    
+    // Store feedback (in production, send to server)
+    feedbackData.push(feedback);
+    
+    // Show success message
+    showFeedbackSuccess();
+    
+    // Close modal
+    setTimeout(closeFeedbackModal, 2000);
+    
+    // Log feedback (for development)
+    console.log('Feedback submitted:', feedback);
+}
+
+// Make hover functions global
+window.hoverRating = hoverRating;
+window.resetHover = resetHover;
