@@ -1467,51 +1467,144 @@ function createSalaryChart(salaries) {
   });
 }
 
-// Search Functionality
-function performSearch(query) {
-  if (query.length < 2) {
-    closeSearchModal();
-    return;
-  }
-  
-  const results = [];
-  const categories = ['ngos', 'government_projects', 'colleges'];
-  
-  categories.forEach(category => {
-    organizationData.organizations[category].forEach(org => {
-      if (org.name.toLowerCase().includes(query.toLowerCase()) ||
-          org.type.toLowerCase().includes(query.toLowerCase())) {
-        results.push({
-          name: org.name,
-          type: org.type,
-          category: category,
-          id: org.id
-        });
-      }
-    });
-  });
-  
-  displaySearchResults(results);
+// DIRECT NAVIGATION FIX - Replace the selectResult function with this
+
+function selectResult(orgName) {
+    console.log('Selected:', orgName);
+    hideSearchDropdown();
+    
+    // Clear search input
+    const searchInput = document.querySelector('input[placeholder*="search"]') || 
+                       document.querySelector('input[placeholder*="Search"]');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+    
+    // Direct navigation using your existing functions
+    if (orgName.includes('RVCE') || orgName.includes('RV College')) {
+        // Go directly to RVCE
+        directNavigateToOrg('rvce', 'colleges');
+    } else if (orgName.includes('Akshaya')) {
+        // Go directly to Akshaya Patra
+        directNavigateToOrg('akshaya_patra', 'ngos');
+    } else if (orgName.includes('Digital')) {
+        // Go directly to Digital India
+        directNavigateToOrg('digital_india', 'government_projects');
+    }
 }
 
-function displaySearchResults(results) {
-  const modal = document.getElementById('searchModal');
-  const container = document.getElementById('searchResults');
-  
-  if (results.length === 0) {
-    container.innerHTML = '<p>No results found.</p>';
-  } else {
-    container.innerHTML = results.map(result => `
-      <div class="search-result" onclick="selectSearchResult('${result.category}', '${result.id}')">
-        <h5>${result.name}</h5>
-        <p>${result.type} - ${result.category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</p>
-      </div>
-    `).join('');
-  }
-  
-  modal.classList.remove('hidden');
+function directNavigateToOrg(orgId, category) {
+    try {
+        console.log('Navigating to:', orgId, category);
+        
+        // Method 1: Use existing navigation functions
+        if (window.goToOrgSelection) {
+            window.goToOrgSelection(category);
+            
+            // After a short delay, select the specific organization
+            setTimeout(() => {
+                const orgCards = document.querySelectorAll('.org-card');
+                orgCards.forEach(card => {
+                    if (card.textContent.toLowerCase().includes(orgId.replace('_', ' '))) {
+                        card.click();
+                    }
+                });
+            }, 500);
+            return;
+        }
+        
+        // Method 2: Direct page manipulation
+        // Hide landing page
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => page.classList.remove('active'));
+        
+        // Show role selection directly
+        const roleSelectionPage = document.getElementById('roleSelectionPage');
+        if (roleSelectionPage) {
+            roleSelectionPage.classList.add('active');
+            
+            // Set up organization data
+            setupOrganizationForRole(orgId, category);
+        }
+        
+    } catch (error) {
+        console.error('Navigation error:', error);
+        // Fallback: show simple success message
+        alert('Organization found! Please navigate manually to ' + orgId.replace('_', ' ').toUpperCase());
+    }
 }
 
+function setupOrganizationForRole(orgId, category) {
+    // Get the organization data
+    const orgData = window.enhancedOrganizationData || window.organizationData;
+    
+    if (orgData && orgData.organizations[category]) {
+        const organization = orgData.organizations[category].find(org => org.id === orgId);
+        
+        if (organization) {
+            // Set global current organization
+            window.currentOrganization = organization;
+            
+            // Update page title
+            const titleEl = document.querySelector('#roleSelectionPage h2');
+            if (titleEl) {
+                titleEl.textContent = `Select Access Level for ${organization.name}`;
+            }
+            
+            console.log('Organization set up:', organization.name);
+        }
+    }
+}
+
+// EVEN SIMPLER VERSION - If the above doesn't work, use this:
+function selectResultSimple(orgName) {
+    hideSearchDropdown();
+    
+    // Clear search
+    const searchInput = document.querySelector('input[placeholder*="search"]') || 
+                       document.querySelector('input[placeholder*="Search"]');
+    if (searchInput) searchInput.value = '';
+    
+    // Just show an alert with instructions for now
+    let instructions = '';
+    
+    if (orgName.includes('RVCE')) {
+        instructions = 'Click on "Educational Institutions" → then select "RV College of Engineering"';
+    } else if (orgName.includes('Akshaya')) {
+        instructions = 'Click on "NGOs" → then select "Akshaya Patra Foundation"';
+    } else if (orgName.includes('Digital')) {
+        instructions = 'Click on "Government Projects" → then select "Digital India Initiative"';
+    }
+    
+    if (confirm(`Found: ${orgName}\n\nWould you like navigation instructions?\n\n${instructions}`)) {
+        // Try to auto-click the category
+        if (orgName.includes('RVCE')) {
+            const eduCard = document.querySelector('.dashboard-card[onclick*="education"]') || 
+                          document.querySelector('[onclick*="Educational"]');
+            if (eduCard) eduCard.click();
+        } else if (orgName.includes('Akshaya')) {
+            const ngoCard = document.querySelector('.dashboard-card[onclick*="ngos"]') || 
+                          document.querySelector('[onclick*="NGOs"]');
+            if (ngoCard) ngoCard.click();
+        } else if (orgName.includes('Digital')) {
+            const govCard = document.querySelector('.dashboard-card[onclick*="government"]') || 
+                          document.querySelector('[onclick*="Government"]');
+            if (govCard) govCard.click();
+        }
+    }
+}
+
+// Update the global function - try the complex version first, fallback to simple
+window.selectResult = function(orgName) {
+    try {
+        selectResult(orgName);
+    } catch (error) {
+        console.log('Using simple navigation fallback');
+        selectResultSimple(orgName);
+    }
+};
+
+console.log('Direct navigation fix applied!');
 function closeSearchModal() {
   document.getElementById('searchModal').classList.add('hidden');
 }
