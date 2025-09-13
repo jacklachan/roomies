@@ -1,4 +1,19 @@
 :root {
+  #chatbot-widget {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    width: 320px !important;
+    max-height: 450px !important;
+    background: white !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    font-family: Arial, sans-serif !important;
+    z-index: 9999 !important;
+    border: 2px solid red !important; /* Temporary - to see if it exists */
+    display: block !important;
+}
   /* Primitive Color Tokens */
   --color-white: rgba(255, 255, 255, 1);
   --color-black: rgba(0, 0, 0, 1);

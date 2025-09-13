@@ -1,60 +1,144 @@
-// chatbot.js - FIXED VERSION WITH CORRECT API
-const API_KEY = 'AIzaSyD-WpjkK4WuwlupLZ5cM_NMgnkQmOlJsC0'; // Put your real API key here
+// chatbot.js - WEBSITE-AWARE VERSION
+const API_KEY = 'AIzaSyD-WpjkK4WuwlupLZ5cM_NMgnkQmOlJsC0';
 
 class GeminiChatbot {
     constructor() {
         this.apiKey = API_KEY;
-        // CORRECT API ENDPOINT
-        this.apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${this.apiKey}`;
+        this.websiteContext = this.extractWebsiteContext();
         this.initWidget();
     }
 
+    // Extract current website content for context
+    extractWebsiteContext() {
+        const context = {
+            pageTitle: document.title,
+            pageType: "Financial Transparency Dashboard",
+            data: {}
+        };
+
+        // Extract dashboard data
+        try {
+            // Get main heading
+            const mainHeading = document.querySelector('h1, .main-title, [class*="title"]');
+            if (mainHeading) context.mainTopic = mainHeading.textContent;
+
+            // Extract NGO data
+            const ngoSection = document.querySelector('[class*="ngo"], [class*="NGO"]') || 
+                             Array.from(document.querySelectorAll('*')).find(el => 
+                                 el.textContent.includes('NGO') || el.textContent.includes('Organizations'));
+            
+            if (ngoSection) {
+                context.data.ngos = this.extractSectionData(ngoSection, 'NGOs');
+            }
+
+            // Extract Government Projects data
+            const govSection = Array.from(document.querySelectorAll('*')).find(el => 
+                el.textContent.includes('Government Projects') || el.textContent.includes('Projects'));
+            
+            if (govSection) {
+                context.data.governmentProjects = this.extractSectionData(govSection, 'Government Projects');
+            }
+
+            // Extract Educational Institutions data
+            const eduSection = Array.from(document.querySelectorAll('*')).find(el => 
+                el.textContent.includes('Educational Institutions') || el.textContent.includes('Education'));
+            
+            if (eduSection) {
+                context.data.educationalInstitutions = this.extractSectionData(eduSection, 'Educational Institutions');
+            }
+
+            // Extract any budget/financial numbers
+            const budgetElements = document.querySelectorAll('[class*="budget"], [class*="amount"], [class*="total"]');
+            context.data.financials = [];
+            budgetElements.forEach(el => {
+                const text = el.textContent.trim();
+                if (text.includes('₹') || text.includes('Cr') || text.includes('Budget')) {
+                    context.data.financials.push(text);
+                }
+            });
+
+        } catch (error) {
+            console.log('Error extracting context:', error);
+        }
+
+        return context;
+    }
+
+    extractSectionData(section, sectionName) {
+        const data = { name: sectionName, details: [] };
+        
+        // Look for numbers, budgets, counts
+        const textContent = section.textContent;
+        const numbers = textContent.match(/\d+(?:\.\d+)?\s*(?:Cr|Organizations|Projects|Institutions|Budget)/g);
+        if (numbers) data.details = numbers;
+        
+        // Get description text
+        const description = section.querySelector('p, [class*="description"], [class*="text"]');
+        if (description) data.description = description.textContent;
+        
+        return data;
+    }
+
     initWidget() {
-        const widget = document.getElementById('chatbot-widget');
-        widget.innerHTML = `
-            <div class="chat-header">
-                <h3>🤖 AI Assistant</h3>
-                <button id="toggleBtn">−</button>
-            </div>
-            <div class="chat-messages" id="messages">
-                <div class="message bot">
-                    <div class="message-content">
-                        Hi! I'm your AI assistant. How can I help you today?
+        try {
+            const widget = document.getElementById('chatbot-widget');
+            if (!widget) return;
+
+            widget.innerHTML = `
+                <div class="chat-header">
+                    <h3>🤖 ABBA Assistant</h3>
+                    <button id="toggleBtn">−</button>
+                </div>
+                <div class="chat-messages" id="messages">
+                    <div class="message bot">
+                        <div class="message-content">
+                            Hi! I'm your ABBA Financial Dashboard assistant. I can help you understand the NGO data, government projects, and educational institutions shown on this page. What would you like to know?
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="chat-input">
-                <input type="text" id="userInput" placeholder="Type a message...">
-                <button id="sendBtn">Send</button>
-            </div>
-        `;
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Ask about the financial data...">
+                    <button id="sendBtn">Send</button>
+                </div>
+            `;
 
-        document.getElementById('sendBtn').addEventListener('click', () => this.sendMessage());
-        document.getElementById('userInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') this.sendMessage();
-        });
-        document.getElementById('toggleBtn').addEventListener('click', () => this.toggleWidget());
+            const sendBtn = document.getElementById('sendBtn');
+            const userInput = document.getElementById('userInput');
+            const toggleBtn = document.getElementById('toggleBtn');
+
+            if (sendBtn) sendBtn.addEventListener('click', () => this.sendMessage());
+            if (userInput) userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') this.sendMessage();
+            });
+            if (toggleBtn) toggleBtn.addEventListener('click', () => this.toggleWidget());
+
+        } catch (error) {
+            console.error('Error initializing chatbot:', error);
+        }
     }
 
     async sendMessage() {
-        const input = document.getElementById('userInput');
-        const message = input.value.trim();
-        
-        if (!message) return;
-
-        this.addMessage(message, 'user');
-        input.value = '';
-        this.showTyping();
-
-        // Check if API key is set
-        if (this.apiKey === 'AIzaSyD-WpjkK4WuwlupLZ5cM_NMgnkQmOlJsC0' || !this.apiKey) {
-            this.removeTyping();
-            this.addMessage('⚠️ Please set your Gemini API key in the chatbot.js file!', 'bot');
-            return;
-        }
-
         try {
-            const response = await fetch(this.apiUrl, {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            this.addMessage(message, 'user');
+            input.value = '';
+            this.showTyping();
+
+            // Check API key
+            if (this.apiKey === 'YOUR_API_KEY_HERE' || !this.apiKey) {
+                this.removeTyping();
+                this.addMessage('⚠️ Please add your Gemini API key!', 'bot');
+                return;
+            }
+
+            // Create context-aware prompt
+            const contextPrompt = this.createContextPrompt(message);
+
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${this.apiKey}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,91 +146,142 @@ class GeminiChatbot {
                 body: JSON.stringify({
                     contents: [{
                         parts: [{
-                            text: message
+                            text: contextPrompt
                         }]
-                    }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        topK: 40,
-                        topP: 0.95,
-                        maxOutputTokens: 1024
-                    }
+                    }]
                 })
             });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                console.error('API Error:', response.status, errorText);
-                throw new Error(`API Error: ${response.status}`);
-            }
 
             const data = await response.json();
             this.removeTyping();
 
-            if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                const botReply = data.candidates[0].content.parts[0].text;
-                this.addMessage(botReply, 'bot');
+            if (response.ok && data.candidates?.[0]?.content?.parts?.[0]?.text) {
+                this.addMessage(data.candidates[0].content.parts[0].text, 'bot');
             } else {
-                this.addMessage('🤔 I received an unexpected response. Please try again.', 'bot');
+                this.addMessage('❌ Sorry, I encountered an error. Please try again.', 'bot');
             }
 
         } catch (error) {
-            console.error('Error:', error);
             this.removeTyping();
-            
-            if (error.message.includes('403')) {
-                this.addMessage('🔐 Invalid API key. Please check your Gemini API key.', 'bot');
-            } else if (error.message.includes('404')) {
-                this.addMessage('🔍 API endpoint not found. Please check the API configuration.', 'bot');
-            } else if (error.message.includes('429')) {
-                this.addMessage('⏳ Rate limit reached. Please wait and try again.', 'bot');
-            } else {
-                this.addMessage(`❌ Connection error: ${error.message}`, 'bot');
-            }
+            this.addMessage('🌐 Connection error. Please check your internet connection.', 'bot');
         }
     }
 
+    createContextPrompt(userMessage) {
+        const context = this.websiteContext;
+        
+        let prompt = `You are an AI assistant for the ABBA (Accountable Budget & Blockchain Accountability) Financial Transparency Dashboard. 
+
+CURRENT PAGE CONTEXT:
+- Page: ${context.pageTitle || 'Financial Transparency Dashboard'}
+- Main Topic: ${context.mainTopic || 'Financial data across organizations'}
+
+AVAILABLE DATA ON THIS PAGE:
+`;
+
+        // Add NGO data
+        if (context.data.ngos) {
+            prompt += `\nNGOs: ${JSON.stringify(context.data.ngos)}`;
+        }
+
+        // Add Government Projects data  
+        if (context.data.governmentProjects) {
+            prompt += `\nGovernment Projects: ${JSON.stringify(context.data.governmentProjects)}`;
+        }
+
+        // Add Educational Institutions data
+        if (context.data.educationalInstitutions) {
+            prompt += `\nEducational Institutions: ${JSON.stringify(context.data.educationalInstitutions)}`;
+        }
+
+        // Add financial data
+        if (context.data.financials && context.data.financials.length > 0) {
+            prompt += `\nFinancial Data: ${context.data.financials.join(', ')}`;
+        }
+
+        prompt += `
+
+INSTRUCTIONS:
+- Answer questions specifically about the financial data, organizations, projects, and institutions shown on this dashboard
+- If asked about data not visible on the current page, let the user know what data IS available
+- Focus on transparency, accountability, and budget information
+- Be helpful and informative about the ABBA system and financial transparency
+
+USER QUESTION: ${userMessage}
+
+Please provide a helpful response based on the dashboard data above:`;
+
+        return prompt;
+    }
+
+    // ... (keep all the other methods: addMessage, showTyping, removeTyping, toggleWidget)
     addMessage(text, sender) {
-        const messagesEl = document.getElementById('messages');
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${sender}`;
-        messageDiv.innerHTML = `<div class="message-content">${text}</div>`;
-        messagesEl.appendChild(messageDiv);
-        messagesEl.scrollTop = messagesEl.scrollHeight;
+        try {
+            const messagesEl = document.getElementById('messages');
+            if (!messagesEl) return;
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.innerHTML = `<div class="message-content">${text}</div>`;
+            messagesEl.appendChild(messageDiv);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        } catch (error) {
+            console.error('Add message error:', error);
+        }
     }
 
     showTyping() {
-        const messagesEl = document.getElementById('messages');
-        const typing = document.createElement('div');
-        typing.className = 'typing-indicator';
-        typing.id = 'typing';
-        typing.innerHTML = '<div class="message-content">🤔 AI is thinking...</div>';
-        messagesEl.appendChild(typing);
-        messagesEl.scrollTop = messagesEl.scrollHeight;
+        try {
+            const messagesEl = document.getElementById('messages');
+            if (!messagesEl) return;
+
+            const typing = document.createElement('div');
+            typing.className = 'typing-indicator';
+            typing.id = 'typing';
+            typing.innerHTML = '<div class="message-content">🤔 Analyzing dashboard data...</div>';
+            messagesEl.appendChild(typing);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        } catch (error) {
+            console.error('Show typing error:', error);
+        }
     }
 
     removeTyping() {
-        const typing = document.getElementById('typing');
-        if (typing) typing.remove();
+        try {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        } catch (error) {
+            console.error('Remove typing error:', error);
+        }
     }
 
     toggleWidget() {
-        const messages = document.getElementById('messages');
-        const input = document.querySelector('.chat-input');
-        const toggleBtn = document.getElementById('toggleBtn');
-        
-        if (messages.style.display === 'none') {
-            messages.style.display = 'block';
-            input.style.display = 'flex';
-            toggleBtn.textContent = '−';
-        } else {
-            messages.style.display = 'none';
-            input.style.display = 'none';
-            toggleBtn.textContent = '+';
+        try {
+            const messages = document.getElementById('messages');
+            const input = document.querySelector('.chat-input');
+            const toggleBtn = document.getElementById('toggleBtn');
+            
+            if (messages && input && toggleBtn) {
+                if (messages.style.display === 'none') {
+                    messages.style.display = 'block';
+                    input.style.display = 'flex';
+                    toggleBtn.textContent = '−';
+                } else {
+                    messages.style.display = 'none';
+                    input.style.display = 'none';
+                    toggleBtn.textContent = '+';
+                }
+            }
+        } catch (error) {
+            console.error('Toggle widget error:', error);
         }
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new GeminiChatbot();
+    try {
+        new GeminiChatbot();
+    } catch (error) {
+        console.error('Failed to initialize chatbot:', error);
+    }
 });
