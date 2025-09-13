@@ -1757,7 +1757,7 @@ select.form-control {
 .chat-messages {
   flex: 1;
   padding: 10px;
-  background: #f8f9fa;
+  background: #1f2121;
   overflow-y: auto;
 }
 
@@ -1773,8 +1773,8 @@ select.form-control {
 }
 
 .bot .message-content {
-  background: #fff;
-  border: 1px solid #e0e0e0;
+  background: #000000;
+  border: 1px solid #000000;
 }
 
 .message-content {
@@ -1786,7 +1786,7 @@ select.form-control {
 
 .chat-input {
   display: flex;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #000000;
 }
 
 .chat-input input {
