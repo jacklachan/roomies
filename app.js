@@ -1695,6 +1695,95 @@ document.addEventListener('DOMContentLoaded', function() {
       performSearch(query);
     }
   });
+  // FIXED SEARCH RESULT SELECTION
+window.selectSearchResult = function(category, orgId) {
+    closeSearchModal();
+    // Clear search input
+    document.getElementById('searchInput').value = '';
+    
+    // Find the actual organization object
+    const organization = organizationData.organizations[category].find(org => org.id === orgId);
+    
+    if (organization) {
+        // Pass the full organization object, not just the ID
+        goToRoleSelection(organization);
+    } else {
+        console.error('Organization not found:', orgId);
+        alert('Organization not found. Please try again.');
+    }
+};
+// ENHANCED SEARCH WITH PROPER NAVIGATION
+function fixSearchNavigation() {
+    // Make sure the search input exists and add enhanced functionality
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) {
+        console.log('Search input not found');
+        return;
+    }
+    
+    console.log('Enhanced search navigation initialized');
+    
+    // Override the existing performSearch to ensure proper navigation
+    window.performSearch = function(query) {
+        if (query.length < 2) {
+            closeSearchModal();
+            return;
+        }
+        
+        const results = [];
+        const categories = ['ngos', 'government_projects', 'colleges'];
+        
+        categories.forEach(category => {
+            organizationData.organizations[category].forEach(org => {
+                if (org.name.toLowerCase().includes(query.toLowerCase()) ||
+                    org.type.toLowerCase().includes(query.toLowerCase())) {
+                    results.push({
+                        name: org.name,
+                        type: org.type,
+                        category: category,
+                        id: org.id
+                    });
+                }
+            });
+        });
+        
+        displaySearchResults(results);
+    };
+    
+    // Enhanced displaySearchResults with better click handling
+    window.displaySearchResults = function(results) {
+        const modal = document.getElementById('searchModal');
+        const container = document.getElementById('searchResults');
+        
+        if (results.length === 0) {
+            container.innerHTML = '<p>No results found.</p>';
+        } else {
+            container.innerHTML = results.map(result => `
+                <div class="search-result" 
+                     onclick="selectSearchResult('${result.category}', '${result.id}')"
+                     style="padding: 12px; border-bottom: 1px solid #ddd; cursor: pointer; transition: background 0.2s;"
+                     onmouseover="this.style.background='#f5f5f5'"
+                     onmouseout="this.style.background='white'">
+                    <h5 style="margin: 0 0 4px 0; color: #1FB8CD;">${result.name}</h5>
+                    <p style="margin: 0; color: #666; font-size: 14px;">${result.type} - ${result.category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</p>
+                </div>
+            `).join('');
+        }
+        
+        modal.classList.remove('hidden');
+    };
+}
+
+// Initialize the enhanced search
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(fixSearchNavigation, 1000);
+});
+
+// Also try when page is fully loaded
+window.addEventListener('load', function() {
+    setTimeout(fixSearchNavigation, 2000);
+});
+
 
   // Tab switching
   document.querySelectorAll('.tab-btn').forEach(btn => {
