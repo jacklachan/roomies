@@ -312,6 +312,9 @@ Gmail - 400gbram@gmail.com
 Name - Utkarsh Singh Yadav
 Gmail - usy.joseph@gmail.com
 
+<img width="872" height="477" alt="image" src="https://github.com/user-attachments/assets/ce248484-6548-4064-8b96-0f2a74d806f7" />
+
+
 See also the list of [contributors](https://github.com/jacklachan/roomies/contributors) who participated in this project.
 
 ## 🎉 Acknowledgments <a name = "acknowledgments"></a>
